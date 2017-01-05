@@ -15,7 +15,7 @@ export class HeroService {
 //     );
 //   }
   
-  getHeroes() {
+  getHeroes() : Promise<Hero[]> {
     return Promise.resolve(HEROES);
   }
   
