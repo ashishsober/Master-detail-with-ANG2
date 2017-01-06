@@ -10,7 +10,7 @@ import {HeroService} from '../service/hero.service';
                   <span class="badge">{{hero.id}}</span> {{hero.name}}
                 </li>
             </ul>
-            <hr/>
+            <hr/><hr/>
             <my-hero-detail [hero]="selectedHero"></my-hero-detail>
             `,
    styleUrls:["app/heroes-component/heroes.component.css"]
