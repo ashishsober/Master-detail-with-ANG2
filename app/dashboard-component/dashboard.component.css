@@ -59,3 +59,10 @@ h4 {
     min-width: 60px;
   }
 }
+
+.app-content {
+  padding: 20px;
+}
+.app-content md-card {
+  margin: 20px;
+}
