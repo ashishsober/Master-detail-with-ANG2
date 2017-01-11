@@ -1,4 +1,6 @@
-#Angular 2 app
+#Typescript (2.0.10)
+
+#Angular 2 Demo App (2.4.0)
 
 To Start the application type 
 
@@ -10,6 +12,14 @@ Quick links
       $ https://angular.io/docs/ts/latest/tutorial/toh-pt3.html
       $ https://embed.plnkr.co/?show=preview
 
+App contains 5 components ;
+
+      app-component 
+      dashboard-component
+      hero-detail-component
+      heroes-component
+      material-component
+   
 
 #Angular Material (2.0.0-alpha.8-2)
  
