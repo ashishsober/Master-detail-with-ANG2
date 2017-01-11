@@ -19,7 +19,7 @@ import { MdSlideToggleModule } from '@angular2-material/slide-toggle';
 import { MdTabsModule } from '@angular2-material/tabs';
 import { MdToolbarModule } from '@angular2-material/toolbar';
 import { MdTooltipModule } from '@angular2-material/tooltip';
-
+//import { FlexLayoutModule} from '@angular/flex-layout';
 import {
         MdRippleModule,
         RtlModule,
@@ -48,6 +48,8 @@ const MATERIAL_MODULES = [
             MdTabsModule,
             MdToolbarModule,
             MdTooltipModule,
+            
+            
 
             MdRippleModule,
             OverlayModule,

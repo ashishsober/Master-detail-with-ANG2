@@ -43,6 +43,7 @@
       '@angular2-material/tabs' :'npm:@angular2-material/tabs/tabs.umd.js',
       '@angular2-material/toolbar' :'npm:@angular2-material/toolbar/toolbar.umd.js',
       '@angular2-material/tooltip' :'npm:@angular2-material/tooltip/tooltip.umd.js',
+      '@angular/flex-layout' :'npm:@angular/flex-layout/bundles/flex-layout.umd.js',
       
 
       // other libraries
