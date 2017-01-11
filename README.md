@@ -1,12 +1,14 @@
 #Angular 2 app
 
-To Start the application
-  npm start
+To Start the application type 
 
-Important links
-   $ https://github.com/angular/quickstart
-   $ https://angular.io/docs/ts/latest/tutorial/toh-pt3.html
-   $ https://embed.plnkr.co/?show=preview
+     npm start
+
+Quick links
+
+      $ https://github.com/angular/quickstart
+      $ https://angular.io/docs/ts/latest/tutorial/toh-pt3.html
+      $ https://embed.plnkr.co/?show=preview
 
 
 #Angular Material (2.0.0-alpha.8-2)
@@ -38,11 +40,12 @@ in package.json
 
 after install add all the modules in system.config.js file in the map section 
 shown below
- map: {
-      // our app is within the app folder
-      app: 'app',
-      '@angular2-material/core': 'npm:@angular2-material/core/core.umd.js',
-   }
+
+      map: {
+            // our app is within the app folder
+            app: 'app',
+            '@angular2-material/core': 'npm:@angular2-material/core/core.umd.js',
+        }
 
 and import all the modules in the app.module.ts file,do not apply forRoot() method,
 if you do the refactoring then we can apply the forRoot() method as i have done.
