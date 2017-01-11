@@ -7,6 +7,7 @@ import { AppComponent }  from './app-component/app.component';
 import { HeroDetailComponent } from './hero-detail-component/hero-detail.component';
 import { HeroesComponent }     from './heroes-component/heroes.component';
 import { DashboardComponent }     from './dashboard-component/dashboard.component';
+import { MaterialComponent }     from './material-component/material.component';
 import {HeroService} from './service/hero.service';
 
 import { AppRoutingModule }  from './app-routing.module';
@@ -25,7 +26,8 @@ import { AppMaterialModule }  from './app.material.module';
   declarations: [ AppComponent ,
                   HeroDetailComponent,
                   HeroesComponent,
-                  DashboardComponent ],
+                  DashboardComponent,
+                  MaterialComponent ],
   providers: [ HeroService ],
   bootstrap:    [ AppComponent ]
   
