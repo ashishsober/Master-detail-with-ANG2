@@ -2,6 +2,7 @@ import { NgModule ,ModuleWithProviders}      from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule }   from '@angular/forms';
 import { FlexLayoutModule} from '@angular/flex-layout';
+import { MaterialModule } from '@angular/material';
 
 import { AppComponent }  from './app-component/app.component';
 import { HeroDetailComponent } from './hero-detail-component/hero-detail.component';
@@ -20,6 +21,7 @@ import { AppMaterialModule }  from './app.material.module';
             AppRoutingModule,
             AppMaterialModule,
             FlexLayoutModule
+            
            
            ],
   

@@ -19,4 +19,12 @@ export class DashboardComponent implements OnInit {
     this.heroService.getHeroes()
       .then(heroes => this.heroes = heroes.slice(1, 5));
   }
+
+  // public direction = "row";
+  // public mainAxis = "space-around";
+  // public crossAxis = "center";
+
+  // layoutAlign () {
+  //     return `${this.mainAxis} ${this.crossAxis}`;
+  // }
 }
