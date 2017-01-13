@@ -1,3 +1,65 @@
+[class*='col-'] {
+  float: left;
+  padding-right: 20px;
+  padding-bottom: 20px;
+}
+[class*='col-']:last-of-type {
+  padding-right: 0;
+}
+a {
+  text-decoration: none;
+}
+*, *:after, *:before {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+h3 {
+  text-align: center; margin-bottom: 0;
+}
+h4 {
+  position: relative;
+}
+.grid {
+  margin: 0;
+}
+.col-1-4 {
+  width: 25%;
+}
+.module {
+  padding: 20px;
+  text-align: center;
+  color: #eee;
+  max-height: 120px;
+  min-width: 120px;
+  background-color: #607D8B;
+  border-radius: 2px;
+}
+.module:hover {
+  background-color: #EEE;
+  cursor: pointer;
+  color: #607d8b;
+}
+.grid-pad {
+  padding: 10px 0;
+}
+.grid-pad > [class*='col-']:last-of-type {
+  padding-right: 20px;
+}
+@media (max-width: 600px) {
+  .module {
+    font-size: 10px;
+    max-height: 75px; }
+}
+@media (max-width: 1024px) {
+  .grid {
+    margin: 0;
+  }
+  .module {
+    min-width: 60px;
+  }
+}
+
 /*[class*='col-'] {
   float: left;
   padding-right: 20px;
@@ -66,6 +128,10 @@ h4 {
 .app-content md-card {
   margin: 20px;
 }*/
+ 
+ 
+ 
+ 
  /*md-card .large {
   height:200px;
   
@@ -90,6 +156,11 @@ md-card-content {
   margin-bottom: 24px;
 }*/
 
+
+
+
+
+/*
 .card-demo md-card,
 .card-demo md-card-content {
   margin-bottom: 24px;
@@ -319,4 +390,4 @@ md-toolbar .md-toolbar-layout md-toolbar-row {
 
 .demo-content .small-demo:first-child {
   margin-top: 40px;
-}
+}*/
