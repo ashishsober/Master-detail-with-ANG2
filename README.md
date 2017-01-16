@@ -53,7 +53,7 @@ shown below
 
       map: {
             // our app is within the app folder
-            app: 'app',
+             app: 'app',
             '@angular2-material/core': 'npm:@angular2-material/core/core.umd.js',
         }
 
@@ -61,3 +61,9 @@ and import all the modules in the app.module.ts file,do not apply forRoot() meth
 if you do the refactoring then we can apply the forRoot() method as i have done.
  and please add providers also for radio-button and some other modules.
    
+
+
+#Injected Angular-cli   
+
+* To inject angular cli write ng init and follow the instruction.
+* start the application with ng-serve instead of npm start
