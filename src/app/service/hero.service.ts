@@ -8,6 +8,8 @@ import 'rxjs/add/operator/switchMap';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 
+import * as Rx from "rxjs/Rx";
+
 @Injectable()
 export class HeroService {
 
@@ -21,6 +23,16 @@ export class HeroService {
           console.log(data);
         }
     )
+
+    let source = Observable.create((observer) => {
+      setTimeout(() => {
+        console.log('timeout hit');
+        observer.next('Observable 101');
+      }, 1000);
+      console.log('observable initialized');
+    });
+
+    source.subscribe(x => console.log("Getting the data sended by the observer " +x));
   }
 
   getHeroes() : Promise<Hero[]> {
