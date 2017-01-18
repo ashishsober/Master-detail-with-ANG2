@@ -16,24 +16,7 @@ export class HeroService {
 //use promisess here to call asynchronous call,If the data is coming from the remote server
 //so that over code will not get blocked. for the waiting of the respond from the server
 
-  constructor(){
-    let myObservable = Observable.range(0,10);
-    myObservable.subscribe(
-        data=>{
-          console.log(data);
-        }
-    )
-
-    let source = Observable.create((observer) => {
-      setTimeout(() => {
-        console.log('timeout hit');
-        observer.next('Observable 101');
-      }, 1000);
-      console.log('observable initialized');
-    });
-
-    source.subscribe(x => console.log("Getting the data sended by the observer " +x));
-  }
+ 
 
   getHeroes() : Promise<Hero[]> {
     return Promise.resolve(HEROES);
