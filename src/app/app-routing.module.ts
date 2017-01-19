@@ -5,12 +5,15 @@ import { HeroDetailComponent } from './hero-detail-component/hero-detail.compone
 import { HeroesComponent }     from './heroes-component/heroes.component';
 import { DashboardComponent }     from './dashboard-component/dashboard.component';
 import { MaterialComponent }     from './material-component/material.component';
+import { ObservableComponent }     from './observable-component/observable.component';
+
 const routes: Routes = [
-  { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
+  { path: '', redirectTo: '/observable', pathMatch: 'full' },
   { path: 'dashboard',  component: DashboardComponent },
   { path: 'detail/:id', component: HeroDetailComponent },
   { path: 'heroes',     component: HeroesComponent },
-  { path: 'material',   component: MaterialComponent }
+  { path: 'material',   component: MaterialComponent },
+  { path: 'observable',   component: ObservableComponent }
 ];
 
 @NgModule({
