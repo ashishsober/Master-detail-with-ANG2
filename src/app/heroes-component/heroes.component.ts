@@ -16,7 +16,7 @@ export class HeroesComponent implements OnInit{
   
   //We pass our callback function as an argument to the promise's {then} method:
   getHeroes() :void{
-      this.heroService.getHeroes().then(heroes => this.heroes=heroes);
+      this.heroService.getHeroes().subscribe(heroes => this.heroes=heroes);
   }
 
   ngOnInit(){

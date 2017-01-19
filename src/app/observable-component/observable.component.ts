@@ -16,15 +16,35 @@ import { Hero } from '../hero';
 @Component({
   moduleId: 'module.id',
   selector: 'my-observable-component',
-  template: `{{ title }}`,
+  templateUrl:'./observable.component.html',
   styleUrls:[],
 })
 export class ObservableComponent implements OnInit{
  title = 'Craze of Observable';
-   constructor(){}
+ search : String;
+ errorMessage:String;
+ heroes :Hero[];
+ 
 
-   ngOnInit() : void{}
+   constructor(private heroservice :HeroService){}
+   
+   ngOnInit() : void{
+     this.search = 'Please do something';
+    // const sourceTwo = Rx.Observable.timer(0, 5000);
 
+    // //switch to new inner observable when source emits, emit items that are emitted  
+    // const example = sourceTwo.switchMap(() => Rx.Observable.interval(500));
+
+    // //output: 0,1,2,3,4,5,6,7,8,9...0,1,2,3,4,5,6,7,8
+    // const subscribe = example.subscribe(val => console.log(val));
+    this.getHeroesFromServer();
+   }
+
+
+   getHeroesFromServer(){
+     this.heroservice.getHeroes().subscribe(data=>this.heroes=data);
+  
+   }
    
               
 }

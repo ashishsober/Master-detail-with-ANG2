@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { HttpModule } from '@angular/http';
+import { HttpModule , JsonpModule} from '@angular/http';
 import { FlexLayoutModule} from '@angular/flex-layout';
 import { MaterialModule } from '@angular/material';
 
@@ -22,6 +22,7 @@ import { AppMaterialModule }  from './app.material.module';
               BrowserModule,
               FormsModule,
               HttpModule,
+              JsonpModule,
               FlexLayoutModule,
               
 

@@ -12,11 +12,12 @@ import * as Rx from "rxjs/Rx";
 
 @Injectable()
 export class HeroService {
+private heroesUrl = 'https://jsonplaceholder.typicode.com/photos'; //url to web API 
 
 //use promisess here to call asynchronous call,If the data is coming from the remote server
 //so that over code will not get blocked. for the waiting of the respond from the server
 
-  constructor(){
+  constructor(private http:Http){
     let myObservable = Observable.range(0,10);
     myObservable.subscribe(
         data=>{
@@ -34,24 +35,37 @@ export class HeroService {
 
     source.subscribe(x => console.log("Getting the data sended by the observer " +x));
 
-    
-    //const sourceTwo = Rx.Observable.timer(0, 5000);
-
-    //switch to new inner observable when source emits, emit items that are emitted  
-    //const example = sourceTwo.switchMap(() => Rx.Observable.interval(500));
-
-    //output: 0,1,2,3,4,5,6,7,8,9...0,1,2,3,4,5,6,7,8
-    //const subscribe = example.subscribe(val => console.log(val));
-
   }
 
-  getHeroes() : Promise<Hero[]> {
-    return Promise.resolve(HEROES);
+  getHeroes() : Observable<Hero[]> {
+    return this.http.get(this.heroesUrl)
+                               .map(this.extractData)
+                               .catch(this.handleError)
   }
   
-  getHero(id: number): Promise<Hero> {
-  return this.getHeroes()
-             .then(heroes => heroes.find(hero => hero.id === id));
+private extractData(res:Response){
+  let body=res.json();
+  return body || { }
 }
+
+private handleError(error:Response){
+  // In a real world app, we might use a remote logging infrastructure
+    let errMsg: string;
+    if (error instanceof Response) {
+      const body = error.json() || '';
+      const err = body.error || JSON.stringify(body);
+      errMsg = `${error.status} - ${error.statusText || ''} ${err}`;
+    } else {
+      errMsg = "error";
+    }
+    console.error(errMsg);
+    return Observable.throw(errMsg);
+
+}
+
+//   getHero(id: number): Promise<Hero> {
+//   return this.getHeroes()
+//              .then(heroes => heroes.find(hero => hero.id === id));
+// }
 
 }
