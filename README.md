@@ -21,3 +21,5 @@ The Http client is one of a family of services in the Angular HTTP library.
  The component doesn't know or care how it gets the data. It delegates to the HeroService
 
  ***This is a golden rule: always delegate data access to a supporting service class
+
+ supporting HTTP
