@@ -12,23 +12,21 @@ export class HeroesComponent implements OnInit{
 
   selectedHero: Hero;
   public heroes:Hero[];
+
   constructor(private heroService:HeroService){ }
   
-  //We pass our callback function as an argument to the promise's {then} method:
-  getHeroes() :void{
-      this.heroService.getHeroes().subscribe(heroes => this.heroes=heroes);
-  }
-
   ngOnInit(){
       this.getHeroes();
+  }
+
+//We pass our callback function as an argument to the promise's {then} method:
+  getHeroes() :void{
+      this.heroService.getHeroes()
+                  .subscribe(data => this.heroes=data);
   }
 
   onSelect(hero1: Hero): void {
     this.selectedHero = hero1;
   }
-  // //hard coded value
-  // hero: Hero = {
-  //   id: 1,
-  //   name: 'Windstorm'
-  // };
+  
 }
