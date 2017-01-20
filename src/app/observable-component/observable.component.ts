@@ -20,7 +20,7 @@ import { Hero } from '../hero';
   styleUrls:[],
 })
 export class ObservableComponent implements OnInit{
- title = 'Craze of Observable';
+ 
  search : String;
  errorMessage:String;
  heroes :Hero[];
