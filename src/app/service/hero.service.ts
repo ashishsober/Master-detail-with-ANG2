@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {HEROES} from './mock-heroes';
+//import {HEROES} from './mock-heroes';
 import { Hero } from '../hero';
 
 import { Observable } from 'rxjs/Rx';
@@ -54,7 +54,7 @@ private handleError(error:Response){
     if (error instanceof Response) {
       const body = error.json() || '';
       const err = body.error || JSON.stringify(body);
-      errMsg = `${error.status} - ${error.statusText || ''} ${err}`;
+      errMsg = "error,Please check the service "//`${error.status} - ${error.statusText || ''} ${err}`;
     } else {
       errMsg = "error";
     }

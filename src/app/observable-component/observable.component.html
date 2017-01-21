@@ -1,20 +1,24 @@
 
 <md-input [(ngModel)]="search" placeholder="Search"></md-input>{{search}}
 <br>
+<div>
 
+</div>
   <table>
-  <thead class="table">
-    <tr>
-      <th>#</th>
-      <th>First Name</th>
-      <th>Last Name</th>
-    </tr>
-  </thead>
-  <tbody *ngFor="let hero of heroes">
-    <tr>
-      <th scope="row">{{hero.id}}</th>
-      <td>{{hero.title}}</td>
-      <td>{{hero.thumbnailUrl}}</td>
-    </tr>
-  </tbody>
+    <thead class="table">
+      <tr>
+        <th>#</th>
+        <th>First Name</th>
+        <th>Last Name</th>
+      </tr>
+    </thead>
+    <tbody *ngFor="let hero of heroes">
+      <tr>
+        <th scope="row">{{hero.id}}</th>
+        <td>{{hero.title}}</td>
+        <td>{{hero.thumbnailUrl}}</td>
+      </tr>
+    </tbody>
 </table>
+
+<p class="error" *ngIf="errorMessage">{{errorMessage}}</p>

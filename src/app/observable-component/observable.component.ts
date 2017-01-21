@@ -42,7 +42,10 @@ export class ObservableComponent implements OnInit{
 
 
    getHeroesFromServer(){
-     this.heroservice.getHeroes().subscribe(data=>this.heroes=data);
+     this.heroservice.getHeroes().subscribe(
+                                  data=>this.heroes=data,
+                                  error =>this.errorMessage=<any>error
+                                  );
   
    }
    
