@@ -9,7 +9,8 @@ import { MaterialModule } from '@angular/material';
 import { AppComponent }  from './app-component/app.component';
 import { HeroesComponent }     from './heroes-component/heroes.component';
 import { ObservableComponent }     from './observable-component/observable.component';
-import {HeroService} from './service/hero.service';
+import { HeroService } from './service/hero.service';
+import { WikipediaService } from './service/wiki.service';
 
 import { AppRoutingModule }  from './app-routing.module';
 import { AppMaterialModule }  from './app.material.module';
@@ -29,7 +30,7 @@ import { AppMaterialModule }  from './app.material.module';
   declarations: [ AppComponent ,
                   HeroesComponent,
                   ObservableComponent],
-  providers: [HeroService],
+  providers: [HeroService,WikipediaService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
