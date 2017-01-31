@@ -1,11 +1,24 @@
-<md-toolbar color="primary">
+<md-sidenav-layout color="primary">
+		<md-sidenav #sidenav mode="side" class="app-sidenav">
+	       My Navigation
+	       <nav>
+		      	  <ul><a routerLink="/dashboard" routerLinkActive="active">Dashboard</a></ul>
+				  <ul><a routerLink="/heroes">Heroes</a></ul>
+				  <ul><a routerLink="/material">Material Components</a></ul>
+		   </nav>
+	    </md-sidenav>
 
-   {{title}}
+	<md-toolbar color="primary">
+		<button class="app-icon-button" (click)="sidenav.toggle()">
+          <i class="material-icons app-toolbar-menu">menu</i>
+        </button> {{title}}
+        <span class="app-toolbar-filler"></span>
 
-</md-toolbar>
-<nav>
-  <a routerLink="/dashboard" routerLinkActive="active">Dashboard</a>
-  <a routerLink="/heroes">Heroes</a>
-  <a routerLink="/material">Material Components</a>
-</nav>
-<router-outlet></router-outlet>
+        <button md-button (click)="login()">Sign in</button>
+	</md-toolbar>
+    
+    <div class="app-content">
+      <router-outlet></router-outlet>
+    </div>
+
+</md-sidenav-layout>
