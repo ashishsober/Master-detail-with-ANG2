@@ -10,4 +10,8 @@ import {FirebaseLoginService} from '../service/firebase.login.service';
 export class LoginComponent {
   user={username:'',password :''}
   get myContent() { return JSON.stringify(this.user); }
+
+  onSubmit() {
+    console.log(this.user);
+  }
  }
