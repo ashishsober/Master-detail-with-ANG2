@@ -11,7 +11,9 @@ import { HeroDetailComponent } from './hero-detail-component/hero-detail.compone
 import { HeroesComponent }     from './heroes-component/heroes.component';
 import { DashboardComponent }     from './dashboard-component/dashboard.component';
 import { MaterialComponent }     from './material-component/material.component';
+import { LoginComponent }     from './login-component/login.component';
 import {HeroService} from './service/hero.service';
+import {FirebaseLoginService} from './service/firebase.login.service';
 
 import { AppRoutingModule }  from './app-routing.module';
 import { AppMaterialModule }  from './app.material.module';
@@ -31,8 +33,9 @@ import { AppMaterialModule }  from './app.material.module';
                   HeroDetailComponent,
                   HeroesComponent,
                   DashboardComponent,
-                  MaterialComponent ],
-  providers: [HeroService],
+                  MaterialComponent ,
+                  LoginComponent],
+  providers: [HeroService , FirebaseLoginService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

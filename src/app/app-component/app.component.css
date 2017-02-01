@@ -33,8 +33,8 @@ nav a.active {
 }
 
 .app-sidenav {
-  padding: 10px;
-  min-width: 100px;
+  
+  min-width: 110px;
 }
 
 .app-toolbar-filler {
@@ -57,5 +57,5 @@ nav a.active {
   text-decoration: none;
 }
 .app-content {
-   padding: 20px;
+   padding: 180px;
 }

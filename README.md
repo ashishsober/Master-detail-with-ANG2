@@ -67,3 +67,14 @@ if you do the refactoring then we can apply the forRoot() method as i have done.
 
 * To inject angular cli write ng init and follow the instruction.
 * start the application with ng-serve instead of npm start
+
+
+#Created angular Forms
+
+[Angular form Link](https://angular.io/docs/ts/latest/guide/forms.html)
+
+
+# Firebase ui-web
+ Using firbase ui for the user Identity 
+ [FirebaseUI-Web github](https://github.com/firebase/FirebaseUI-Web)
+ [Other related link](https://firebase.google.com/docs/auth/web/password-auth#before_you_begin)
