@@ -10,19 +10,18 @@ import { AngularFire, FirebaseListObservable } from 'angularfire2';
   styleUrls:["./login.component.css"]
 })
 export class LoginComponent {
-  user={username:'',password :''}
-  textMessage: String;
+  user={username:'',password :''};
   get myContent() { return JSON.stringify(this.user); }
-  
+  textMessage:string;
   
   items: FirebaseListObservable<any[]>;
   constructor(af: AngularFire) { 
     this.items=af.database.list('/messages');
   }
   
-  myMessage(){
+  myMessage(textMessage: string){
     //console.log(this.textMessage);
-    this.items.push(this.textMessage);
+    this.items.push(textMessage);
     this.textMessage='';
   }
 

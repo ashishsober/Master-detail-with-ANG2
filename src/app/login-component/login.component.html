@@ -22,8 +22,8 @@
     </li>
   </ul>
   <div class="form-inline col-md-8">
-    <input type="text" class="form-control" [(ngModel)]="textMessage" name="textMessage">
-    <button type="submit" class="btn btn-primary" (click)="myMessage()">Add</button>
+    <input type="text" class="form-control" [(ngModel)]="textMessage" name="textMessage" #name="ngModel">
+    <button type="submit" class="btn btn-primary" (click)="myMessage(name.value)">Add</button>
   </div>
 
 </div>
