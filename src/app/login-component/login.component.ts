@@ -1,5 +1,7 @@
-import { Component ,OnInit } from '@angular/core';
+import { Component ,OnInit,Input } from '@angular/core';
 import {FirebaseLoginService} from '../service/firebase.login.service';
+import { AngularFire, FirebaseListObservable } from 'angularfire2';
+
 
 @Component({
   moduleId: 'module.id',
@@ -9,9 +11,22 @@ import {FirebaseLoginService} from '../service/firebase.login.service';
 })
 export class LoginComponent {
   user={username:'',password :''}
+  textMessage: String;
   get myContent() { return JSON.stringify(this.user); }
+  
+  
+  items: FirebaseListObservable<any[]>;
+  constructor(af: AngularFire) { 
+    this.items=af.database.list('/messages');
+  }
+  
+  myMessage(){
+    //console.log(this.textMessage);
+    this.items.push(this.textMessage);
+    this.textMessage='';
+  }
 
   onSubmit() {
-    console.log(this.user);
+    console.log("my console" +this.user);
   }
  }

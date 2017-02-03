@@ -78,3 +78,6 @@ if you do the refactoring then we can apply the forRoot() method as i have done.
  Using firbase ui for the user Identity 
  [FirebaseUI-Web github](https://github.com/firebase/FirebaseUI-Web)
  [Other related link](https://firebase.google.com/docs/auth/web/password-auth#before_you_begin)
+
+ Install angularFire2 and firebase
+    npm install angularfire2 firebase --save
