@@ -67,6 +67,10 @@ if you do the refactoring then we can apply the forRoot() method as i have done.
 
 * To inject angular cli write ng init and follow the instruction.
 * start the application with ng-serve instead of npm start
+* How to give the build in Angular-cli project
+   
+    just type the commant ng build --prod
+    it will create a dist folder in the root directory
 
 
 #Created angular Forms
@@ -78,9 +82,28 @@ if you do the refactoring then we can apply the forRoot() method as i have done.
 
       Using firbase ui for the user Identity 
 [FirebaseUI-Web github](https://github.com/firebase/FirebaseUI-Web)
+
 [Other related link](https://firebase.google.com/docs/auth/web/password-auth#before_you_begin)
 
  Install angularFire2 and firebase
 
       npm install angularfire2 firebase --save
 [Related Link](https://github.com/angular/angularfire2/blob/master/docs/3-retrieving-data-as-lists.md)
+
+
+#How to deploy the application in Firebase
+
+*First install firebase-tools
+   
+    $npm install -g firebase-tools
+
+*then Login using the Firebase-cli and initialize the project
+    
+     $firebase login
+
+     $firebase init
+     upon initializing the project will ask you few questions
+
+*Deploy to Firebase Hosting
+      
+      $firebase deploy
