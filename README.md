@@ -2,17 +2,17 @@
 
 #Angular 2 Demo App (2.4.0)
 
-To Start the application type 
+* To Start the application type 
 
-     npm start
+     ng serve
 
-Quick links
+* Quick links
 
       $ https://github.com/angular/quickstart
       $ https://angular.io/docs/ts/latest/tutorial/toh-pt3.html
       $ https://embed.plnkr.co/?show=preview
 
-App contains 5 components ;
+* App contains 5 components ;
 
       app-component 
       dashboard-component
@@ -24,9 +24,9 @@ App contains 5 components ;
 #Angular Material (2.0.0-alpha.8-2)
  
  
-[Important Link](https://github.com/angular/material2)
+* [Important Link](https://github.com/angular/material2)
 
-Install these modules npm install module_name --save ,all the modules will show up
+* Install these modules npm install module_name --save ,all the modules will show up
 in package.json
 
     "@angular2-material/button"
@@ -48,7 +48,7 @@ in package.json
     "@angular2-material/toolbar"
     "@angular2-material/tooltip"
 
-after install add all the modules in system.config.js file in the map section 
+* after install add all the modules in system.config.js file in the map section 
 shown below
 
       map: {
@@ -58,8 +58,7 @@ shown below
         }
 
 and import all the modules in the app.module.ts file,do not apply forRoot() method,
-if you do the refactoring then we can apply the forRoot() method as i have done.
- and please add providers also for radio-button and some other modules.
+if you do the refactoring then we can apply the forRoot() method as i have done.and please add providers also for radio-button and some other modules.
    
 
 
@@ -69,41 +68,40 @@ if you do the refactoring then we can apply the forRoot() method as i have done.
 * start the application with ng-serve instead of npm start
 * How to give the build in Angular-cli project
    
-    just type the commant ng build --prod
-    it will create a dist folder in the root directory
+        just type the commant ' ng build --prod ' it will create a dist folder in the root directory
 
 
-#Created angular Forms
+# Created angular Forms
 
-[Angular form Link](https://angular.io/docs/ts/latest/guide/forms.html)
+* [Angular form Link](https://angular.io/docs/ts/latest/guide/forms.html)
 
 
 # Firebase ui-web
 
-      Using firbase ui for the user Identity 
+* Using firbase ui for the user Identity 
 [FirebaseUI-Web github](https://github.com/firebase/FirebaseUI-Web)
 
 [Other related link](https://firebase.google.com/docs/auth/web/password-auth#before_you_begin)
 
- Install angularFire2 and firebase
+* Install angularFire2 and firebase
 
       npm install angularfire2 firebase --save
 [Related Link](https://github.com/angular/angularfire2/blob/master/docs/3-retrieving-data-as-lists.md)
 
 
-#How to deploy the application in Firebase
+# How to deploy the application in Firebase
 
-*First install firebase-tools
+* First install firebase-tools
    
     $npm install -g firebase-tools
 
-*then Login using the Firebase-cli and initialize the project
+* Then Login using the Firebase-cli and initialize the project
     
      $firebase login
 
      $firebase init
      upon initializing the project will ask you few questions
 
-*Deploy to Firebase Hosting
+* Deploy to Firebase Hosting
       
       $firebase deploy
