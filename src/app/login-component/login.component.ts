@@ -11,14 +11,15 @@ import { AngularFire, FirebaseListObservable } from 'angularfire2';
 })
 export class LoginComponent {
   user={username:'',password :''};
-  get myContent() { return JSON.stringify(this.user); }
+  myPhotoUrl:string;
   textMessage:string;
-  
+  get myContent() { return JSON.stringify(this.user); }
   items: FirebaseListObservable<any[]>;
+  
   constructor(af: AngularFire ,
               private firebase_login_service:FirebaseLoginService) { 
     this.items=af.database.list('/messages');
-  }
+}
   
   myMessage(textMessage: string){
     //console.log(this.textMessage);
@@ -28,8 +29,10 @@ export class LoginComponent {
 
   onSubmit() {
     //console.log("my console" +this.user);
-    this.firebase_login_service.getAuth().then(function(result){
-      console.log("my result 123", result.user.photoURL);
-    });
+    this.firebase_login_service.getAuth()
+                               .then(result => this.myPhotoUrl = result.user.photoURL);
+    
+   
+    
   }
  }
