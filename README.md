@@ -4,7 +4,7 @@
 
 * To Start the application type 
 
-     ng serve
+          ng serve
 
 * Quick links
 

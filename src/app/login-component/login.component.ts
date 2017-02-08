@@ -15,7 +15,8 @@ export class LoginComponent {
   textMessage:string;
   
   items: FirebaseListObservable<any[]>;
-  constructor(af: AngularFire) { 
+  constructor(af: AngularFire ,
+              private firebase_login_service:FirebaseLoginService) { 
     this.items=af.database.list('/messages');
   }
   
@@ -26,6 +27,9 @@ export class LoginComponent {
   }
 
   onSubmit() {
-    console.log("my console" +this.user);
+    //console.log("my console" +this.user);
+    this.firebase_login_service.getAuth().then(function(result){
+      console.log("my result 123", result.user.photoURL);
+    });
   }
  }
