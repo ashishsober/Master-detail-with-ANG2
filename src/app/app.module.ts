@@ -13,6 +13,8 @@ import { HeroesComponent }     from './heroes-component/heroes.component';
 import { DashboardComponent }     from './dashboard-component/dashboard.component';
 import { MaterialComponent }     from './material-component/material.component';
 import { LoginComponent }     from './login-component/login.component';
+import { TodoComponent }     from './todo-firebase-component/todo.component';
+
 import {HeroService} from './service/hero.service';
 import {FirebaseLoginService} from './service/firebase.login.service';
 
@@ -43,7 +45,8 @@ export const firebaseConfig = {
                   HeroesComponent,
                   DashboardComponent,
                   MaterialComponent ,
-                  LoginComponent],
+                  LoginComponent,
+                  TodoComponent],
   providers: [HeroService , FirebaseLoginService],
   bootstrap: [AppComponent]
 })

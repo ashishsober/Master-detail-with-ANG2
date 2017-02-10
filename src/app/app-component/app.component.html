@@ -4,20 +4,21 @@
 	         My Navigation
 	       </md-toolbar>
 	       <nav>
-		      	  <ul><a routerLink="/dashboard" routerLinkActive="active">Dashboard</a></ul>
+		      <ul><a routerLink="/dashboard" routerLinkActive="active">Dashboard</a></ul>
 				  <ul><a routerLink="/heroes">Heroes</a></ul>
 				  <ul><a routerLink="/material">Material Components</a></ul>
+					<ul><a routerLink="/todoFirebase">Todo with FIREBASE</a></ul>
 		   </nav>
 	    </md-sidenav>
 
-	<md-toolbar color="primary">
-		<button class="app-icon-button" (click)="sidenav.toggle()">
-          <i class="material-icons app-toolbar-menu">menu</i>
-        </button> {{title}}
-        <span class="app-toolbar-filler"></span>
-        <img class="img-circle" width="75" height="60" src="https://lh3.googleusercontent.com/-agyGuziZDk8/AAAAAAAAAAI/AAAAAAAAAUc/xEG0tCjbdLw/photo.jpg">
-        <button md-button [routerLink]="['/login']">Sign-in</button>
-	</md-toolbar>
+			<md-toolbar color="primary">
+						<button class="app-icon-button" (click)="sidenav.toggle()">
+									<i class="material-icons app-toolbar-menu">menu</i>
+						</button> {{title}}
+						<span class="app-toolbar-filler"></span>
+						<img class="img-circle" width="75" height="60" src="https://lh3.googleusercontent.com/-agyGuziZDk8/AAAAAAAAAAI/AAAAAAAAAUc/xEG0tCjbdLw/photo.jpg">
+						<button md-button [routerLink]="['/login']">Sign-in</button>
+			</md-toolbar>
     
     <div class="app-content">
       <router-outlet></router-outlet>
