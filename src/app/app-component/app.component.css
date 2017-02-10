@@ -57,5 +57,8 @@ nav a.active {
   text-decoration: none;
 }
 .app-content {
-   padding: 180px;
+    padding-top: 90px;
+    padding-right: 180px;
+    
+    padding-left: 80px;
 }
