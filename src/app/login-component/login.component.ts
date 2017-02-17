@@ -10,6 +10,7 @@ import {FirebaseLoginService} from '../service/firebase.login.service';
 export class LoginComponent {
   user={username:'',password :''};
   myPhotoUrl:string;
+  files:{};
   get myContent() { return JSON.stringify(this.user); }
   
   constructor(private firebase_login_service:FirebaseLoginService) {}
@@ -18,10 +19,17 @@ export class LoginComponent {
     console.log("my console" +this.user);
   }
 
-
   googleLogin() {
     console.log("i m inside google Login method");
     this.firebase_login_service.getAuth()
                                .then(result => this.myPhotoUrl = result.user.photoURL);
   }
+
+  onChange(event){
+    //console.log(event);
+    this.files = event.srcElement.files;
+    console.log("My file and blob" + this.files[0]);
+    this.firebase_login_service.UploadFile(this.files);
+   }
+
  }
