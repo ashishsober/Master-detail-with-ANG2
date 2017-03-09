@@ -1,11 +1,11 @@
-<div class="container col-md-8">
+
   <ul>
     <li class="text" *ngFor="let item of items | async">
       {{item.$value}}
     </li>
   </ul>
-  <div class="form-inline col-md-10">
+  <div class="form-inline col-m-9">
     <input type="text" class="form-control" [(ngModel)]="textMessage" name="textMessage" #name="ngModel">
     <button type="submit" class="btn btn-primary" (click)="myMessage(name.value)">Add</button>
   </div>
-</div>
+

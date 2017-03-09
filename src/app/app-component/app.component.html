@@ -1,27 +1,50 @@
-<md-sidenav-layout>
-		  <md-sidenav #sidenav mode="side" class="app-sidenav" opened="true">
-	       <md-toolbar color="primary">
-	         My Navigation
-	       </md-toolbar>
-	     <nav>
-		      <ul><a routerLink="/dashboard" routerLinkActive="active">Dashboard</a></ul>
-			    <ul><a routerLink="/heroes">Heroes</a></ul>
-			    <ul><a routerLink="/material">Material Components</a></ul>
-			    <ul><a routerLink="/todoFirebase">Todo with FIREBASE</a></ul>
-		   </nav>
-	    </md-sidenav>
 
-		<md-toolbar color="primary">
-			<button md-button class="app-icon-button" (click)="sidenav.toggle()">
-				<i class="material-icons app-toolbar-menu">menu</i>
-			</button> {{title}}
-			<span class="app-toolbar-filler"></span>
-			<img class="img-circle" width="75" height="60" src="https://lh3.googleusercontent.com/-agyGuziZDk8/AAAAAAAAAAI/AAAAAAAAAUc/xEG0tCjbdLw/photo.jpg">
-			<button md-button [routerLink]="['/login']" (click)="loginOrOut()">{{signInOut}}</button>
-		</md-toolbar>
-    
-    <div class="app-content">
-      <router-outlet></router-outlet>
+    <div class="col-12 col-m-12 header">
+        {{title}}
     </div>
 
-</md-sidenav-layout>
+
+    <div class="row">
+       
+        <div class="col-3 col-m-3 menu">
+          <ul>
+            <li><a class="active" routerLink="/dashboard">Dashboard</a></li>
+            <li><a routerLink="/heroes">Heroes</a></li>
+            <li><a routerLink="/material">Material Components</a></li>
+            <li><a routerLink="/todoFirebase">Todo with Firebase</a></li>
+						<li><a routerLink="/login">Login</a></li>
+          </ul>
+        </div>
+        
+        <div class="content-area" >
+            <div class="col-3 col-m-3">
+            </div>
+            
+            <div class="col-6 col-m-9" id="main">
+              <h1>The City</h1>
+              <router-outlet></router-outlet>
+            </div>
+
+            <div class="row">
+              <div class="col-m-3">
+              </div>
+              
+              <div class="col-3 col-m-9">
+                <div class="aside">
+                  <h2>What?</h2>
+                  <p>Chania is a city on the island of Crete.</p>
+                  <h2>Where?</h2>
+                  <p>Crete is a Greek island in the Mediterranean Sea.</p>
+                  <h2>How?</h2>
+                  <p>You can reach Chania airport from all over Europe.</p>
+                </div>
+              </div>
+            </div>
+
+        </div><!-- //closing content-area -->
+    </div> <!-- //closing row -->
+
+
+    <div class="col-12 col-m-12 footer">
+      <p>Resize the browser window to see how the content respond to the resizing.</p>
+    </div>
