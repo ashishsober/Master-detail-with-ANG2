@@ -1,11 +1,19 @@
 
     <div class="col-md-12 navbar header navbar-fixed-top">
-        {{title}}
+        <div class="row">
+          <div class="col-sm-2 col-md-2 col-lg-1">
+              <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776;</span>
+          </div>
+          <div class="col-sm-5 col-md-10 col-lg-11">
+             {{title}}
+          </div>
+        </div>
     </div>
 
 
     <div class="row menu">
-        <div class="col-md-2 col-lg-2">
+       <div id="mySidenav" class="sidenav"> 
+        <div class="col-md-2 col-lg-3">
           <ul>
             <li><a class="active" routerLink="/dashboard">Dashboard</a></li>
             <li><a routerLink="/heroes">Heroes</a></li>
@@ -13,8 +21,8 @@
 						<li><a routerLink="/login">Login</a></li>
           </ul>
         </div>
-
-        <div class="col-md-7 col-lg-7">
+       </div>
+        <div class="col-md-7 col-lg-6">
           <h1>The City</h1>
           <router-outlet></router-outlet>
         </div>
@@ -49,3 +57,4 @@
                 </div>
               </div>
             </div>-->
+
