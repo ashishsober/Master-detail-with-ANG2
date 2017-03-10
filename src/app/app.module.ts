@@ -2,16 +2,15 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
-import { FlexLayoutModule} from '@angular/flex-layout';
-import { MaterialModule } from '@angular/material';
+//import { FlexLayoutModule} from '@angular/flex-layout';
+//import { MaterialModule } from '@angular/material';
 import { AngularFireModule } from 'angularfire2';
 
-//import { AppComponent } from './app.component';
 import { AppComponent }  from './app-component/app.component';
 import { HeroDetailComponent } from './hero-detail-component/hero-detail.component';
 import { HeroesComponent }     from './heroes-component/heroes.component';
 import { DashboardComponent }     from './dashboard-component/dashboard.component';
-import { MaterialComponent }     from './material-component/material.component';
+//import { MaterialComponent }     from './material-component/material.component';
 import { LoginComponent }     from './login-component/login.component';
 import { TodoComponent }     from './todo-firebase-component/todo.component';
 
@@ -34,17 +33,13 @@ export const firebaseConfig = {
               BrowserModule,
               FormsModule,
               HttpModule,
-              FlexLayoutModule,
               AngularFireModule.initializeApp(firebaseConfig),
-
-              AppRoutingModule,
-              AppMaterialModule,
+              AppRoutingModule
              ],
   declarations: [ AppComponent ,
                   HeroDetailComponent,
                   HeroesComponent,
                   DashboardComponent,
-                  MaterialComponent ,
                   LoginComponent,
                   TodoComponent],
   providers: [HeroService , FirebaseLoginService],

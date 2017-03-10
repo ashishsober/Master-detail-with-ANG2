@@ -1,35 +1,44 @@
 
-    <div class="col-12 col-m-12 header">
+    <div class="col-md-12 navbar header navbar-fixed-top">
         {{title}}
     </div>
 
 
-    <div class="row">
-       
-        <div class="col-3 col-m-3 menu">
+    <div class="row menu">
+        <div class="col-md-2 col-lg-2">
           <ul>
             <li><a class="active" routerLink="/dashboard">Dashboard</a></li>
             <li><a routerLink="/heroes">Heroes</a></li>
-            <li><a routerLink="/material">Material Components</a></li>
             <li><a routerLink="/todoFirebase">Todo with Firebase</a></li>
 						<li><a routerLink="/login">Login</a></li>
           </ul>
         </div>
-        
-        <div class="content-area" >
-            <div class="col-3 col-m-3">
-            </div>
-            
-            <div class="col-6 col-m-9" id="main">
-              <h1>The City</h1>
-              <router-outlet></router-outlet>
-            </div>
 
-            <div class="row">
-              <div class="col-m-3">
+        <div class="col-md-7 col-lg-7">
+          <h1>The City</h1>
+          <router-outlet></router-outlet>
+        </div>
+        <div class="col-md-3 col-lg-3">
+          <div class="aside">
+            <h2>What?</h2>
+            <p>Chania is a city on the island of Crete.</p>
+            <h2>Where?</h2>
+            <p>Crete is a Greek island in the Mediterranean Sea.</p>
+            <h2>How?</h2>
+            <p>You can reach Chania airport from all over Europe.</p>
+          </div>
+         </div>
+    </div> <!-- //closing row -->
+
+
+    <!--<div class="col-sm-12 col-md-12 footer">
+      <p>Resize the browser window to see how the content respond to the resizing.</p>
+    </div>-->
+<!--<div class="row">
+              <div class="col-md-2">
               </div>
               
-              <div class="col-3 col-m-9">
+              <div class="col-md-9">
                 <div class="aside">
                   <h2>What?</h2>
                   <p>Chania is a city on the island of Crete.</p>
@@ -39,12 +48,4 @@
                   <p>You can reach Chania airport from all over Europe.</p>
                 </div>
               </div>
-            </div>
-
-        </div><!-- //closing content-area -->
-    </div> <!-- //closing row -->
-
-
-    <div class="col-12 col-m-12 footer">
-      <p>Resize the browser window to see how the content respond to the resizing.</p>
-    </div>
+            </div>-->
