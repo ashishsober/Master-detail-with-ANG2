@@ -1,10 +1,12 @@
-#Typescript (2.0.10)
+# Typescript (2.0.10)
 
-#Angular 2 Demo App (2.4.0)
+# Angular 2 Demo App (2.4.0)
 
-* To Start the application type 
+## To Start the application type 
 
-          ng serve
+ 1. ng serve
+ 
+ 1. http://localhost:4200/
 
 * Quick links
 
@@ -21,7 +23,7 @@
           material-component
    
 
-#Angular Material (2.0.0-alpha.8-2)
+# Angular Material (2.0.0-alpha.8-2)
  
  
 * [Important Link](https://github.com/angular/material2)
@@ -66,7 +68,7 @@ if you do the refactoring then we can apply the forRoot() method as i have done.
    
 
 
-#Injected Angular-cli   
+# Injected Angular-cli   
 
 * To inject angular cli write ng init and follow the instruction.
 * start the application with ng-serve instead of npm start
