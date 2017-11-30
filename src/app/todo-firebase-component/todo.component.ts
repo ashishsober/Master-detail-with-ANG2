@@ -1,6 +1,6 @@
 import { Component ,OnInit,Input } from '@angular/core';
-import { AngularFire, FirebaseListObservable } from 'angularfire2';
-
+import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database-deprecated';
+//import { AngularFireDatabase } from 'angularfire2/database';
 
 @Component({
   moduleId: 'module.id',
@@ -8,12 +8,15 @@ import { AngularFire, FirebaseListObservable } from 'angularfire2';
   templateUrl:'./todo.component.html',
   styleUrls:[]
 })
-export class TodoComponent {
+export class TodoComponent implements OnInit {
   textMessage:string;
   items: FirebaseListObservable<any[]>;
-  
-  constructor(af: AngularFire ) { 
-    this.items=af.database.list('/messages');
+  show=false;
+  constructor(private af: AngularFireDatabase ) {  
+  }
+
+  ngOnInit(){
+    this.items=this.af.list('/messages');
   }
   
   myMessage(textMessage: string){

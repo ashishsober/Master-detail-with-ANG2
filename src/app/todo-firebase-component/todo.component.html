@@ -1,11 +1,13 @@
-<div class="container col-md-8">
+<div class="container col-mat-8">
+  <mat-spinner *ngIf="show"></mat-spinner>
   <ul>
     <li class="text" *ngFor="let item of items | async">
       {{item.$value}}
     </li>
   </ul>
-  <div class="form-inline col-md-10">
+
+  <div class="form-inline col-mat-10">
     <input type="text" class="form-control" [(ngModel)]="textMessage" name="textMessage" #name="ngModel">
-    <button type="submit" class="btn btn-primary" (click)="myMessage(name.value)">Add</button>
+    <button type="submit" class="btn btn-primary" (click)="myMessage(name.value)">ADD</button>
   </div>
 </div>

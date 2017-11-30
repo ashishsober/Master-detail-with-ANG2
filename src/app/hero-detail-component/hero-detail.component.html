@@ -1,17 +1,16 @@
 <div *ngIf="hero">
-              <md-card>
-                <md-card-title><h2>{{hero.name}} details!</h2></md-card-title>
-                <md-card-content>
+              <mat-card>
+                <mat-card-title><h2>{{hero.name}} details!</h2></mat-card-title>
+                <mat-card-content>
                     <div><label>Id: {{hero.id}}</label></div>
                     <div>
-                        <md-input [(ngModel)]="hero.name" placeholder="Name">
-                        </md-input>
+                        <input [(ngModel)]="hero.name" placeholder="Name">
                     </div>
-                 </md-card-content>
-                 <md-card-actions>
+                 </mat-card-content>
+                 <mat-card-actions>
                     <div>
-                        <button md-raised-button color="warn" (click)="goBack()">Back</button>
+                        <button mat-raised-button color="warn" (click)="goBack()">Back</button>
                     </div>
-                 </md-card-actions>
-               </md-card>
+                 </mat-card-actions>
+               </mat-card>
               </div>
