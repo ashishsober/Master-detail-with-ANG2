@@ -15,7 +15,7 @@ export class TodoComponent implements OnInit {
   constructor(private af: AngularFireDatabase ) {  
   }
 
-  ngOnInit(){
+  ngOnInit() {
     this.items=this.af.list('/messages');
   }
   
@@ -24,5 +24,10 @@ export class TodoComponent implements OnInit {
     this.items.push(textMessage);
     this.textMessage='';
   }
+  
 
+  delete(key:string){
+    console.log("key to delete---"+key);
+    this.af.object('/messages/' + key).remove();
+  }
  }

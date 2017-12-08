@@ -1,13 +1,21 @@
 <div class="container col-mat-8">
   <mat-spinner *ngIf="show"></mat-spinner>
-  <ul>
-    <li class="text" *ngFor="let item of items | async">
-      {{item.$value}}
-    </li>
-  </ul>
 
-  <div class="form-inline col-mat-10">
-    <input type="text" class="form-control" [(ngModel)]="textMessage" name="textMessage" #name="ngModel">
-    <button type="submit" class="btn btn-primary" (click)="myMessage(name.value)">ADD</button>
-  </div>
+    <mat-nav-list>
+      <mat-list-item *ngFor="let item of items | async">
+         <a matLine>{{ item.$value }}</a>
+         <button mat-icon-button (click)="delete(item.$key)">
+            <mat-icon>&#10008;</mat-icon>
+         </button>
+      </mat-list-item>
+    </mat-nav-list>
+      
+<br/><br/>
+<form class="example-form">
+      <mat-form-field class="example-full-width">
+          <input matInput placeholder="Enter text" [(ngModel)]="textMessage" name="textMessage" #name="ngModel" required>
+      </mat-form-field>
+      <button type="submit" mat-raised-button  color="accent" (click)="myMessage(name.value)">SEND</button>
+      
+</form>
 </div>
