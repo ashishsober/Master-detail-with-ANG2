@@ -1,6 +1,8 @@
 <div class="container col-mat-8">
     <h3><span class="glyphicon glyphicon-lock"></span>Login</h3>
-    <img class="img-circle" width="75" height="60" [src]="myPhotoUrl">
+     <div [hidden]="myPhotoUrlValue">   
+        <img class="img-circle" width="75" height="60" [src] = "myPhotoUrl?.photoURL || ''">
+      </div>
     <form (ngSubmit)="onSubmit()">
       <div class="form-group">
         <label for="username">Username</label>
@@ -19,7 +21,8 @@
 	    </div>-->
     
       <button type="submit" class="btn btn-default">Submit</button>
-      <button type=button (click)="googleLogin()" class="btn btn-danger">Google +</button>{{myContent}}
+      <button type=button (click)="googleLogin()" class="btn btn-danger">Google +</button>
+        <!-- {{myContent}} -->
     </form>
     
 </div>

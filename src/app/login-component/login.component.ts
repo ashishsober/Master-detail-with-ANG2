@@ -8,8 +8,9 @@ import {FirebaseLoginService} from '../service/firebase.login.service';
   styleUrls:["./login.component.css"]
 })
 export class LoginComponent {
-  user={username:'',password :''};
-  myPhotoUrl:string;
+  user = { username: '', password : ''};
+  myPhotoUrl : string = '';
+  myPhotoUrlValue :boolean = true;
   files:{};
   get myContent() { return JSON.stringify(this.user); }
   
@@ -19,11 +20,13 @@ export class LoginComponent {
     console.log("my console" +this.user);
   }
 
+  
   googleLogin() {
     console.log("i m inside google Login method");
     this.firebase_login_service.getAuth()
                                .then(result => {
-                                   this.myPhotoUrl = result.user.photoURL
+                                   this.myPhotoUrl = result.user;
+                                   this.myPhotoUrlValue=false;
                                    sessionStorage.setItem('user_uid',result.user.uid);
                                 });
   }
