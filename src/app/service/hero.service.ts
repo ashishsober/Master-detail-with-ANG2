@@ -16,15 +16,13 @@ export class HeroService {
 //use promisess here to call asynchronous call,If the data is coming from the remote server
 //so that over code will not get blocked. for the waiting of the respond from the server
 
- 
-
-  getHeroes() : Promise<Hero[]> {
-    return Promise.resolve(HEROES);
+getHeroes() : Promise<Hero[]> {
+        return Promise.resolve(HEROES);
   }
   
   getHero(id: number): Promise<Hero> {
-  return this.getHeroes()
-             .then(heroes => heroes.find(hero => hero.id === id));
-}
+        return this.getHeroes()
+                   .then(heroes => heroes.find(hero => hero.id === id));
+   }
 
 }

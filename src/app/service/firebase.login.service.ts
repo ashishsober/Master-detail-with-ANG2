@@ -24,12 +24,12 @@ export class FirebaseLoginService {
     
     
     getAuth() {
-     return firebase.auth().signInWithPopup(this.provider);
+          return firebase.auth().signInWithPopup(this.provider);
     }
     
     
-    UploadFile(fileData){
-       console.log(fileData+"inside service");  
+    UploadFile(fileData) {
+       //console.log(fileData+"inside service");  
        var metadata = {
           contentType: fileData[0].type
         }; 

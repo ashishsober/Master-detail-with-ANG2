@@ -22,7 +22,10 @@ export class LoginComponent {
   googleLogin() {
     console.log("i m inside google Login method");
     this.firebase_login_service.getAuth()
-                               .then(result => this.myPhotoUrl = result.user.photoURL);
+                               .then(result => {
+                                   this.myPhotoUrl = result.user.photoURL
+                                   sessionStorage.setItem('user_uid',result.user.uid);
+                                });
   }
 
   onChange(event){

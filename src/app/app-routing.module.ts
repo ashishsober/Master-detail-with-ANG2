@@ -8,6 +8,8 @@ import { MaterialComponent }     from './material-component/material.component';
 import { LoginComponent }     from './login-component/login.component';
 import { TodoComponent }     from './todo-firebase-component/todo.component';
 
+import { LoginRouteGuard } from './service/login-route-guard';
+
 const routes: Routes = [
   { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
   { path: 'dashboard',  component: DashboardComponent },
@@ -15,7 +17,7 @@ const routes: Routes = [
   { path: 'heroes',     component: HeroesComponent },
   { path: 'material',   component: MaterialComponent },
   { path: 'login',   component: LoginComponent },
-  { path: 'todoFirebase',   component: TodoComponent }
+  { path: 'todoFirebase',   component: TodoComponent, canActivate:[LoginRouteGuard] }
 ];
 
 @NgModule({
