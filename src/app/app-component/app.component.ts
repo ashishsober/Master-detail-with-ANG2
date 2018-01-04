@@ -4,6 +4,8 @@ import { HeroService } from '../service/hero.service';
 
 
 
+
+
 @Component({
   moduleId:'module.id',
   selector: 'app-root',
@@ -20,24 +22,27 @@ export class AppComponent implements OnInit {
 
 
       constructor(private ss : HeroService){
-        this.viewLogin = false;
-        this.viewLogout = false;
-        this.ss = ss;
-        
-      }
+              this.viewLogin = false;
+              this.viewLogout = false;
+              this.ss = ss;
+       }
       
+
       ngOnInit() {
         this.subscription=this.ss.getEmittedValue().subscribe(item => {
-          console.log("inside ngOnit method of app component====="+item); 
-          this.viewLogin=item;
-          this.viewLogout=item;
-          this.myPhotoUrl = sessionStorage.getItem('user_photoUrl');
+              console.log("inside ngOnit method of app component====="+item); 
+              this.viewLogin=item;
+              this.viewLogout=item;
+              this.myPhotoUrl = sessionStorage.getItem('user_photoUrl');
         });
       }
 
 
-      loginOrOut(){
-        //const isAuthenticated = this.authservice.isAuthenticated;
+
+      logout(){
+          sessionStorage.clear();
+          this.ss.show();//making visible login button and hiding logout button
+           //const isAuthenticated = this.authservice.isAuthenticated;
       }
 
 

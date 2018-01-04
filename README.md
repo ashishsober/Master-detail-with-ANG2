@@ -1,6 +1,6 @@
-# Typescript (2.0.10)
+# Typescript (2.6.2)
 
-# Angular 2 Demo App (2.4.0)
+# Angular 2 Demo App (5.0.3)
 
 ## To Start the application type 
 
@@ -43,7 +43,7 @@ if you do the refactoring then we can apply the forRoot() method as i have done.
    
 
 
-# Injected Angular-cli   
+# Injected Angular-CLI  
 
 * To inject angular cli write ng init and follow the instruction.
 * start the application with ng-serve instead of npm start

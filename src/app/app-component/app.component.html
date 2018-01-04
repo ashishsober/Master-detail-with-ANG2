@@ -1,8 +1,8 @@
 <mat-sidenav-container>
-	
+
 		  <mat-sidenav #sidenav mode="side" class="app-sidenav" opened="true">
 	       <mat-toolbar color="primary">
-	         My Navigation
+	         
 	       </mat-toolbar>
 	     <nav>
 		      <ul><a routerLink="/dashboard" routerLinkActive="active">Dashboard</a></ul>
@@ -24,10 +24,10 @@
 						<img class="img-circle" width="62" height="55" [src]="myPhotoUrl">
 				  </div>	
 					<div *ngIf = "viewLogin == false">
-							<button mat-button [routerLink]="['/login']" (click)="loginOrOut()">{{signInOut}}</button>
+							<button mat-button [routerLink]="['/login']">{{signInOut}}</button>
 					</div>
 					<div *ngIf = "viewLogout == true">
-							<button mat-button (click)="loginOrOut()">Logout</button>
+							<button mat-button (click)="logout()">Logout</button>
 					</div>
 		</mat-toolbar>
     
