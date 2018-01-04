@@ -1,0 +1,40 @@
+[debug] [2018-01-04T06:31:25.310Z] ----------------------------------------------------------------------
+[debug] [2018-01-04T06:31:25.313Z] Command:       /Users/ashishgupta/.nvm/versions/node/v6.12.0/bin/node /Users/ashishgupta/.nvm/versions/node/v6.12.0/bin/firebase deploy
+[debug] [2018-01-04T06:31:25.313Z] CLI Version:   3.16.0
+[debug] [2018-01-04T06:31:25.313Z] Platform:      darwin
+[debug] [2018-01-04T06:31:25.313Z] Node Version:  v6.12.0
+[debug] [2018-01-04T06:31:25.313Z] Time:          Thu Jan 04 2018 12:01:25 GMT+0530 (IST)
+[debug] [2018-01-04T06:31:25.313Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2018-01-04T06:31:25.325Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2018-01-04T06:31:25.325Z] > authorizing via signed-in user
+[debug] [2018-01-04T06:31:25.327Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
+[debug] [2018-01-04T06:31:25.327Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+ { refresh_token: '1/uTigh6-fVjQz2EPCu-IWX4jcHPO2kN-qa0Zsw-y2lJE',
+  client_id: '563584335869-fgrhgmd47bqnekij5i8b5pr03ho849e6.apps.googleusercontent.com',
+  client_secret: 'j9iVZfS8kkCEFUPaAeJV0sAi',
+  grant_type: 'refresh_token',
+  scope: 'email https://www.googleapis.com/auth/cloud-platform https://www.googleapis.com/auth/cloudplatformprojects.readonly https://www.googleapis.com/auth/firebase openid' } 
+ Thu Jan 04 2018 12:01:25 GMT+0530 (IST)
+[debug] [2018-01-04T06:31:25.909Z] <<< HTTP RESPONSE 200
+[debug] [2018-01-04T06:31:25.926Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/angular-project-5cb99  
+  
+ Thu Jan 04 2018 12:01:25 GMT+0530 (IST)
+[debug] [2018-01-04T06:31:30.584Z] <<< HTTP RESPONSE 200
+[debug] [2018-01-04T06:31:30.585Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/database/angular-project-5cb99/tokens  
+  
+ Thu Jan 04 2018 12:01:30 GMT+0530 (IST)
+[debug] [2018-01-04T06:31:32.881Z] <<< HTTP RESPONSE 200
+[debug] [2018-01-04T06:38:15.631Z] ----------------------------------------------------------------------
+[debug] [2018-01-04T06:38:15.633Z] Command:       /Users/ashishgupta/.nvm/versions/node/v6.12.0/bin/node /Users/ashishgupta/.nvm/versions/node/v6.12.0/bin/firebase deploy
+[debug] [2018-01-04T06:38:15.634Z] CLI Version:   3.16.0
+[debug] [2018-01-04T06:38:15.634Z] Platform:      darwin
+[debug] [2018-01-04T06:38:15.634Z] Node Version:  v6.12.0
+[debug] [2018-01-04T06:38:15.634Z] Time:          Thu Jan 04 2018 12:08:15 GMT+0530 (IST)
+[debug] [2018-01-04T06:38:15.634Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2018-01-04T06:38:15.646Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2018-01-04T06:38:15.646Z] > authorizing via signed-in user
+[debug] [2018-01-04T06:38:15.648Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/angular-project-5cb99  
+  
+ Thu Jan 04 2018 12:08:15 GMT+0530 (IST)

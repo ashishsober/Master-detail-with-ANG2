@@ -79,12 +79,13 @@ if you do the refactoring then we can apply the forRoot() method as i have done.
 
 # Created angular Forms
 
-* [Angular form Link](https://angular.io/docs/ts/latest/guide/forms.html)
+         [Angular form Link](https://angular.io/docs/ts/latest/guide/forms.html)
 
 
 # Firebase ui-web
 
 * Using firbase ui for the user Identity 
+
         [FirebaseUI-Web github](https://github.com/firebase/FirebaseUI-Web)
 
         [Other related link](https://firebase.google.com/docs/auth/web/password-auth#before_you_begin)
@@ -92,7 +93,7 @@ if you do the refactoring then we can apply the forRoot() method as i have done.
 * Install angularFire2 and firebase
 
         npm install angularfire2 firebase --save
-[Related Link](https://github.com/angular/angularfire2/blob/master/docs/3-retrieving-data-as-lists.md)
+        [Related Link](https://github.com/angular/angularfire2/blob/master/docs/3-retrieving-data-as-lists.md)
 
 
 # How to deploy the application in Firebase

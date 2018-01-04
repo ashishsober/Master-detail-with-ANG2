@@ -19,17 +19,17 @@ nav a {
 }
 nav ul:active {
   color: #ffffff;
-  background-color: #5bdcea !important;
+  background-color: #5bdcea;
   
 }
 nav ul:hover {
-  color: #039be5;
+  color: #eef0f1;
   background-color: powderblue;
 }
 nav ul {
   margin-bottom: 2px;
   padding-left:4px;
-  background-color: #5bdcea;
+  background-color: #024564;
 }
 
 .app-toolbar-menu {
