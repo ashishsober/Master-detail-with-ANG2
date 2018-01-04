@@ -1,4 +1,5 @@
 <mat-sidenav-container>
+	
 		  <mat-sidenav #sidenav mode="side" class="app-sidenav" opened="true">
 	       <mat-toolbar color="primary">
 	         My Navigation
@@ -12,16 +13,22 @@
 	    </mat-sidenav>
 
 		<mat-toolbar color="primary">
-			<button mat-icon-button	class="app-icon-button" (click)="sidenav.toggle()">
-				<span><mat-icon class="material-icons app-toolbar-menu" aria-hidden="true">menu</mat-icon></span>
-			</button> 
+				<button mat-icon-button	class="app-icon-button" (click)="sidenav.toggle()">
+					<span><mat-icon class="material-icons app-toolbar-menu" aria-hidden="true">menu</mat-icon></span>
+				</button> 
 			
 			{{title}}
-			  <span class="app-toolbar-filler"></span>
-			<!-- <img class="img-circle" width="75" height="60" src="https://lh3.googleusercontent.com/-agyGuziZDk8/AAAAAAAAAAI/AAAAAAAAAUc/xEG0tCjbdLw/photo.jpg"> -->
-			   <div *ngIf = "viewLogin == false">
-			       <button mat-button [routerLink]="['/login']" (click)="loginOrOut()">{{signInOut}}</button>
-				 </div>
+
+			   <span class="app-toolbar-filler"></span>
+				  <div *ngIf = "viewLogout == true">
+						<img class="img-circle" width="62" height="55" [src]="myPhotoUrl">
+				  </div>	
+					<div *ngIf = "viewLogin == false">
+							<button mat-button [routerLink]="['/login']" (click)="loginOrOut()">{{signInOut}}</button>
+					</div>
+					<div *ngIf = "viewLogout == true">
+							<button mat-button (click)="loginOrOut()">Logout</button>
+					</div>
 		</mat-toolbar>
     
     <div class="app-content">

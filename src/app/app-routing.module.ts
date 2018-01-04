@@ -17,7 +17,7 @@ const routes: Routes = [
   { path: 'heroes',     component: HeroesComponent },
   { path: 'material',   component: MaterialComponent },
   { path: 'login',   component: LoginComponent },
-  { path: 'todoFirebase',   component: TodoComponent, canActivate:[LoginRouteGuard] }
+  { path: 'todoFirebase',   component: TodoComponent, canActivate:[ LoginRouteGuard ] }
 ];
 
 @NgModule({

@@ -11,8 +11,8 @@ import { HeroService } from '../service/hero.service';
 })
 export class LoginComponent {
   user = { username: '', password : ''};
-  myPhotoUrl ;
-  myPhotoUrlValue :boolean = true;
+  //myPhotoUrl;
+  //myPhotoUrlValue :boolean = true;
   files:{};
   get myContent() { return JSON.stringify(this.user); }
   
@@ -30,9 +30,12 @@ export class LoginComponent {
     console.log("i m inside google Login method");
     this.firebase_login_service.getAuth()
                                .then(result => {
-                                   this.myPhotoUrl = result.user;
-                                   this.myPhotoUrlValue=false;
+                                   //this.myPhotoUrl = result.user;
+                                   //this.myPhotoUrlValue=false;
+                                   console.log("saved user uuid in session===" +result.user.uid);
                                    sessionStorage.setItem('user_uid',result.user.uid);
+                                   sessionStorage.setItem('user_photoUrl',result.user.photoURL);
+                                   sessionStorage.setItem('user_emalid',result.user.email);
                                    this.ss.hide();
                                 });
   }

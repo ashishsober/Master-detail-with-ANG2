@@ -7,7 +7,6 @@ import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import 'rxjs/add/operator/switchMap';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
-
 import * as Rx from "rxjs/Rx";
 
 @Injectable()
@@ -46,6 +45,6 @@ export class HeroService {
       }
 
 
-      
+
 
 }
