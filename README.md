@@ -89,7 +89,7 @@ if you do the refactoring then we can apply the forRoot() method as i have done.
 1. [FirebaseUI-Web github](https://github.com/firebase/FirebaseUI-Web)
 1. [Other related link](https://firebase.google.com/docs/auth/web/password-auth#before_you_begin)
 
-* Install angularFire2 and firebase
+1. Install angularFire2 and firebase
 
         npm install angularfire2 firebase --save
 
