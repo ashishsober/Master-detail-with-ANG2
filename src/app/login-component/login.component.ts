@@ -1,5 +1,7 @@
 import { Component ,OnInit,Input } from '@angular/core';
 import {FirebaseLoginService} from '../service/firebase.login.service';
+import { HeroService } from '../service/hero.service';
+
 
 @Component({
   moduleId: 'module.id',
@@ -14,7 +16,10 @@ export class LoginComponent {
   files:{};
   get myContent() { return JSON.stringify(this.user); }
   
-  constructor(private firebase_login_service:FirebaseLoginService) {}
+  constructor(private firebase_login_service:FirebaseLoginService,
+             private ss:HeroService) {
+               this.ss=ss;
+             }
   
   onSubmit() {
     console.log("my console" +this.user);
@@ -28,6 +33,7 @@ export class LoginComponent {
                                    this.myPhotoUrl = result.user;
                                    this.myPhotoUrlValue=false;
                                    sessionStorage.setItem('user_uid',result.user.uid);
+                                   this.ss.hide();
                                 });
   }
 

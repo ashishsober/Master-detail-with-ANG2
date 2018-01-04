@@ -1,5 +1,5 @@
-import {Injectable} from '@angular/core';
-import {HEROES} from './mock-heroes';
+import { Injectable, Input, Output, EventEmitter } from '@angular/core';
+import { HEROES } from './mock-heroes';
 import { Hero } from '../hero';
 
 import { Observable } from 'rxjs/Rx';
@@ -12,17 +12,40 @@ import * as Rx from "rxjs/Rx";
 
 @Injectable()
 export class HeroService {
+    @Output() fire:EventEmitter<any>= new EventEmitter();
 
-//use promisess here to call asynchronous call,If the data is coming from the remote server
-//so that over code will not get blocked. for the waiting of the respond from the server
 
-getHeroes() : Promise<Hero[]> {
-        return Promise.resolve(HEROES);
-  }
+     //use promisess here to call asynchronous call,If the data is coming from the remote server
+     //so that over code will not get blocked. for the waiting of the respond from the server
+      constructor(){
+            console.log('shared service started');
+      }
+
+      getHeroes() : Promise<Hero[]> {
+            return Promise.resolve(HEROES);
+      }
+      
+      getHero(id: number): Promise<Hero> {
+            return this.getHeroes()
+                        .then(heroes => heroes.find(hero => hero.id === id));
+      }
+
+
+      show() {
+        console.log('show started'); 
+        this.fire.emit(false);
+      }
   
-  getHero(id: number): Promise<Hero> {
-        return this.getHeroes()
-                   .then(heroes => heroes.find(hero => hero.id === id));
-   }
+      hide() {
+        console.log('hide started'); 
+        this.fire.emit(true);
+      }
+
+      getEmittedValue() {
+            return this.fire;
+      }
+
+
+      
 
 }
