@@ -74,7 +74,7 @@ if you do the refactoring then we can apply the forRoot() method as i have done.
 * start the application with ng-serve instead of npm start
 * How to give the build in Angular-cli project
    
-        just type the commant ' ng build --prod ' it will create a dist folder in the root directory
+        just type the command ' ng build --prod ' it will create a dist folder in the root directory
 
 
 # Created angular Forms
@@ -93,6 +93,7 @@ if you do the refactoring then we can apply the forRoot() method as i have done.
 * Install angularFire2 and firebase
 
         npm install angularfire2 firebase --save
+
         [Related Link](https://github.com/angular/angularfire2/blob/master/docs/3-retrieving-data-as-lists.md)
 
 
@@ -107,8 +108,9 @@ if you do the refactoring then we can apply the forRoot() method as i have done.
         $firebase login
 
         $firebase init
-        upon initializing the project will ask you few questions
+        upon initializing the project will ask you few questions.
 
 * Deploy to Firebase Hosting
       
-        $firebase deploy
+        $ firebase deploy
+        $ If it ask for reauth, firebase login --reauth --no-localhost
