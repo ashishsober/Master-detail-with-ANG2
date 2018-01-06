@@ -13,7 +13,7 @@ import { HeroService } from '../service/hero.service';
   styleUrls:['./app.component.css']
 })
 export class AppComponent implements OnInit {
-      title = 'Tour of Heroes';
+      title = 'Initial C';
       signInOut :string ='Login';
       viewLogout :boolean;
       viewLogin : boolean;
@@ -22,8 +22,14 @@ export class AppComponent implements OnInit {
 
 
       constructor(private ss : HeroService){
-              this.viewLogin = false;
-              this.viewLogout = false;
+              if(sessionStorage.getItem('user_uid') != null){
+                this.viewLogin = true;
+                this.viewLogout = true;
+                this.myPhotoUrl = sessionStorage.getItem('user_photoUrl');    
+              } else {
+                this.viewLogin = false;
+                this.viewLogout = false;
+              }
               this.ss = ss;
        }
       

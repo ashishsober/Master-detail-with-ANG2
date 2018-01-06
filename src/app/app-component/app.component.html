@@ -2,13 +2,13 @@
 
 		  <mat-sidenav #sidenav mode="side" class="app-sidenav" opened="true">
 	       <mat-toolbar color="primary">
-	         
+						{{title}}     
 	       </mat-toolbar>
 	     <nav>
 		      <ul><a routerLink="/dashboard" routerLinkActive="active">Dashboard</a></ul>
 			    <ul><a routerLink="/heroes">Heroes</a></ul>
 			    <ul><a routerLink="/material">Material Components</a></ul>
-			    <ul><a routerLink="/todoFirebase">Todo with FIREBASE</a></ul>
+			    <ul><a routerLink="/todoFirebase">Massenger</a></ul>
 		   </nav>
 	    </mat-sidenav>
 
@@ -17,7 +17,7 @@
 					<span><mat-icon class="material-icons app-toolbar-menu" aria-hidden="true">menu</mat-icon></span>
 				</button> 
 			
-			{{title}}
+			
 
 			   <span class="app-toolbar-filler"></span>
 				  <div *ngIf = "viewLogout == true">
