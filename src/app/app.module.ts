@@ -24,6 +24,7 @@ import {FirebaseLoginService} from './service/firebase.login.service';
 import { AppRoutingModule }  from './app-routing.module';
 import { AppMaterialModule }  from './app.material.module';
 import { LoginRouteGuard } from './service/login-route-guard';
+import { DialogComponent } from 'app/service/dialog-component';
 
 export const firebaseConfig = {
         apiKey: "AIzaSyBu4vtqAO8iH8Bs-Jeak50DfeqT5NgkH8E",
@@ -53,8 +54,10 @@ export const firebaseConfig = {
                   DashboardComponent,
                   MaterialComponent ,
                   LoginComponent,
-                  TodoComponent],
+                  TodoComponent,
+                  DialogComponent],
   providers: [HeroService , FirebaseLoginService, LoginRouteGuard],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [DialogComponent]
 })
 export class AppModule { }

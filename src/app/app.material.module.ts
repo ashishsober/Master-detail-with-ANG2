@@ -19,7 +19,8 @@ import { MatCardModule ,
          MatToolbarModule ,
          MatTooltipModule ,
          MatRippleModule ,
-         MatProgressSpinnerModule } from '@angular/material';
+         MatProgressSpinnerModule ,
+         MatDialogModule } from '@angular/material';
 
          
 //import { MatProgressCircleModule } from '@angular/material';
@@ -45,8 +46,8 @@ const MATERIAL_MODULES = [
             MatToolbarModule,
             MatTooltipModule,
             MatRippleModule,
-            MatProgressSpinnerModule
-            
+            MatProgressSpinnerModule,
+            MatDialogModule
 ];
 
 @NgModule({

@@ -17,7 +17,7 @@ export class LoginComponent {
   get myContent() { return JSON.stringify(this.user); }
   
   constructor(private firebase_login_service:FirebaseLoginService,
-             private ss:HeroService) {
+              private ss:HeroService) {
                this.ss=ss;
              }
   
