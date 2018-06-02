@@ -2,7 +2,7 @@
   <mat-spinner *ngIf="show"></mat-spinner>
 
     <mat-nav-list>
-      <mat-list-item *ngFor="let item of items | async">
+      <mat-list-item *ngFor="let item of items">
          <a matLine>{{ item.$value }}</a>
          <button mat-icon-button (click)="delete(item.$key)">
             <mat-icon>&#10008;</mat-icon>

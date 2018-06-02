@@ -3,7 +3,7 @@ import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import * as firebase from 'firebase';
 import { AngularFireAuth } from 'angularfire2/auth';
 
-import { AngularFireDatabase } from 'angularfire2/database-deprecated';
+import { AngularFireDatabase ,FirebaseListObservable} from 'angularfire2/database-deprecated';
 // for Observables
 //import {FirebaseListObservable, FirebaseObjectObservable } from 'angularfire2';
 
@@ -15,7 +15,7 @@ export class FirebaseLoginService {
     provider = new firebase.auth.GoogleAuthProvider();
     storage = firebase.storage();
     storageRef = this.storage.ref();
-    
+    items: FirebaseListObservable<any[]>;
     
     constructor(private af: AngularFireAuth,
                 private afdatabase: AngularFireDatabase) { 
@@ -54,6 +54,14 @@ export class FirebaseLoginService {
          }
        );
        return "done";   
+    }
+
+    getMessageData() : FirebaseListObservable<any[]>{
+      return this.items=this.afdatabase.list('/messages');
+    }
+
+    submitMessage(message:string){
+      this.items.push(message);
     }
 
 
