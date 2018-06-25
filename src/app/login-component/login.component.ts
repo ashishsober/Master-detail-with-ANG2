@@ -2,6 +2,7 @@ import { Component ,OnInit,Input } from '@angular/core';
 import {FirebaseLoginService} from '../service/firebase.login.service';
 import { HeroService } from '../service/hero.service';
 
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   moduleId: 'module.id',
@@ -17,7 +18,8 @@ export class LoginComponent {
   get myContent() { return JSON.stringify(this.user); }
   
   constructor(private firebase_login_service:FirebaseLoginService,
-              private ss:HeroService) {
+              private ss:HeroService,
+              private router:Router) {
                this.ss=ss;
              }
   
@@ -37,6 +39,7 @@ export class LoginComponent {
                                    sessionStorage.setItem('user_photoUrl',result.user.photoURL);
                                    sessionStorage.setItem('user_emalid',result.user.email);
                                    this.ss.hide();
+                                   this.router.navigate(['dashboard']);
                                 });
   }
 

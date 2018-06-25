@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 //import {AuthService} from '../service/auth-service';
 import { HeroService } from '../service/hero.service';
+import { Router, ActivatedRoute } from '@angular/router';
 
 
 
@@ -21,7 +22,8 @@ export class AppComponent implements OnInit {
       myPhotoUrl;
 
 
-      constructor(private ss : HeroService){
+      constructor(private ss : HeroService,
+                  private router:Router){
               if(sessionStorage.getItem('user_uid') != null){
                 this.viewLogin = true;
                 this.viewLogout = true;
@@ -49,6 +51,7 @@ export class AppComponent implements OnInit {
           sessionStorage.clear();
           this.ss.show();//making visible login button and hiding logout button
            //const isAuthenticated = this.authservice.isAuthenticated;
+          this.router.navigate(['login']);
       }
 
 
