@@ -22,7 +22,7 @@ export class LoginComponent {
              }
   
   onSubmit() {
-    console.log("my console" +this.user);
+    console.log("my console from onSubmit" +this.user);
   }
 
   

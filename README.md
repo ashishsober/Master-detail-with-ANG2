@@ -40,6 +40,8 @@ shown below
 
 and import all the modules in the app.module.ts file,do not apply forRoot() method,
 if you do the refactoring then we can apply the forRoot() method as i have done.and please add providers also for radio-button and some other modules.
+
+* for Grid system using Bootstrap layout 
    
 
 
