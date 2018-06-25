@@ -37,6 +37,3 @@ body, input[text], button {
   width: 100%;
 }
 
-.mat-form-field {
-  display: block !important;
-}

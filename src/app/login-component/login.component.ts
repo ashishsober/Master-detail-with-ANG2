@@ -20,7 +20,7 @@ export class LoginComponent {
   constructor(private firebase_login_service:FirebaseLoginService,
               private ss:HeroService,
               private router:Router) {
-               this.ss=ss;
+              this.ss=ss;
              }
   
   onSubmit() {

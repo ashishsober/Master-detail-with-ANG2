@@ -2,31 +2,29 @@
 <div class="container" style="padding-top: 170px;">
   <img src="assets/images/loginWallpaper.jpg" class="bg">
   <div class="row">
-      <div class="col-md-4"></div>
+      <div class="col-md-3"></div>
       <div class="col-md-5">
       <mat-card>
           <form (ngSubmit)="onSubmit()">
             
               <div class="row">  
-                  <h3 class="text-center"><span class="fa fa-snapchat-square"></span>Login</h3>
+                  <div class="fa fa-snapchat-square" style="font-size: 40px;text-indent: 30%;padding-bottom: 15px;">
+                    Login
+                  </div>
                   <!-- <div [hidden]="myPhotoUrlValue">   
                           <img class="img-circle" width="75" height="60" [src] = "myPhotoUrl?.photoURL">
                         </div>  -->
               </div>
-              <div class="row">
                   <mat-form-field>
                     <input type="email" matInput placeholder="Username" [(ngModel)]="user.username" id="username" name="username" required>
                   </mat-form-field>
-              </div>
-              <div class="row">
                   <mat-form-field>
                     <input type="password" matInput placeholder="Password" [(ngModel)]="user.password" id="password" name="password" required>
                   </mat-form-field>
-              </div>
-              <div class="row text-center">
-                  <button type="submit" class="btn btn-default">Submit</button>
-                  <button type=button (click)="googleLogin()" class="btn btn-danger">Google +</button>
-              </div>
+                <div class="row text-center" style="margin-top:15px;">
+                    <button type="submit" class="btn btn-default">Submit</button>
+                    <button type=button (click)="googleLogin()" class="btn btn-danger">Google +</button>
+                </div>
           </form>
       </mat-card>
       </div>

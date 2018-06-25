@@ -11,7 +11,7 @@ import { FirebaseLoginService } from '../service/firebase.login.service';
 export class TodoComponent implements OnInit,OnChanges {
   textMessage:string;
   items: any[];
-  show=false;
+  show=true;
   constructor(private af: AngularFireDatabase, 
               private firebaseloginservice: FirebaseLoginService) {}
 
@@ -20,6 +20,7 @@ export class TodoComponent implements OnInit,OnChanges {
     this.firebaseloginservice.getMessageData()
                              .subscribe( result => {
                                           this.items = result ;
+                                          this.show = false;
                               })
   }
 
