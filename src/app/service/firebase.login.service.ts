@@ -26,6 +26,15 @@ export class FirebaseLoginService {
     getAuth() {
           return firebase.auth().signInWithPopup(this.provider);
     }
+
+    getLogout(){
+      return firebase.auth().signOut();
+      // return firebase.auth().signOut().then(function(){
+      //      return true;
+      // }).catch(function(error){
+      //     console.log(error);
+      // })
+    }
     
     
     UploadFile(fileData) {
@@ -62,6 +71,10 @@ export class FirebaseLoginService {
 
     submitMessage(message:string){
       this.items.push(message);
+    }
+
+    loggedInUser(){
+
     }
 
 

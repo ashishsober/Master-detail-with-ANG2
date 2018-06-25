@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 //import {AuthService} from '../service/auth-service';
 import { HeroService } from '../service/hero.service';
 import { Router, ActivatedRoute } from '@angular/router';
-
+import {FirebaseLoginService} from '../service/firebase.login.service';
 
 
 
@@ -23,7 +23,8 @@ export class AppComponent implements OnInit {
 
 
       constructor(private ss : HeroService,
-                  private router:Router){
+                  private router:Router,
+                  private firebase_login_service:FirebaseLoginService,){
               if(sessionStorage.getItem('user_uid') != null){
                 this.viewLogin = true;
                 this.viewLogout = true;
@@ -52,6 +53,9 @@ export class AppComponent implements OnInit {
           this.ss.show();//making visible login button and hiding logout button
            //const isAuthenticated = this.authservice.isAuthenticated;
           this.router.navigate(['login']);
+          this.firebase_login_service.getLogout().then(result => {
+            console.log("My Result after signout"+result);
+          });
       }
 
 
