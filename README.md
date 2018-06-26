@@ -91,3 +91,9 @@ if you do the refactoring then we can apply the forRoot() method as i have done.
       
         $ firebase deploy
         $ If it ask for reauth, firebase login --reauth --no-localhost
+
+# Using Google Analytics to track and reports website traffic
+
+1. [Google Analytics](https://analytics.google.com/)
+
+1. [Tag Manager](https://tagmanager.google.com/)
