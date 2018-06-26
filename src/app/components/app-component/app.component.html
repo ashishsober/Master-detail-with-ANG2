@@ -18,7 +18,10 @@
 						<!-- <button mat-icon-button	class="app-icon-button" (click)="sidenav.toggle()">
 							<span><mat-icon class="material-icons app-toolbar-menu" aria-hidden="true">menu</mat-icon></span>
 						</button>  -->
-						<span class="app-toolbar-filler"></span>
+						   <mat-form-field>
+							  <input type="text" matInput placeholder="Search"  id="search" name="search">
+						   </mat-form-field>
+						   <span class="app-toolbar-filler"></span>
 							<div *ngIf = "viewLogout == true">
 								<img class="img-circle" width="62" height="55" [src]="myPhotoUrl">
 							</div>	

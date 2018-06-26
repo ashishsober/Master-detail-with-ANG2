@@ -7,8 +7,8 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 
 
-import {HeroService} from '../service/hero.service';
-import { Hero } from '../hero';
+import {HeroService} from '../../service/hero.service';
+import { Hero } from '../../hero';
 
 
 @Component({

@@ -1,12 +1,12 @@
 import { NgModule }      from '@angular/core';
 import { RouterModule ,Routes }   from '@angular/router';
 
-import { HeroDetailComponent } from './hero-detail-component/hero-detail.component';
-import { HeroesComponent }     from './heroes-component/heroes.component';
-import { DashboardComponent }     from './dashboard-component/dashboard.component';
-import { MaterialComponent }     from './material-component/material.component';
-import { LoginComponent }     from './login-component/login.component';
-import { TodoComponent }     from './todo-firebase-component/todo.component';
+import { HeroDetailComponent } from './components/hero-detail-component/hero-detail.component';
+import { HeroesComponent }     from './components/heroes-component/heroes.component';
+import { DashboardComponent }     from './components/dashboard-component/dashboard.component';
+import { MaterialComponent }     from './components/material-component/material.component';
+import { LoginComponent }     from './components/login-component/login.component';
+import { TodoComponent }     from './components/todo-firebase-component/todo.component';
 
 import { LoginRouteGuard } from './service/login-route-guard';
 

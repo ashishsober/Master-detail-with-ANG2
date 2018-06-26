@@ -10,13 +10,13 @@ import { AngularFireModule } from 'angularfire2';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AngularFireDatabaseModule } from 'angularfire2/database-deprecated';
 
-import { AppComponent }  from './app-component/app.component';
-import { HeroDetailComponent } from './hero-detail-component/hero-detail.component';
-import { HeroesComponent }     from './heroes-component/heroes.component';
-import { DashboardComponent }     from './dashboard-component/dashboard.component';
-import { MaterialComponent }     from './material-component/material.component';
-import { LoginComponent }     from './login-component/login.component';
-import { TodoComponent }     from './todo-firebase-component/todo.component';
+import { AppComponent }  from './components/app-component/app.component';
+import { HeroDetailComponent } from './components/hero-detail-component/hero-detail.component';
+import { HeroesComponent }     from './components/heroes-component/heroes.component';
+import { DashboardComponent }     from './components/dashboard-component/dashboard.component';
+import { MaterialComponent }     from './components/material-component/material.component';
+import { LoginComponent }     from './components/login-component/login.component';
+import { TodoComponent }     from './components/todo-firebase-component/todo.component';
 
 import {HeroService} from './service/hero.service';
 import {FirebaseLoginService} from './service/firebase.login.service';

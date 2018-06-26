@@ -1,6 +1,6 @@
 import { Component ,OnInit,Input } from '@angular/core';
-import {FirebaseLoginService} from '../service/firebase.login.service';
-import { HeroService } from '../service/hero.service';
+import {FirebaseLoginService} from '../../service/firebase.login.service';
+import { HeroService } from '../../service/hero.service';
 
 import { Router, ActivatedRoute } from '@angular/router';
 
