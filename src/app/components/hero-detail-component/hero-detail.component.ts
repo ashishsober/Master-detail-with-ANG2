@@ -8,7 +8,7 @@ import 'rxjs/add/operator/catch';
 
 
 import {HeroService} from '../../service/hero.service';
-import { Hero } from '../../hero';
+import { Hero } from '../../service/hero';
 
 
 @Component({

@@ -1,4 +1,4 @@
-import {Hero} from '../hero';
+import {Hero} from '../service/hero';
 
 export var HEROES: Hero[] = [
   { "id": 11, "name": "Mr. Nice" },
