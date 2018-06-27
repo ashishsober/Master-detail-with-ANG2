@@ -35,7 +35,6 @@ export class TodoComponent implements OnInit,OnChanges {
     this.firebaseloginservice.submitMessage(textMessage);
     this.textMessage='';
   }
-  
 
   delete(key:string){
     console.log("key to delete---"+key);

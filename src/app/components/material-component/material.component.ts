@@ -5,5 +5,4 @@ import { Component } from '@angular/core';
   selector: 'my-material',
   templateUrl: './material.component.html'
 })
-
 export class MaterialComponent { }

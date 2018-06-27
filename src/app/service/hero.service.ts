@@ -1,13 +1,13 @@
 import { Injectable, Input, Output, EventEmitter } from '@angular/core';
 import { HEROES } from './mock-heroes';
 import { Hero } from '../service/hero';
-
 import { Observable } from 'rxjs/Rx';
 import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import 'rxjs/add/operator/switchMap';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import * as Rx from "rxjs/Rx";
+
 
 @Injectable()
 export class HeroService {
@@ -29,7 +29,6 @@ export class HeroService {
                         .then(heroes => heroes.find(hero => hero.id === id));
       }
 
-
       show() {
         console.log('show started'); 
         this.fire.emit(false);
@@ -43,8 +42,4 @@ export class HeroService {
       getEmittedValue() {
             return this.fire;
       }
-
-
-
-
 }

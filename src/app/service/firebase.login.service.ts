@@ -2,7 +2,6 @@ import {Injectable} from '@angular/core';
 import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import * as firebase from 'firebase';
 import { AngularFireAuth } from 'angularfire2/auth';
-
 import { AngularFireDatabase ,FirebaseListObservable} from 'angularfire2/database-deprecated';
 // for Observables
 //import {FirebaseListObservable, FirebaseObjectObservable } from 'angularfire2';
@@ -22,7 +21,6 @@ export class FirebaseLoginService {
       //this.items=af.database.list('/messages');
     }
     
-    
     getAuth() {
           return firebase.auth().signInWithPopup(this.provider);
     }
@@ -35,7 +33,6 @@ export class FirebaseLoginService {
       //     console.log(error);
       // })
     }
-    
     
     UploadFile(fileData) {
        //console.log(fileData+"inside service");  
@@ -76,8 +73,4 @@ export class FirebaseLoginService {
     loggedInUser(){
 
     }
-
-
-
-    
  }

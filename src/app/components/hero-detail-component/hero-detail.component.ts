@@ -1,12 +1,9 @@
 import { Component, Input,OnInit } from '@angular/core';
 import { ActivatedRoute, Params }   from '@angular/router';
 import { Location }                 from '@angular/common';
-
 import 'rxjs/add/operator/switchMap';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
-
-
 import {HeroService} from '../../service/hero.service';
 import { Hero } from '../../service/hero';
 
@@ -18,9 +15,9 @@ import { Hero } from '../../service/hero';
   styleUrls:['./hero-detail.component.css'],
 })
 export class HeroDetailComponent implements OnInit{
-    @Input() hero: Hero;
+   @Input() hero: Hero;
  
-    constructor( private heroservice :HeroService,
+   constructor( private heroservice :HeroService,
                  private route:ActivatedRoute,
                  private location:Location
                  ){}

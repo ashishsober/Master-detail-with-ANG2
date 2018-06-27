@@ -1,7 +1,6 @@
 import { Component ,OnInit,Input } from '@angular/core';
 import {FirebaseLoginService} from '../../service/firebase.login.service';
 import { HeroService } from '../../service/hero.service';
-
 import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -26,7 +25,6 @@ export class LoginComponent {
   onSubmit() {
     console.log("my console from onSubmit" +this.user);
   }
-
   
   googleLogin() {
     console.log("i m inside google Login method");

@@ -1,5 +1,4 @@
 import { NgModule ,ModuleWithProviders}      from '@angular/core';
-
 import { MatCardModule ,
          MatButtonModule ,
          MatIconModule ,
@@ -21,8 +20,6 @@ import { MatCardModule ,
          MatRippleModule ,
          MatProgressSpinnerModule ,
          MatDialogModule } from '@angular/material';
-
-         
 //import { MatProgressCircleModule } from '@angular/material';
 //import { FlexLayoutModule} from '@angular/flex-layout';
 

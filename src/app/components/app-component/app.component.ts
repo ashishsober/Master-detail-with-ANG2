@@ -5,8 +5,6 @@ import { Router, ActivatedRoute } from '@angular/router';
 import {FirebaseLoginService} from '../../service/firebase.login.service';
 
 
-
-
 @Component({
   moduleId:'module.id',
   selector: 'app-root',
@@ -25,6 +23,7 @@ export class AppComponent implements OnInit {
       constructor(private ss : HeroService,
                   private router:Router,
                   private firebase_login_service:FirebaseLoginService,){
+              
               if(sessionStorage.getItem('user_uid') != null){
                 this.viewLogin = true;
                 this.viewLogout = true;
@@ -35,7 +34,6 @@ export class AppComponent implements OnInit {
               }
               this.ss = ss;
        }
-      
 
       ngOnInit() {
         this.subscription=this.ss.getEmittedValue().subscribe(item => {
@@ -46,8 +44,6 @@ export class AppComponent implements OnInit {
         });
       }
 
-
-
       logout(){
           sessionStorage.clear();
           this.ss.show();//making visible login button and hiding logout button
@@ -57,7 +53,4 @@ export class AppComponent implements OnInit {
             console.log("My Result after signout"+result);
           });
       }
-
-
-
 }
