@@ -1,3 +1,14 @@
   .myButton {
       background-color:yellow; 
   }
+  
+  .infoImage {
+    border-radius: 70px;
+    height: 38px;
+    width: 38px;
+  }
+
+  div.mat-list-item-content {
+      padding-left: 0px;
+      padding-right: 0px;
+  }
