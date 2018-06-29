@@ -1,23 +1,30 @@
-<div class="row">
-	<div class="col-md-12">
+
 			<mat-toolbar class="header-color">
-						<button mat-icon-button (click)="sidenav.toggle()"><mat-icon>menu</mat-icon></button>
-						<!-- <mat-form-field>
-						  <input type="text" matInput placeholder="Search"  id="search" name="search">
-					   </mat-form-field> -->
-					   <span class="app-toolbar-filler"></span>
-						<div *ngIf = "viewLogout == true">
-							<img class="img-circle" width="62" height="55" [src]="myPhotoUrl">
-						</div>	
-						<div *ngIf = "viewLogin == false">
-								<button mat-button [routerLink]="['/login']">{{signInOut}}</button>
-						</div>
-						<div *ngIf = "viewLogout == true">
-								<button mat-button (click)="logout()">Logout</button>
-						</div>
+				
+				<div class="row" style="width: 100%;">
+							    <div class="col-md-2"><button mat-icon-button (click)="sidenav.toggle()"><mat-icon>menu</mat-icon></button></div>
+							    <div class="col-md-6 col-md-offset-1">
+										<div style="float:right;">
+									        <input type="text" placeholder="Search"  class="searchbox">
+										    <button mat-raised-button color="accent" style="padding-top: 1px;height: 36px;"><mat-icon>search</mat-icon></button>
+									    </div>
+							    </div>
+							    <div *ngIf = "viewLogout == true" class="col-md-2 col-md-offset-1">
+									<img class="img-circle" width="62" height="55" [src]="myPhotoUrl">
+								</div>	
+								<div *ngIf = "viewLogin == false" class="col-md-2 col-md-offset-1">
+										<button mat-button [routerLink]="['/login']" style="float: right;">{{signInOut}}</button>
+								</div>
+								<div *ngIf = "viewLogout == true" class="col-md-2 col-md-offset-1">
+										<button mat-button (click)="logout()" style="float: right;">Logout</button>
+								</div>
+				</div>
+				
+			
+				
+
 			</mat-toolbar>
-	</div>
-</div>
+
 
 <div class="container-fluid">
     <div class="row">
