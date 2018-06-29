@@ -25,3 +25,16 @@ body, input[text], button {
   width: 100%;
 }
 
+button.mat-raised-button.cdk-mouse-focused{
+  outline: none !important;
+}
+button.mat-button.cdk-mouse-focused{
+  outline: none !important;
+}
+button.mat-icon-button.cdk-mouse-focused{
+  outline: none !important;
+}
+
+button {
+  outline: none !important;
+}

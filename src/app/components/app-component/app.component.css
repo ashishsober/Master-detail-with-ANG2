@@ -65,9 +65,11 @@ div.app-content {
 }
 .searchbox {
   background: #8888881a;
-  border : 1px solid #ffd83feb;
+  border : 1px solid #ffd83f40;
   padding-left: 6px;
   font-size: 17px;
   margin-right: -6px;
   width: 550px;
-  }
+}
+
+  

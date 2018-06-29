@@ -1,36 +1,29 @@
-
 <div class="container" style="padding-top: 170px;">
-  <img src="assets/images/loginWallpaper.jpg" class="bg">
+  <!-- <img src="assets/images/loginWallpaper.jpg" class="bg"> -->
   <div class="row">
-      <div class="col-md-3"></div>
-      <div class="col-md-5">
+    <div class="col-md-3"></div>
+    <div class="col-md-5">
       <mat-card>
-          <form (ngSubmit)="onSubmit()">
-            
-              <div class="row">  
-                  <div class="fa fa-snapchat-square" style="font-size: 40px;text-indent: 30%;padding-bottom: 15px;">
-                    Login
-                  </div>
-                  <!-- <div [hidden]="myPhotoUrlValue">   
-                          <img class="img-circle" width="75" height="60" [src] = "myPhotoUrl?.photoURL">
-                        </div>  -->
-              </div>
-                  <mat-form-field>
-                    <input type="email" matInput placeholder="Username" [(ngModel)]="user.username" id="username" name="username" required>
-                  </mat-form-field>
-                  <mat-form-field>
-                    <input type="password" matInput placeholder="Password" [(ngModel)]="user.password" id="password" name="password" required>
-                  </mat-form-field>
-                <div class="row text-center" style="margin-top:15px;">
-                    <button type="submit" class="btn btn-default">Submit</button>
-                    <button type=button (click)="googleLogin()" class="btn btn-danger">Google +</button>
-                </div>
-          </form>
+        <form (ngSubmit)="onSubmit()">
+          <div class="fa fa-snapchat-square" style="font-size: 36px;text-indent: 30%;padding-bottom: 15px;">Login</div>
+          <mat-form-field>
+            <input type="email" matInput placeholder="Username" [(ngModel)]="user.username" id="username" name="username" required>
+          </mat-form-field>
+          <mat-form-field>
+            <input type="password" matInput placeholder="Password" [(ngModel)]="user.password" id="password" name="password" required>
+          </mat-form-field>
+          <div class="row">
+            <div class="col-centered">
+              <button type="submit" mat-raised-button color="primary">Submit</button>
+              <button mat-raised-button color="warn" (click)="googleLogin()">Google +</button>
+            </div>
+          </div>
+        </form>
       </mat-card>
-      </div>
+    </div>
   </div>
 </div>
-   
+
 <!--<div class="form-group">
     <input type="file" (change)="onChange($event)"/>
 </div>-->

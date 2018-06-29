@@ -11,3 +11,8 @@ img.bg {
 .mat-form-field {
     display: block !important;
   }
+
+.col-centered {
+    float: none;
+    margin: 0 auto;
+}
