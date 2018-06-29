@@ -17,10 +17,10 @@
       <img class="img-circle" width="62" height="55" [src]="myPhotoUrl" style="float: right;
 									border-radius: 70px;
 									height: 38px;
-									width: 38px;">
+									width: 38px;" (click)="infoModal()">
     </div>
     <div *ngIf="viewLogin == false" class="col-md-2">
-      <button mat-button [routerLink]="['/login']" style="float: right;">{{signInOut}}</button>
+      <button mat-button [routerLink]="['/login']" style="float: right;">{{login}}</button>
     </div>
     <!-- <div *ngIf = "viewLogout == true" class="col-md-2">
 										<button mat-button (click)="logout()" style="float: right;">Logout</button>

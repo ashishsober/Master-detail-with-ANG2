@@ -3,7 +3,8 @@ import { Component, OnInit } from '@angular/core';
 import { HeroService } from '../../service/hero.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import {FirebaseLoginService} from '../../service/firebase.login.service';
-
+import { MatDialog, MatDialogRef } from '@angular/material';
+import { InfoModalComponent } from 'app/modals/infoModal/info-modal-component';
 
 @Component({
   moduleId:'module.id',
@@ -13,16 +14,17 @@ import {FirebaseLoginService} from '../../service/firebase.login.service';
 })
 export class AppComponent implements OnInit {
       title = 'Initial C';
-      signInOut :string ='Login';
+      login :string ='Login';
       viewLogout :boolean;
       viewLogin : boolean;
       subscription;
       myPhotoUrl;
-
+      fileNameDialogRef:MatDialogRef<InfoModalComponent>;
 
       constructor(private ss : HeroService,
                   private router:Router,
-                  private firebase_login_service:FirebaseLoginService,){
+                  private firebase_login_service:FirebaseLoginService,
+                  private dialog:MatDialog){
               
               if(sessionStorage.getItem('user_uid') != null){
                 this.viewLogin = true;
@@ -44,13 +46,11 @@ export class AppComponent implements OnInit {
         });
       }
 
-      logout(){
-          sessionStorage.clear();
-          this.ss.show();//making visible login button and hiding logout button
-           //const isAuthenticated = this.authservice.isAuthenticated;
-          this.router.navigate(['login']);
-          this.firebase_login_service.getLogout().then(result => {
-            console.log("My Result after signout"+result);
-          });
+      infoModal(){
+        this.fileNameDialogRef = this.dialog.open(InfoModalComponent,{
+                                                                    hasBackdrop:true ,
+                                                                    height: '150px',
+                                                                    width: '600px'
+                                                                    });
       }
 }
