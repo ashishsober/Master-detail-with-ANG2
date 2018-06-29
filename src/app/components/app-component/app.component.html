@@ -1,52 +1,54 @@
-
-			<mat-toolbar class="header-color">
-				
-				<div class="row" style="width: 100%">
-							    <div class="col-md-2">
-									<button mat-icon-button (click)="sidenav.toggle()"><mat-icon>menu</mat-icon></button>
-								</div>
-							    <div class="col-md-8">
-										<div style="float:right;">
-									        <input type="text" placeholder="Search"  class="searchbox">
-										    <button mat-raised-button color="accent" style="padding-top: 1px;height: 36px;"><mat-icon>search</mat-icon></button>
-									    </div>
-							    </div>
-							    <div *ngIf = "viewLogout == true" class="col-md-2">
-									<img class="img-circle" width="62" height="55" [src]="myPhotoUrl">
-								</div>	
-								<div *ngIf = "viewLogin == false" class="col-md-2">
-										<button mat-button [routerLink]="['/login']" style="float: right;">{{signInOut}}</button>
-								</div>
-								<div *ngIf = "viewLogout == true" class="col-md-2">
+<mat-toolbar class="header-color">
+  <div class="row" style="width: 100%">
+    <div class="col-md-2">
+      <button mat-icon-button (click)="sidenav.toggle()">
+        <mat-icon>menu</mat-icon>
+      </button>
+    </div>
+    <div class="col-md-8">
+      <div style="float:right;">
+        <input type="text" placeholder="Search" class="searchBox">
+        <button mat-raised-button color="accent" style="padding-top: 1px;height: 36px;">
+          <mat-icon>search</mat-icon>
+        </button>
+      </div>
+    </div>
+    <div *ngIf="viewLogout == true" class="col-md-2">
+      <img class="img-circle" width="62" height="55" [src]="myPhotoUrl" style="float: right;
+									border-radius: 70px;
+									height: 38px;
+									width: 38px;">
+    </div>
+    <div *ngIf="viewLogin == false" class="col-md-2">
+      <button mat-button [routerLink]="['/login']" style="float: right;">{{signInOut}}</button>
+    </div>
+    <!-- <div *ngIf = "viewLogout == true" class="col-md-2">
 										<button mat-button (click)="logout()" style="float: right;">Logout</button>
-								</div>
-				</div>
-				
-			
-				
+								</div> -->
+  </div>
+</mat-toolbar>
 
-			</mat-toolbar>
+  <div class="row">
+    <div class="col-md-2" style="background-color: #232323;
+    margin: 0px;
+    padding-right: 0px;
+	height: 700px;">
+      <mat-sidenav #sidenav mode="side" class="app-sidenav" opened="true">
+        <nav>
+          <ul><a routerLink="/dashboard" routerLinkActive="active">Dashboard</a></ul>
+          <ul><a routerLink="/heroes">Heroes</a></ul>
+          <ul><a routerLink="/material">Material Components</a></ul>
+          <ul><a routerLink="/todoFirebase">Messenger</a></ul>
+        </nav>
+      </mat-sidenav>
+    </div>
+    <div class="col-md-10">
+      <div class="" style="padding-left: 15px;padding-top: 15px;">
+        <router-outlet></router-outlet>
+      </div>
+    </div>
+  </div>
 
-
-<div class="container-fluid">
-    <div class="row">
-		<div class="col-md-2">
-			<mat-sidenav #sidenav mode="side" class="app-sidenav" opened="true">
-				<nav>
-					<ul><a routerLink="/dashboard" routerLinkActive="active">Dashboard</a></ul>
-					<ul><a routerLink="/heroes">Heroes</a></ul>
-					<ul><a routerLink="/material">Material Components</a></ul>
-					<ul><a routerLink="/todoFirebase">Messenger</a></ul>
-				</nav>
-	        </mat-sidenav>
-		</div>
-		<div class="col-md-10">
-			<div class="" style="padding-left: 15px;padding-top: 15px;">
-				<router-outlet></router-outlet>
-			</div>
-		</div>
-	</div>
-</div>
 
 
 
