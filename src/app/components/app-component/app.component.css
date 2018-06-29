@@ -1,13 +1,3 @@
-h1 {
-  font-size: 1.2em;
-  color: #999;
-  margin-bottom: 0;
-}
-h2 {
-  font-size: 2em;
-  margin-top: 0;
-  padding-top: 0;
-}
 nav a {
   padding: 7px 10px;
   text-decoration: none;
@@ -66,4 +56,10 @@ div.app-content {
 .app-sidenav {
   height: 900px;
   width: 200px;
+}
+
+.header-color {
+  background-color :#24292e;
+  color: #eef0f1;
+  /* position: fixed; */
 }
