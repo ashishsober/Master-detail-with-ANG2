@@ -29,12 +29,13 @@ nav ul {
   color: #eef0f1;
 }
 .searchBox {
-  background: #8888881a;
-  border : 1px solid #ffd83f40;
+  border : 1px solid;
   padding-left: 6px;
   font-size: 17px;
   margin-right: -6px;
   width: 550px;
+  color: #eef0f1
 }
+
 
   

@@ -1,13 +1,13 @@
 <mat-toolbar class="header-color">
   <div class="row" style="width: 100%">
     <div class="col-md-2">
-      <button mat-icon-button (click)="sidenav.toggle()">
+      <button mat-icon-button>
         <mat-icon>menu</mat-icon>
       </button>
     </div>
     <div class="col-md-8">
       <div style="float:right;">
-        <input type="text" placeholder="Search" class="searchBox">
+        <input type="text" placeholder="Search" class="searchBox" style="background-color: #8888881a;border-color: #ffd83f40;">
         <button mat-raised-button color="accent" style="padding-top: 1px;height: 36px;">
           <mat-icon>search</mat-icon>
         </button>
@@ -28,26 +28,34 @@
   </div>
 </mat-toolbar>
 
-  <div class="row">
-    <div class="col-md-2" style="background-color: #232323;
+<div class="row">
+  <div class="col-md-2" style="background-color: #232323;
     margin: 0px;
     padding-right: 0px;
-	height: 700px;">
-      <mat-sidenav #sidenav mode="side" class="app-sidenav" opened="true">
-        <nav>
-          <ul><a routerLink="/dashboard" routerLinkActive="active">Dashboard</a></ul>
-          <ul><a routerLink="/heroes">Heroes</a></ul>
-          <ul><a routerLink="/material">Material Components</a></ul>
-          <ul><a routerLink="/todoFirebase">Messenger</a></ul>
-        </nav>
-      </mat-sidenav>
-    </div>
-    <div class="col-md-10">
-      <div class="" style="padding-left: 15px;padding-top: 15px;">
-        <router-outlet></router-outlet>
-      </div>
+	height: 700px;
+	">
+      <nav>
+        <ul>
+			<a routerLink="/dashboard" routerLinkActive="active">Dashboard</a>
+        </ul>
+        <ul>
+          <a routerLink="/heroes">Heroes</a>
+        </ul>
+        <ul>
+          <a routerLink="/material">Material Components</a>
+        </ul>
+        <ul>
+          <a routerLink="/todoFirebase">Messenger</a>
+        </ul>
+      </nav>
+    
+  </div>
+  <div class="col-md-10">
+    <div style="padding-left: 15px;padding-top: 15px;">
+      <router-outlet></router-outlet>
     </div>
   </div>
+</div>
 
 
 
