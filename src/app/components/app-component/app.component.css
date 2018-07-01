@@ -8,11 +8,11 @@ nav a {
   height: 100%;
   color: white;
   padding-left: 23px;
+  outline: none;
 }
 nav ul:active {
   color: #ffffff;
   background-color: #5bdcea;
-  
 }
 nav ul:hover {
   color: #eef0f1;

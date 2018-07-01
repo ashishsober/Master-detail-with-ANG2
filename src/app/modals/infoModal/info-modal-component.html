@@ -1,18 +1,16 @@
-<mat-dialog-content>
-
-  <mat-list dense>
-    <mat-list-item>
-                  
-        <img matListAvatar src="assets/images/user.svg">
-                <h3 matLine> ASHISH GUPTA</h3>
-                <p matLine>
-                  <span> ashish.gupta@sc.com </span>
-                </p>
-            
-    </mat-list-item>
-  </mat-list>
-
-</mat-dialog-content>
-<mat-dialog-actions>
-  <button mat-button type="button" mat-dialog-close mat-raised-button color="warn" (click)="logout()">Logout</button>
-</mat-dialog-actions>
+<mat-list dense style="padding: 0px;">
+  <mat-list-item style="background-color: pink;">
+    <img matListAvatar src="assets/images/user.svg">
+    <h3 matLine>
+      <b>Ashish Gupta</b>
+    </h3>
+    <p matLine>
+      <span> ashish.gupta@sc.com </span>
+    </p>
+  </mat-list-item>
+  <mat-list-item (click)="logout()" style="height: 40px;
+  font-size: 25px;">
+    <i class="fa fa-sign-out">Sign out</i>
+  </mat-list-item>
+</mat-list>
+<!-- <button mat-button type="button" mat-dialog-close mat-raised-button color="warn" >Logout</button> -->
