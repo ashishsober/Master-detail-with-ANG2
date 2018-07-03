@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { MatDialog, MatDialogRef } from '@angular/material';
-import { LoginModalComponent } from 'app/modals/loginModal/login-modal-component';
+import { LoginModalComponent } from 'app/modals/login-modal/login-modal-component';
 
 @Component({
   template: `

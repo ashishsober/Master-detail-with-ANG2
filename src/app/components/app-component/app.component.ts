@@ -4,8 +4,8 @@ import { HeroService } from '../../service/hero.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FirebaseLoginService } from '../../service/firebase.login.service';
 import { MatDialog, MatDialogRef } from '@angular/material';
-import { UserInfoModalComponent } from 'app/modals/user-info-Modal/user-info-modal-component';
-import { LoginModalComponent } from 'app/modals/loginModal/login-modal-component';
+import { UserInfoModalComponent } from 'app/modals/user-info-modal/user-info-modal-component';
+import { LoginModalComponent } from 'app/modals/login-modal/login-modal-component';
 
 @Component({
   moduleId: 'module.id',

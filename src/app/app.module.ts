@@ -21,8 +21,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppMaterialModule } from './app.material.module';
 import { LoginRouteGuard } from './service/login-route-guard';
 import { DialogComponent } from 'app/modals/dialog/dialog-component';
-import { UserInfoModalComponent } from 'app/modals/user-info-Modal/user-info-modal-component';
-import { LoginModalComponent } from 'app/modals/loginModal/login-modal-component';
+import { UserInfoModalComponent } from 'app/modals/user-info-modal/user-info-modal-component';
+import { LoginModalComponent } from 'app/modals/login-modal/login-modal-component';
 
 export const firebaseConfig = {
   apiKey: "AIzaSyBu4vtqAO8iH8Bs-Jeak50DfeqT5NgkH8E",
