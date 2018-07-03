@@ -17,11 +17,8 @@
       <img class="img-circle" width="62" height="55" [src]="myPhotoUrl" (click)="infoModal()">
     </div>
     <div *ngIf="viewLogin == false" class="col-md-2">
-      <button mat-button [routerLink]="['/login']" class="loginButton">{{login}}</button>
+      <button mat-button class="loginButton" (click)="openLoginModal()">{{login}}</button>
     </div>
-    <!-- <div *ngIf = "viewLogout == true" class="col-md-2">
-										<button mat-button (click)="logout()" style="float: right;">Logout</button>
-								</div> -->
   </div>
 </mat-toolbar>
 
@@ -49,3 +46,8 @@
     </div>
   </div>
 </div>
+
+<!-- [routerLink]="['/login']" -->
+<!-- <div *ngIf = "viewLogout == true" class="col-md-2">
+										<button mat-button (click)="logout()" style="float: right;">Logout</button>
+								</div> -->

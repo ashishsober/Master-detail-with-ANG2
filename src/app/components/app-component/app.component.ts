@@ -5,6 +5,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { FirebaseLoginService } from '../../service/firebase.login.service';
 import { MatDialog, MatDialogRef } from '@angular/material';
 import { InfoModalComponent } from 'app/modals/infoModal/info-modal-component';
+import { LoginModalComponent } from 'app/modals/loginModal/login-modal-component';
 
 @Component({
   moduleId: 'module.id',
@@ -20,6 +21,7 @@ export class AppComponent implements OnInit {
   subscription;
   myPhotoUrl;
   fileNameDialogRef: MatDialogRef<InfoModalComponent>;
+  loginDialogRef: MatDialogRef<LoginModalComponent>;
 
   constructor(private ss: HeroService,
     private router: Router,
@@ -52,6 +54,15 @@ export class AppComponent implements OnInit {
       height: '400px',
       width: '270px',
       position: { top: '10px', right: '100px' }
+    });
+  }
+
+  openLoginModal() {
+    this.loginDialogRef = this.dialog.open(LoginModalComponent, {
+      hasBackdrop: true,
+      height: '150px',
+      width: '500px',
+      disableClose: true
     });
   }
 

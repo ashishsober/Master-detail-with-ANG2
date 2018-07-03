@@ -22,6 +22,7 @@ import { AppMaterialModule } from './app.material.module';
 import { LoginRouteGuard } from './service/login-route-guard';
 import { DialogComponent } from 'app/modals/dialog/dialog-component';
 import { InfoModalComponent } from 'app/modals/infoModal/info-modal-component';
+import { LoginModalComponent } from 'app/modals/loginModal/login-modal-component';
 
 export const firebaseConfig = {
   apiKey: "AIzaSyBu4vtqAO8iH8Bs-Jeak50DfeqT5NgkH8E",
@@ -53,9 +54,10 @@ export const firebaseConfig = {
     LoginComponent,
     TodoComponent,
     DialogComponent,
-    InfoModalComponent],
+    InfoModalComponent,
+    LoginModalComponent],
   providers: [HeroService, FirebaseLoginService, LoginRouteGuard],
   bootstrap: [AppComponent],
-  entryComponents: [DialogComponent, InfoModalComponent]
+  entryComponents: [DialogComponent, InfoModalComponent,LoginModalComponent]
 })
 export class AppModule { }
