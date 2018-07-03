@@ -3,11 +3,11 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { HeroService } from '../../service/hero.service';
 import { FirebaseLoginService } from '../../service/firebase.login.service';
 @Component({
-  templateUrl: './info-modal-component.html',
-  styleUrls: ['./info-modal-component.scss'],
+  templateUrl: './user-info-modal-component.html',
+  styleUrls: ['./user-info-modal-component.scss'],
 
 })
-export class InfoModalComponent {
+export class UserInfoModalComponent {
   constructor(private router: Router,
     private firebase_login_service: FirebaseLoginService,
     private ss: HeroService) { }

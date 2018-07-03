@@ -21,7 +21,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppMaterialModule } from './app.material.module';
 import { LoginRouteGuard } from './service/login-route-guard';
 import { DialogComponent } from 'app/modals/dialog/dialog-component';
-import { InfoModalComponent } from 'app/modals/infoModal/info-modal-component';
+import { UserInfoModalComponent } from 'app/modals/user-info-Modal/user-info-modal-component';
 import { LoginModalComponent } from 'app/modals/loginModal/login-modal-component';
 
 export const firebaseConfig = {
@@ -54,10 +54,10 @@ export const firebaseConfig = {
     LoginComponent,
     TodoComponent,
     DialogComponent,
-    InfoModalComponent,
+    UserInfoModalComponent,
     LoginModalComponent],
   providers: [HeroService, FirebaseLoginService, LoginRouteGuard],
   bootstrap: [AppComponent],
-  entryComponents: [DialogComponent, InfoModalComponent,LoginModalComponent]
+  entryComponents: [DialogComponent, UserInfoModalComponent,LoginModalComponent]
 })
 export class AppModule { }

@@ -4,7 +4,7 @@ import { HeroService } from '../../service/hero.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FirebaseLoginService } from '../../service/firebase.login.service';
 import { MatDialog, MatDialogRef } from '@angular/material';
-import { InfoModalComponent } from 'app/modals/infoModal/info-modal-component';
+import { UserInfoModalComponent } from 'app/modals/user-info-Modal/user-info-modal-component';
 import { LoginModalComponent } from 'app/modals/loginModal/login-modal-component';
 
 @Component({
@@ -20,7 +20,7 @@ export class AppComponent implements OnInit {
   viewLogin: boolean;
   subscription;
   myPhotoUrl;
-  fileNameDialogRef: MatDialogRef<InfoModalComponent>;
+  fileNameDialogRef: MatDialogRef<UserInfoModalComponent>;
   loginDialogRef: MatDialogRef<LoginModalComponent>;
   constructor(private ss: HeroService,
     private router: Router,
@@ -48,7 +48,7 @@ export class AppComponent implements OnInit {
   }
 
   infoModal() {
-    this.fileNameDialogRef = this.dialog.open(InfoModalComponent, {
+    this.fileNameDialogRef = this.dialog.open(UserInfoModalComponent, {
       hasBackdrop: true,
       height: '400px',
       width: '270px',
