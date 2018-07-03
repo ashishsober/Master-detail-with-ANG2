@@ -20,7 +20,7 @@ import {FirebaseLoginService} from './service/firebase.login.service';
 import { AppRoutingModule }  from './app-routing.module';
 import { AppMaterialModule }  from './app.material.module';
 import { LoginRouteGuard } from './service/login-route-guard';
-import { DialogComponent } from 'app/modals/dialog-component';
+import { DialogComponent } from 'app/modals/dialog/dialog-component';
 import { InfoModalComponent } from 'app/modals/infoModal/info-modal-component';
 
 export const firebaseConfig = {
