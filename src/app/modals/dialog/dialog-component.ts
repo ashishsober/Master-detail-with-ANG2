@@ -19,7 +19,4 @@ export class DialogComponent {
     this.router.navigate(['login']);
   }
 }
-
-
-
 //   <h1 mat-dialog-title>Add file</h1>

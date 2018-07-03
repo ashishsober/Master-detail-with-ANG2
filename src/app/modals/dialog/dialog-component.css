@@ -1,6 +1,7 @@
 .myButton {
-    background-color: yellow;
-  }
-  .dialogBody {
-      margin:20px;
-  }
+  background-color: yellow;
+}
+
+.dialogBody {
+  margin: 20px;
+}

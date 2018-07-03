@@ -7,23 +7,23 @@ import { DialogComponent } from 'app/modals/dialog/dialog-component';
 
 @Injectable()
 export class LoginRouteGuard implements CanActivate {
-    fileNameDialogRef:MatDialogRef<DialogComponent>;
-    constructor(private firebaseLoginService:FirebaseLoginService,
-                private dialog:MatDialog){}
+    fileNameDialogRef: MatDialogRef<DialogComponent>;
+    constructor(private firebaseLoginService: FirebaseLoginService,
+        private dialog: MatDialog) { }
 
-    canActivate(){
+    canActivate() {
         let uid = sessionStorage.getItem('user_uid');
-        if(uid != null)
-          return true;
+        if (uid != null)
+            return true;
         else {
-            this.fileNameDialogRef = this.dialog.open(DialogComponent,{
-                                                                      hasBackdrop:true ,
-                                                                      height: '150px',
-                                                                      width: '500px',
-                                                                      disableClose:true
-                                                                      });
+            this.fileNameDialogRef = this.dialog.open(DialogComponent, {
+                hasBackdrop: true,
+                height: '150px',
+                width: '500px',
+                disableClose: true
+            });
             return false;
-        }  
-       
+        }
+
     }
 }

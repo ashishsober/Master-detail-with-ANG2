@@ -51,8 +51,8 @@ export class AppComponent implements OnInit {
       hasBackdrop: true,
       height: '400px',
       width: '270px',
-      position: {top: '10px', right:'100px'}
+      position: { top: '10px', right: '100px' }
     });
   }
-  
+
 }

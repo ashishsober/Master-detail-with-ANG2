@@ -1,16 +1,20 @@
 <div *ngIf="hero">
-              <mat-card>
-                <mat-card-title><h2>{{hero.name}} details!</h2></mat-card-title>
-                <mat-card-content>
-                    <div><label>Id: {{hero.id}}</label></div>
-                    <div>
-                        <input [(ngModel)]="hero.name" placeholder="Name">
-                    </div>
-                 </mat-card-content>
-                 <mat-card-actions>
-                    <div>
-                        <button mat-raised-button color="warn" (click)="goBack()">Back</button>
-                    </div>
-                 </mat-card-actions>
-               </mat-card>
-              </div>
+  <mat-card>
+    <mat-card-title>
+      <h2>{{hero.name}} details!</h2>
+    </mat-card-title>
+    <mat-card-content>
+      <div>
+        <label>Id: {{hero.id}}</label>
+      </div>
+      <div>
+        <input [(ngModel)]="hero.name" placeholder="Name">
+      </div>
+    </mat-card-content>
+    <mat-card-actions>
+      <div>
+        <button mat-raised-button color="warn" (click)="goBack()">Back</button>
+      </div>
+    </mat-card-actions>
+  </mat-card>
+</div>

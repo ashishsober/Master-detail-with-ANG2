@@ -1,26 +1,26 @@
-import { Component ,OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Hero } from '../../service/hero';
-import {HeroService} from '../../service/hero.service';
+import { HeroService } from '../../service/hero.service';
 
 @Component({
   moduleId: 'module.id',
   selector: 'my-heroes',
-  templateUrl:'./heroes.component.html',
-  styleUrls:["./heroes.component.css"]
+  templateUrl: './heroes.component.html',
+  styleUrls: ["./heroes.component.css"]
 })
-export class HeroesComponent implements OnInit{ 
+export class HeroesComponent implements OnInit {
 
   selectedHero: Hero;
-  public heroes:Hero[];
-  constructor(private heroService:HeroService){ }
-  
+  public heroes: Hero[];
+  constructor(private heroService: HeroService) { }
+
   //We pass our callback function as an argument to the promise's {then} method:
-  getHeroes() :void{
-      this.heroService.getHeroes().then(heroes => this.heroes=heroes);
+  getHeroes(): void {
+    this.heroService.getHeroes().then(heroes => this.heroes = heroes);
   }
 
-  ngOnInit(){
-      this.getHeroes();
+  ngOnInit() {
+    this.getHeroes();
   }
 
   onSelect(hero1: Hero): void {

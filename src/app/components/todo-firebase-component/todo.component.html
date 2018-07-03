@@ -1,59 +1,62 @@
 <div class="container">
   <div class="row">
-   
+
     <!-- 1ST PART -->
     <div class="col-md-8">
-        <mat-card>
-              <mat-spinner *ngIf="show"></mat-spinner>
-              <mat-nav-list>
-                <mat-list-item *ngFor="let item of items">
-                  <a matLine>{{ item.$value }}</a>
-                  <button mat-icon-button (click)="delete(item.$key)">
-                      <mat-icon>&#10008;</mat-icon>
-                  </button>
-                </mat-list-item>
-              </mat-nav-list>
-              <br/><br/>
-              
-              <form class="example-form">
-                <mat-form-field style="width: 81%;">
-                    <input matInput placeholder="Enter text" [(ngModel)]="textMessage" name="textMessage" #name="ngModel" required>
-                </mat-form-field>
-                <button type="submit" mat-raised-button  color="accent" (click)="myMessage(name.value)">SEND</button>
-              </form>
-          </mat-card>
+      <mat-card>
+        <mat-spinner *ngIf="show"></mat-spinner>
+        <mat-nav-list>
+          <mat-list-item *ngFor="let item of items">
+            <a matLine>{{ item.$value }}</a>
+            <button mat-icon-button (click)="delete(item.$key)">
+              <mat-icon>&#10008;</mat-icon>
+            </button>
+          </mat-list-item>
+        </mat-nav-list>
+        <br/>
+        <br/>
+
+        <form class="example-form">
+          <mat-form-field style="width: 81%;">
+            <input matInput placeholder="Enter text" [(ngModel)]="textMessage" name="textMessage" #name="ngModel" required>
+          </mat-form-field>
+          <button type="submit" mat-raised-button color="accent" (click)="myMessage(name.value)">SEND</button>
+        </form>
+      </mat-card>
     </div>
 
     <!-- 2ND PART -->
     <div class="col-md-4">
       <mat-card>
-         <mat-card-title><h5>ALL USERS</h5></mat-card-title>
-         <mat-list dense>
-            <mat-list-item > 
-                <img matListAvatar src="assets/images/user.svg">
-                <h3 matLine> ASHISH GUPTA</h3>
-                <p matLine>
-                  <span> ashish.gupta@sc.com </span>
-                </p>
-            </mat-list-item>
-            <mat-list-item> 
-                <img matListAvatar src="assets/images/user.svg">
-                <h3 matLine> JEEVENDRA ARORA</h3>
-                <p matLine>
-                  <span> jeeven.arora@sc.com </span>
-                </p>
-            </mat-list-item>
-            <mat-list-item> 
-                <img matListAvatar src="assets/images/user.svg">
-                <h3 matLine> LAXMI SINGH</h3>
-                <p matLine>
-                  <span> laxmi.singh@sc.com </span>
-                </p>
-            </mat-list-item>
-           </mat-list>
+        <mat-card-title>
+          <h5>ALL USERS</h5>
+        </mat-card-title>
+        <mat-list dense>
+          <mat-list-item>
+            <img matListAvatar src="assets/images/user.svg">
+            <h3 matLine> ASHISH GUPTA</h3>
+            <p matLine>
+              <span> ashish.gupta@sc.com </span>
+            </p>
+          </mat-list-item>
+          <mat-list-item>
+            <img matListAvatar src="assets/images/user.svg">
+            <h3 matLine> JEEVENDRA ARORA</h3>
+            <p matLine>
+              <span> jeeven.arora@sc.com </span>
+            </p>
+          </mat-list-item>
+          <mat-list-item>
+            <img matListAvatar src="assets/images/user.svg">
+            <h3 matLine> LAXMI SINGH</h3>
+            <p matLine>
+              <span> laxmi.singh@sc.com </span>
+            </p>
+          </mat-list-item>
+        </mat-list>
       </mat-card>
     </div>
-  
-  
-  </div>  
+
+
+  </div>
 </div>
