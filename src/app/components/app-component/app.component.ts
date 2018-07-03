@@ -22,7 +22,6 @@ export class AppComponent implements OnInit {
   myPhotoUrl;
   fileNameDialogRef: MatDialogRef<InfoModalComponent>;
   loginDialogRef: MatDialogRef<LoginModalComponent>;
-
   constructor(private ss: HeroService,
     private router: Router,
     private firebase_login_service: FirebaseLoginService,
@@ -60,8 +59,8 @@ export class AppComponent implements OnInit {
   openLoginModal() {
     this.loginDialogRef = this.dialog.open(LoginModalComponent, {
       hasBackdrop: true,
-      height: '150px',
-      width: '500px',
+      height: '600px',
+      width: '1152px',
       disableClose: true
     });
   }
