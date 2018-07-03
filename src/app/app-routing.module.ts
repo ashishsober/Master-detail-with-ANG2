@@ -14,7 +14,7 @@ const routes: Routes = [
   { path: 'detail/:id', component: HeroDetailComponent },
   { path: 'heroes', component: HeroesComponent },
   { path: 'material', component: MaterialComponent },
-  { path: 'login', component: LoginComponent },
+  // { path: 'login', component: LoginComponent },
   { path: 'todoFirebase', component: TodoComponent, canActivate: [LoginRouteGuard] }
 ];
 

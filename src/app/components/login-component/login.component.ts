@@ -7,7 +7,7 @@ import { Router, ActivatedRoute } from '@angular/router';
   moduleId: 'module.id',
   selector: 'my-login',
   templateUrl: './login.component.html',
-  styleUrls: ["./login.component.css"]
+  styleUrls: ["./login.component.scss"]
 })
 export class LoginComponent {
   user = { username: '', password: '' };

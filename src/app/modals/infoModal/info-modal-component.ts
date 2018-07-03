@@ -4,7 +4,7 @@ import { HeroService } from '../../service/hero.service';
 import { FirebaseLoginService } from '../../service/firebase.login.service';
 @Component({
   templateUrl: './info-modal-component.html',
-  styleUrls: ['./info-modal-component.css'],
+  styleUrls: ['./info-modal-component.scss'],
 
 })
 export class InfoModalComponent {
