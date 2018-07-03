@@ -1,5 +1,5 @@
 <mat-toolbar class="header-color">
-  <div class="row" style="width: 100%">
+  <div class="row headerWidth">
     <div class="col-md-2">
       <button mat-icon-button>
         <mat-icon>menu</mat-icon>
@@ -7,20 +7,17 @@
     </div>
     <div class="col-md-8">
       <div style="float:right;">
-        <input type="text" placeholder="Search" class="searchBox" style="background-color: #8888881a;border-color: #ffd83f40;">
-        <button mat-raised-button color="accent" style="padding-top: 1px;height: 36px;">
+        <input type="text" placeholder="Search" class="searchBox">
+        <button mat-raised-button color="accent" class="searchBoxButton">
           <mat-icon>search</mat-icon>
         </button>
       </div>
     </div>
     <div *ngIf="viewLogout == true" class="col-md-2">
-      <img class="img-circle" width="62" height="55" [src]="myPhotoUrl" style="float: right;
-									border-radius: 70px;
-									height: 38px;
-									width: 38px;" (click)="infoModal()">
+      <img class="img-circle" width="62" height="55" [src]="myPhotoUrl" (click)="infoModal()">
     </div>
     <div *ngIf="viewLogin == false" class="col-md-2">
-      <button mat-button [routerLink]="['/login']" style="float: right;">{{login}}</button>
+      <button mat-button [routerLink]="['/login']" class="loginButton">{{login}}</button>
     </div>
     <!-- <div *ngIf = "viewLogout == true" class="col-md-2">
 										<button mat-button (click)="logout()" style="float: right;">Logout</button>
@@ -29,37 +26,26 @@
 </mat-toolbar>
 
 <div class="row">
-  <div class="col-md-2" style="background-color: #232323;
-    margin: 0px;
-    padding-right: 0px;
-	height: 700px;
-	">
-      <nav>
-        <ul>
-			<a routerLink="/dashboard" routerLinkActive="active">Dashboard</a>
-        </ul>
-        <ul>
-          <a routerLink="/heroes">Heroes</a>
-        </ul>
-        <ul>
-          <a routerLink="/material">Material Components</a>
-        </ul>
-        <ul>
-          <a routerLink="/todoFirebase">Messenger</a>
-        </ul>
-      </nav>
-    
+  <div class="col-md-2 sideMenu">
+    <nav>
+      <ul>
+        <a routerLink="/dashboard" routerLinkActive="active">Dashboard</a>
+      </ul>
+      <ul>
+        <a routerLink="/heroes">Heroes</a>
+      </ul>
+      <ul>
+        <a routerLink="/material">Material Components</a>
+      </ul>
+      <ul>
+        <a routerLink="/todoFirebase">Messenger</a>
+      </ul>
+    </nav>
+
   </div>
   <div class="col-md-10">
-    <div style="padding-left: 15px;padding-top: 15px;">
+    <div class="mainMenu">
       <router-outlet></router-outlet>
     </div>
   </div>
 </div>
-
-
-
-
-<!-- <div class="col-md-2">
-	
-</div> -->

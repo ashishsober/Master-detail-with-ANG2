@@ -49,9 +49,9 @@ export class AppComponent implements OnInit {
   infoModal() {
     this.fileNameDialogRef = this.dialog.open(InfoModalComponent, {
       hasBackdrop: true,
-      height: '500px',
-      width: '300px',
-      position: {top: '10px', right:'95px'}
+      height: '400px',
+      width: '270px',
+      position: {top: '10px', right:'100px'}
     });
   }
   
