@@ -1,11 +1,12 @@
 import { Injectable, Input, Output, EventEmitter } from '@angular/core';
 import { HEROES } from './mock-heroes';
 import { Hero } from '../service/hero';
-import { Observable } from 'rxjs/Rx';
+// import { Observable } from 'rxjs/Rx';
+import { Observable} from 'rxjs';
 import { Http, Response, Headers, RequestOptions } from '@angular/http';
-import 'rxjs/add/operator/switchMap';
-import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/catch';
+// import 'rxjs/add/operator/switchMap';
+// import 'rxjs/add/operator/map';
+// import 'rxjs/add/operator/catch';
 import * as Rx from "rxjs/Rx";
 
 

@@ -14,15 +14,6 @@
           $ https://angular.io/docs/ts/latest/tutorial/toh-pt3.html
           $ https://embed.plnkr.co/?show=preview
 
-* App contains 5 components ;
-
-          app-component 
-          dashboard-component
-          hero-detail-component
-          heroes-component
-          material-component
-   
-
 # Angular Material (2.0.0-alpha.8-2)
  
  
@@ -97,3 +88,11 @@ if you do the refactoring then we can apply the forRoot() method as i have done.
 1. [Google Analytics](https://analytics.google.com/)
 
 1. [Tag Manager](https://tagmanager.google.com/)
+
+
+## How to update the package.json
+
+    $ npm install -g npm-check-updates
+    $ npm-check-updates -u  u will come to know which are the modules or library got updated
+    $ npm install  or ncu -a to update the package.json
+    `npm i webpack --save-dev`

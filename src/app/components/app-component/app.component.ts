@@ -57,6 +57,7 @@ export class AppComponent implements OnInit {
   }
 
   openLoginModal() {
+    this.router.navigate(['login']);
     this.loginDialogRef = this.dialog.open(LoginModalComponent, {
       hasBackdrop: true,
       height: '600px',
