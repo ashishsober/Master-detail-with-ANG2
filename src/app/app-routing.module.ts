@@ -9,13 +9,14 @@ import { TodoComponent } from './components/todo-firebase-component/todo.compone
 import { LoginRouteGuard } from './service/login-route-guard';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
   { path: 'dashboard', component: DashboardComponent },
   { path: 'detail/:id', component: HeroDetailComponent },
   { path: 'heroes', component: HeroesComponent },
   { path: 'material', component: MaterialComponent },
   // { path: 'login', component: LoginComponent },
-  { path: 'todoFirebase', component: TodoComponent, canActivate: [LoginRouteGuard] }
+  { path: 'todoFirebase', component: TodoComponent, canActivate: [LoginRouteGuard] },
+  { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
+  { path: '**', redirectTo: 'dashboard' }
 ];
 
 @NgModule({
