@@ -4,10 +4,6 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { FlexLayoutModule } from '@angular/flex-layout';
-//import { MaterialModule } from '@angular/material';
-import { AngularFireModule } from 'angularfire2';
-import { AngularFireAuthModule } from 'angularfire2/auth';
-import { AngularFireDatabaseModule } from 'angularfire2/database-deprecated';
 import { AppComponent } from './components/app-component/app.component';
 import { HeroDetailComponent } from './components/hero-detail-component/hero-detail.component';
 import { HeroesComponent } from './components/heroes-component/heroes.component';
@@ -23,6 +19,9 @@ import { LoginRouteGuard } from './service/login-route-guard';
 import { DialogComponent } from 'app/modals/dialog/dialog-component';
 import { UserInfoModalComponent } from 'app/modals/user-info-modal/user-info-modal-component';
 import { LoginModalComponent } from 'app/modals/login-modal/login-modal-component';
+import { AngularFireModule } from 'angularfire2';
+import { AngularFireAuthModule } from 'angularfire2/auth';
+import { AngularFireDatabaseModule } from 'angularfire2/database-deprecated';
 
 export const firebaseConfig = {
   apiKey: "AIzaSyBu4vtqAO8iH8Bs-Jeak50DfeqT5NgkH8E",
@@ -58,6 +57,6 @@ export const firebaseConfig = {
     LoginModalComponent],
   providers: [HeroService, FirebaseLoginService, LoginRouteGuard],
   bootstrap: [AppComponent],
-  entryComponents: [DialogComponent, UserInfoModalComponent,LoginModalComponent]
+  entryComponents: [DialogComponent, UserInfoModalComponent, LoginModalComponent]
 })
 export class AppModule { }
