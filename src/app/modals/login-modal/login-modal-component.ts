@@ -20,7 +20,7 @@ export class LoginModalComponent {
             .then(result => {
                 //this.myPhotoUrl = result.user;
                 //this.myPhotoUrlValue=false;
-                console.log("saved user uuid in session===" + result.user.uid);
+                //console.log("saved user uuid in session===" + result.user.uid);
                 sessionStorage.setItem('user_uid', result.user.uid);
                 sessionStorage.setItem('user_photoUrl', result.user.photoURL);
                 sessionStorage.setItem('user_emalid', result.user.email);
