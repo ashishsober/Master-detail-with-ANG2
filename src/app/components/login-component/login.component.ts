@@ -11,8 +11,6 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class LoginComponent {
   user = { username: '', password: '' };
-  //myPhotoUrl;
-  //myPhotoUrlValue :boolean = true;
   files: {};
   get myContent() { return JSON.stringify(this.user); }
 
@@ -30,9 +28,6 @@ export class LoginComponent {
     console.log("i m inside google Login method");
     this.firebase_login_service.getAuth()
       .then(result => {
-        //this.myPhotoUrl = result.user;
-        //this.myPhotoUrlValue=false;
-        console.log("saved user uuid in session===" + result.user.uid);
         sessionStorage.setItem('user_uid', result.user.uid);
         sessionStorage.setItem('user_photoUrl', result.user.photoURL);
         sessionStorage.setItem('user_emalid', result.user.email);
@@ -42,10 +37,8 @@ export class LoginComponent {
   }
 
   onChange(event) {
-    //console.log(event);
     this.files = event.srcElement.files;
     console.log("My file and blob" + this.files[0]);
     this.firebase_login_service.UploadFile(this.files);
   }
-
 }

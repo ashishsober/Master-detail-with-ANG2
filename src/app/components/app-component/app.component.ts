@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-//import {AuthService} from '../service/auth-service';
 import { HeroService } from '../../service/hero.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FirebaseLoginService } from '../../service/firebase.login.service';
@@ -65,5 +64,4 @@ export class AppComponent implements OnInit {
       disableClose: true
     });
   }
-
 }

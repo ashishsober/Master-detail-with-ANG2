@@ -16,7 +16,6 @@ export class TodoComponent implements OnInit, OnChanges {
     private firebaseloginservice: FirebaseLoginService) { }
 
   ngOnInit() {
-    //this.items=this.af.list('/messages');
     this.firebaseloginservice.getMessageData()
       .subscribe(result => {
         this.items = result;
@@ -26,12 +25,10 @@ export class TodoComponent implements OnInit, OnChanges {
 
   ngOnChanges(changes: SimpleChanges): void {
     // changes.prop contains the old and the new value...
-
     console.log("my item list getting updated");
   }
 
   myMessage(textMessage: string) {
-    //console.log(this.textMessage);
     this.firebaseloginservice.submitMessage(textMessage);
     this.textMessage = '';
   }
