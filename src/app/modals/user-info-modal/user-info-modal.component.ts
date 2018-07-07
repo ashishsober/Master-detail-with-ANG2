@@ -4,8 +4,8 @@ import { HeroService } from '../../service/hero.service';
 import { FirebaseLoginService } from '../../service/firebase.login.service';
 import { MatDialog, MatDialogRef } from '@angular/material';
 @Component({
-  templateUrl: './user-info-modal-component.html',
-  styleUrls: ['./user-info-modal-component.scss'],
+  templateUrl: './user-info-modal.component.html',
+  styleUrls: ['./user-info-modal.component.scss'],
 
 })
 export class UserInfoModalComponent {

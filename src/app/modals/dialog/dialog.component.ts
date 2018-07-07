@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { MatDialog, MatDialogRef } from '@angular/material';
-import { LoginModalComponent } from 'app/modals/login-modal/login-modal-component';
+import { LoginModalComponent } from '../login-modal/login-modal.component';
 
 @Component({
   template: `
@@ -14,7 +14,7 @@ import { LoginModalComponent } from 'app/modals/login-modal/login-modal-componen
       </mat-dialog-actions>
     </div>
     `,
-  styleUrls: ['./dialog-component.scss']
+  styleUrls: ['./dialog.component.scss']
 })
 export class DialogComponent {
   loginDialogRef: MatDialogRef<LoginModalComponent>;

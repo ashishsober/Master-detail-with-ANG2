@@ -4,8 +4,8 @@ import { HeroService } from '../../service/hero.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { MatDialog, MatDialogRef } from '@angular/material';
 @Component({
-    templateUrl: './login-modal-component.html',
-    styleUrls: ['./login-modal-component.scss']
+    templateUrl: './login-modal.component.html',
+    styleUrls: ['./login-modal.component.scss']
 })
 export class LoginModalComponent {
     constructor(private firebase_login_service: FirebaseLoginService,

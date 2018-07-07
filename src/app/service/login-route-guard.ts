@@ -2,7 +2,7 @@ import { CanActivate } from '@angular/router';
 import { Injectable } from '@angular/core';
 import { FirebaseLoginService } from './firebase.login.service';
 import { MatDialog, MatDialogRef } from '@angular/material';
-import { DialogComponent } from 'app/modals/dialog/dialog-component';
+import { DialogComponent } from '../modals/dialog/dialog.component';
 
 
 @Injectable()

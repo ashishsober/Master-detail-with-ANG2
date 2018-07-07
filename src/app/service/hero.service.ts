@@ -1,6 +1,6 @@
 import { Injectable, Input, Output, EventEmitter } from '@angular/core';
 import { HEROES } from './mock-heroes';
-import { Hero } from '../service/hero';
+import { Hero } from './hero';
 // import { Observable } from 'rxjs/Rx';
 import { Observable} from 'rxjs';
 import { Http, Response, Headers, RequestOptions } from '@angular/http';
