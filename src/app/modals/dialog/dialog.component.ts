@@ -22,7 +22,6 @@ export class DialogComponent {
     private dialog: MatDialog) { }
 
   redirectToLogin() {
-    //this.router.navigate(['login']);
     this.loginDialogRef = this.dialog.open(LoginModalComponent, {
       hasBackdrop: true,
       height: '600px',
@@ -31,4 +30,3 @@ export class DialogComponent {
     });
   }
 }
-//   <h1 mat-dialog-title>Add file</h1>

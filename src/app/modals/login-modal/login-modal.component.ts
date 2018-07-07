@@ -34,4 +34,3 @@ export class LoginModalComponent {
         this.matDialog.closeAll();
     }
 }
-//   <h1 mat-dialog-title>Add file</h1>
