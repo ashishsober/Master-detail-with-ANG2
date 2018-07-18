@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { HeroService } from '../../service/hero.service';
-import { FirebaseLoginService } from '../../service/firebase.login.service';
+import { DataService } from '../../core/data.service';
+import { FirebaseLoginService } from '../../core/firebase.login.service';
 import { MatDialog } from '@angular/material';
 @Component({
   templateUrl: './user-info-modal.component.html',
@@ -11,7 +11,7 @@ import { MatDialog } from '@angular/material';
 export class UserInfoModalComponent {
   constructor(private router: Router,
     private firebase_login_service: FirebaseLoginService,
-    private ss: HeroService, private matDialog: MatDialog) { }
+    private ss: DataService, private matDialog: MatDialog) { }
   logout() {
     sessionStorage.clear();
     this.ss.show();//making visible login button and hiding logout button

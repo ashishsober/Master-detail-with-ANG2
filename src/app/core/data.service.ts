@@ -1,8 +1,8 @@
 import { Injectable, Input, Output, EventEmitter } from '@angular/core';
-import { HEROES } from './mock-heroes';
-import { Hero } from './hero';
+import { HEROES, FIELDMETADATA } from './mock-data';
+import { Hero } from './interface';
 // import { Observable } from 'rxjs/Rx';
-import { Observable} from 'rxjs';
+import { Observable } from 'rxjs';
 import { Http, Response, Headers, RequestOptions } from '@angular/http';
 // import 'rxjs/add/operator/switchMap';
 // import 'rxjs/add/operator/map';
@@ -11,7 +11,7 @@ import * as Rx from "rxjs/Rx";
 
 
 @Injectable()
-export class HeroService {
+export class DataService {
       @Output() fire: EventEmitter<any> = new EventEmitter();
 
 
@@ -42,5 +42,9 @@ export class HeroService {
 
       getEmittedValue() {
             return this.fire;
+      }
+
+      getFieldmetadata(): Promise<any> {
+            return Promise.resolve(FIELDMETADATA);
       }
 }

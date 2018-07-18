@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database-deprecated';
-import { FirebaseLoginService } from '../../service/firebase.login.service';
+import { FirebaseLoginService } from '../../core/firebase.login.service';
 
 @Component({
   moduleId: 'module.id',

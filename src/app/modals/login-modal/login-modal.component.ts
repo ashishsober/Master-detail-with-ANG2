@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { FirebaseLoginService } from '../../service/firebase.login.service';
-import { HeroService } from '../../service/hero.service';
+import { FirebaseLoginService } from '../../core/firebase.login.service';
+import { DataService } from '../../core/data.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { MatDialog, MatDialogRef } from '@angular/material';
 @Component({
@@ -9,7 +9,7 @@ import { MatDialog, MatDialogRef } from '@angular/material';
 })
 export class LoginModalComponent {
     constructor(private firebase_login_service: FirebaseLoginService,
-        private ss: HeroService,
+        private ss: DataService,
         private router: Router,
         private matDialog: MatDialog) {
         this.ss = ss;

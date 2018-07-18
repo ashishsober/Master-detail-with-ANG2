@@ -1,35 +1,52 @@
 <div class="app-content">
   <mat-card>
-    <button mat-button>FLAT</button>
-    <button mat-raised-button>RAISED</button>
+    <table class="table table-stripped">
+      <tr>
+        <th mat-sort-header="name">Label</th>
+        <th mat-sort-header="calories">Component_type</th>
+        <th mat-sort-header="calories">Component view</th>
+      </tr>
+      <tr *ngFor="let refData of mydata">
+        <td>{{ refData.rwb_label_name }} </td>
+        <td>{{ refData.component_type }} </td>
+        <td>
+          <div [ngSwitch]="refData.component_type">
+            <div *ngSwitchCase="'Text'">
+              <!-- text box component will come here -->
+              <mat-form-field class="example-full-width">
+                <input matInput placeholder="{{ refData.rwb_label_name }}">
+              </mat-form-field>
+            </div>
+            <div *ngSwitchCase="'Date'">
+              <!-- DATE component will come here -->
+              <mat-form-field class="example-full-width">
+                <input matInput [matDatepicker]="picker" placeholder="Choose a date">
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+              </mat-form-field>
+            </div>
+            <div *ngSwitchCase="'Number'">
+              <!-- Number component will come here -->
+              <mat-form-field class="example-full-width">
+                <input type="number" matInput placeholder="{{ refData.rwb_label_name }}">
+              </mat-form-field>
+            </div>
+            <div *ngSwitchCase="'Selection Box'">
+              <!-- Selection Box component will come here -->
+              <mat-form-field>
+                <mat-select placeholder="{{ refData.rwb_label_name }}" (click)="lovData()">
+                  <mat-option *ngFor="let hero of heroes" [value]="hero.name">
+                    {{hero.name}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+            <div *ngSwitchDefault>
+              {{refData.component_type}}
+            </div>
+          </div>
+        </td>
+      </tr>
+    </table>
   </mat-card>
-  <mat-card>
-    <button mat-fab>
-      <mat-icon class="mat-24">add</mat-icon>
-    </button>
-    <button mat-mini-fab>
-      <mat-icon class="mat-24">add</mat-icon>
-    </button>
-  </mat-card>
-  <mat-card>
-    <button mat-raised-button color="primary">PRIMARY</button>
-    <button mat-raised-button color="accent">ACCENT</button>
-    <button mat-raised-button color="warn">WARN</button>
-  </mat-card>
-  <mat-card>
-    <button mat-button disabled>OFF</button>
-    <button mat-raised-button disabled>OFF</button>
-    <button mat-mini-fab disabled>
-      <mat-icon>check</mat-icon>
-    </button>
-  </mat-card>
-  <p> Input fields</p>
-
-  <mat-button-toggle>Bold</mat-button-toggle>
-
-  <mat-list>
-    <mat-list-item> Pepper </mat-list-item>
-    <mat-list-item> Salt </mat-list-item>
-    <mat-list-item> Paprika </mat-list-item>
-  </mat-list>
 </div>

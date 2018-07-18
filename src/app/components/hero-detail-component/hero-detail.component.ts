@@ -2,8 +2,8 @@ import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { Location } from '@angular/common';
 import { switchMap } from 'rxjs/operators';
-import { HeroService } from '../../service/hero.service';
-import { Hero } from '../../service/hero';
+import { DataService } from '../../core/data.service';
+import { Hero } from '../../core/interface';
 
 
 @Component({
@@ -15,13 +15,13 @@ import { Hero } from '../../service/hero';
 export class HeroDetailComponent implements OnInit {
   @Input() hero: Hero;
 
-  constructor(private heroservice: HeroService,
+  constructor(private dataService: DataService,
     private route: ActivatedRoute,
     private location: Location
   ) { }
 
   ngOnInit(): void {
-    this.route.params.pipe(switchMap((params: Params) => this.heroservice.getHero(+params['id'])))
+    this.route.params.pipe(switchMap((params: Params) => this.dataService.getHero(+params['id'])))
       .subscribe(hero => this.hero = hero);
   }
 

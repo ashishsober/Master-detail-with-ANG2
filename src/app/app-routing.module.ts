@@ -6,7 +6,7 @@ import { DashboardComponent } from './components/dashboard-component/dashboard.c
 import { MaterialComponent } from './components/material-component/material.component';
 import { LoginComponent } from './components/login-component/login.component';
 import { TodoComponent } from './components/todo-firebase-component/todo.component';
-import { LoginRouteGuard } from './service/login-route-guard';
+import { LoginRouteGuard } from './core/login-route-guard';
 
 const routes: Routes = [
   { path: 'dashboard', component: DashboardComponent },

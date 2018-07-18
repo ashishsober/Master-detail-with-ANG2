@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { FirebaseLoginService } from '../../service/firebase.login.service';
-import { HeroService } from '../../service/hero.service';
+import { FirebaseLoginService } from '../../core/firebase.login.service';
+import { DataService } from '../../core/data.service';
 import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -15,7 +15,7 @@ export class LoginComponent {
   get myContent() { return JSON.stringify(this.user); }
 
   constructor(private firebase_login_service: FirebaseLoginService,
-    private ss: HeroService,
+    private ss: DataService,
     private router: Router) {
     this.ss = ss;
   }

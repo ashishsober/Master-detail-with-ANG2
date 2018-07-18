@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { HeroService } from '../../service/hero.service';
+import { DataService } from '../../core/data.service';
 import { Router, ActivatedRoute } from '@angular/router';
-import { FirebaseLoginService } from '../../service/firebase.login.service';
+import { FirebaseLoginService } from '../../core/firebase.login.service';
 import { MatDialog, MatDialogRef } from '@angular/material';
 import { UserInfoModalComponent } from '../../modals/user-info-modal/user-info-modal.component';
 import { LoginModalComponent } from '../../modals/login-modal/login-modal.component';
@@ -21,7 +21,7 @@ export class AppComponent implements OnInit {
   myPhotoUrl;
   fileNameDialogRef: MatDialogRef<UserInfoModalComponent>;
   loginDialogRef: MatDialogRef<LoginModalComponent>;
-  constructor(private ss: HeroService,
+  constructor(private ss: DataService,
     private router: Router,
     private firebase_login_service: FirebaseLoginService,
     private dialog: MatDialog) {

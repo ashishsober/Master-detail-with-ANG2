@@ -20,7 +20,10 @@ import {
   MatTooltipModule,
   MatRippleModule,
   MatProgressSpinnerModule,
-  MatDialogModule
+  MatDialogModule,
+  MatDatepickerModule,
+  MatNativeDateModule,
+  MatSelectModule
 } from '@angular/material';
 //import { MatProgressCircleModule } from '@angular/material';
 //import { FlexLayoutModule} from '@angular/flex-layout';
@@ -46,7 +49,10 @@ const MATERIAL_MODULES = [
   MatTooltipModule,
   MatRippleModule,
   MatProgressSpinnerModule,
-  MatDialogModule
+  MatDialogModule,
+  MatDatepickerModule,
+  MatNativeDateModule,
+  MatSelectModule
 ];
 
 @NgModule({

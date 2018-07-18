@@ -11,11 +11,11 @@ import { DashboardComponent } from './components/dashboard-component/dashboard.c
 import { MaterialComponent } from './components/material-component/material.component';
 import { LoginComponent } from './components/login-component/login.component';
 import { TodoComponent } from './components/todo-firebase-component/todo.component';
-import { HeroService } from './service/hero.service';
-import { FirebaseLoginService } from './service/firebase.login.service';
+import { DataService } from './core/data.service';
+import { FirebaseLoginService } from './core/firebase.login.service';
 import { AppRoutingModule } from './app-routing.module';
 import { AppMaterialModule } from './app.material.module';
-import { LoginRouteGuard } from './service/login-route-guard';
+import { LoginRouteGuard } from './core/login-route-guard';
 import { DialogComponent } from './modals/dialog/dialog.component';
 import { UserInfoModalComponent } from './modals/user-info-modal/user-info-modal.component';
 import { LoginModalComponent } from './modals/login-modal/login-modal.component';
@@ -55,7 +55,7 @@ export const firebaseConfig = {
     DialogComponent,
     UserInfoModalComponent,
     LoginModalComponent],
-  providers: [HeroService, FirebaseLoginService, LoginRouteGuard],
+  providers: [DataService, FirebaseLoginService, LoginRouteGuard],
   bootstrap: [AppComponent],
   entryComponents: [DialogComponent, UserInfoModalComponent, LoginModalComponent]
 })
