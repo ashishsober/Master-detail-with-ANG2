@@ -17,7 +17,7 @@ export class MaterialComponent implements OnInit {
     this.deroService.getFieldmetadata()
       .then(data => {
         this.mydata = data.fieldmetadata.data.stages[0].fields;
-        console.log("my fieldmetadata===" + this.mydata);
+        //console.log("my fieldmetadata===" + this.mydata);
       });
   }
 

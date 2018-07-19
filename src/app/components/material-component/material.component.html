@@ -2,20 +2,16 @@
   <mat-card>
     <table class="table table-stripped">
       <tr>
-        <th mat-sort-header="name">Label</th>
         <th mat-sort-header="calories">Component_type</th>
         <th mat-sort-header="calories">Component view</th>
       </tr>
       <tr *ngFor="let refData of mydata">
-        <td>{{ refData.rwb_label_name }} </td>
         <td>{{ refData.component_type }} </td>
         <td>
           <div [ngSwitch]="refData.component_type">
             <div *ngSwitchCase="'Text'">
               <!-- text box component will come here -->
-              <mat-form-field class="example-full-width">
-                <input matInput placeholder="{{ refData.rwb_label_name }}">
-              </mat-form-field>
+              <text-box [data]="refData"></text-box>
             </div>
             <div *ngSwitchCase="'Date'">
               <!-- DATE component will come here -->
