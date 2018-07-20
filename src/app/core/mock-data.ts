@@ -600,7 +600,7 @@ export var FIELDMETADATA = {
               "positioning": "2",
               "field_set": "Yes",
               "field_set_name": "Basic Information",
-              "component_type": "Phone",
+              "component_type": "Number",
               "mandatory": "Yes",
               "length": "15",
               "type": "Numeric",

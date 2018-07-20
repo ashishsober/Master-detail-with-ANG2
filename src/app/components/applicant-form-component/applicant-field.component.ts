@@ -5,15 +5,14 @@ import { Hero } from '../../core/interface';
 @Component({
   moduleId: 'module.id',
   selector: 'my-material',
-  templateUrl: './material.component.html',
+  templateUrl: './applicant-field.component.html',
 })
-export class MaterialComponent implements OnInit {
+export class ApplicantFieldComponent implements OnInit {
 
   constructor(private deroService: DataService) { }
   mydata;
   heroes: Hero[] = [];
   ngOnInit() {
-
     this.deroService.getFieldmetadata()
       .then(data => {
         this.mydata = data.fieldmetadata.data.stages[0].fields;

@@ -1,13 +1,6 @@
 <div class="app-content">
   <mat-card>
-    <table class="table table-stripped">
-      <tr>
-        <th mat-sort-header="calories">Component_type</th>
-        <th mat-sort-header="calories">Component view</th>
-      </tr>
-      <tr *ngFor="let refData of mydata">
-        <td>{{ refData.component_type }} </td>
-        <td>
+      <div *ngFor="let refData of mydata">
           <div [ngSwitch]="refData.component_type">
             <div *ngSwitchCase="'Text'">
               <!-- text box component will come here -->
@@ -29,7 +22,7 @@
             </div>
             <div *ngSwitchCase="'Selection Box'">
               <!-- Selection Box component will come here -->
-              <mat-form-field>
+              <mat-form-field class="example-full-width">
                 <mat-select placeholder="{{ refData.rwb_label_name }}" (click)="lovData()">
                   <mat-option *ngFor="let hero of heroes" [value]="hero.name">
                     {{hero.name}}
@@ -41,8 +34,6 @@
               {{refData.component_type}}
             </div>
           </div>
-        </td>
-      </tr>
-    </table>
+      </div>
   </mat-card>
 </div>

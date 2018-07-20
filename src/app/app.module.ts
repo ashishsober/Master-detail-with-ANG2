@@ -8,7 +8,7 @@ import { AppComponent } from './components/app-component/app.component';
 import { HeroDetailComponent } from './components/hero-detail-component/hero-detail.component';
 import { HeroesComponent } from './components/heroes-component/heroes.component';
 import { DashboardComponent } from './components/dashboard-component/dashboard.component';
-import { MaterialComponent } from './components/material-component/material.component';
+import { ApplicantFieldComponent } from './components/applicant-form-component/applicant-field.component';
 import { LoginComponent } from './components/login-component/login.component';
 import { TodoComponent } from './components/todo-firebase-component/todo.component';
 import { DataService } from './core/data.service';
@@ -23,6 +23,7 @@ import { AngularFireModule } from 'angularfire2';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AngularFireDatabaseModule } from 'angularfire2/database-deprecated';
 import { TextBox } from './components/ui-formField-components/text-box/text-box.component';
+import { SelectBox } from './components/ui-formField-components/select-box/select-box.component';
 export const firebaseConfig = {
   apiKey: "AIzaSyBu4vtqAO8iH8Bs-Jeak50DfeqT5NgkH8E",
   authDomain: "angular-project-5cb99.firebaseapp.com",
@@ -41,7 +42,6 @@ export const firebaseConfig = {
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFireAuthModule,
     AngularFireDatabaseModule,
-
     AppRoutingModule,
     AppMaterialModule,
   ],
@@ -49,13 +49,14 @@ export const firebaseConfig = {
     HeroDetailComponent,
     HeroesComponent,
     DashboardComponent,
-    MaterialComponent,
+    ApplicantFieldComponent,
     LoginComponent,
     TodoComponent,
     DialogComponent,
     UserInfoModalComponent,
     LoginModalComponent,
-    TextBox],
+    TextBox,
+    SelectBox],
   providers: [DataService, FirebaseLoginService, LoginRouteGuard],
   bootstrap: [AppComponent],
   entryComponents: [DialogComponent, UserInfoModalComponent, LoginModalComponent]
