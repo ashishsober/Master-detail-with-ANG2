@@ -1,0 +1,20 @@
+.full-width {
+    width: 100%;
+}
+
+.half-width {
+    width: 50%;
+}
+.right-border {
+    border-right: 1px solid green;
+    padding-left: 0;
+    margin-right:0; 
+    float: right;
+}
+
+.no-border {
+    border: 0;
+}
+/deep/ .mat-form-field-infix {
+    width: 100% !important;
+}

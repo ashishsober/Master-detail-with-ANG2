@@ -1,39 +1,41 @@
 <div class="app-content">
   <mat-card>
-      <div *ngFor="let refData of mydata">
-          <div [ngSwitch]="refData.component_type">
-            <div *ngSwitchCase="'Text'">
-              <!-- text box component will come here -->
-              <text-box [data]="refData"></text-box>
-            </div>
-            <div *ngSwitchCase="'Date'">
-              <!-- DATE component will come here -->
-              <mat-form-field class="example-full-width">
-                <input matInput [matDatepicker]="picker" placeholder="Choose a date">
-                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                <mat-datepicker #picker></mat-datepicker>
-              </mat-form-field>
-            </div>
-            <div *ngSwitchCase="'Number'">
-              <!-- Number component will come here -->
-              <mat-form-field class="example-full-width">
-                <input type="number" matInput placeholder="{{ refData.rwb_label_name }}">
-              </mat-form-field>
-            </div>
-            <div *ngSwitchCase="'Selection Box'">
-              <!-- Selection Box component will come here -->
-              <mat-form-field class="example-full-width">
-                <mat-select placeholder="{{ refData.rwb_label_name }}" (click)="lovData()">
-                  <mat-option *ngFor="let hero of heroes" [value]="hero.name">
-                    {{hero.name}}
-                  </mat-option>
-                </mat-select>
-              </mat-form-field>
-            </div>
-            <div *ngSwitchDefault>
-              {{refData.component_type}}
-            </div>
+    <div *ngFor="let refData of mydata; let i=index">
+      <div [ngClass]="getDynamicClass(refData.component_type,refData.seq_no,refData.positioning,i)" class="full-width">
+        <div [ngSwitch]="refData.component_type">
+          <div *ngSwitchCase="'Text'">
+            <!-- text box component will come here -->
+            <text-box [data]="refData"></text-box>
           </div>
+          <div *ngSwitchCase="'Date'">
+            <!-- DATE component will come here -->
+            <mat-form-field>
+              <input matInput [matDatepicker]="picker" placeholder="Choose a date">
+              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+          </div>
+          <div *ngSwitchCase="'Number'">
+            <!-- Number component will come here -->
+            <mat-form-field >
+              <input type="number" matInput placeholder="{{ refData.rwb_label_name }}">
+            </mat-form-field>
+          </div>
+          <div *ngSwitchCase="'Selection Box'">
+            <!-- Selection Box component will come here -->
+            <mat-form-field>
+              <mat-select placeholder="{{ refData.rwb_label_name }}" (click)="lovData()">
+                <mat-option *ngFor="let hero of heroes" [value]="hero.name">
+                  {{hero.name}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div *ngSwitchDefault>
+            {{refData.component_type}}
+          </div>
+        </div>
       </div>
+    </div>
   </mat-card>
 </div>

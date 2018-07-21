@@ -22,8 +22,8 @@ import { LoginModalComponent } from './modals/login-modal/login-modal.component'
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AngularFireDatabaseModule } from 'angularfire2/database-deprecated';
-import { TextBox } from './components/ui-formField-components/text-box/text-box.component';
-import { SelectBox } from './components/ui-formField-components/select-box/select-box.component';
+import { TextBox } from './components/ui-form-field-components/text-box/text-box.component';
+import { SelectBox } from './components/ui-form-field-components/select-box/select-box.component';
 export const firebaseConfig = {
   apiKey: "AIzaSyBu4vtqAO8iH8Bs-Jeak50DfeqT5NgkH8E",
   authDomain: "angular-project-5cb99.firebaseapp.com",

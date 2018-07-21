@@ -21,6 +21,10 @@ input:focus {
   outline: none;
 }
 
+.mat-form-field {
+  width: 100%;
+}
+
 .example-form {
   min-width: 150px;
   max-width: 500px;
@@ -28,7 +32,7 @@ input:focus {
 }
 
 .example-full-width {
-  width: 100%;
+  width: 50%;
 }
 
 button.mat-raised-button.cdk-mouse-focused {
