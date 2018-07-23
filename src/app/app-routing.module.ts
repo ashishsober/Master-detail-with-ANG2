@@ -13,8 +13,20 @@ const routes: Routes = [
   { path: 'detail/:id', component: HeroDetailComponent },
   { path: 'heroes', component: HeroesComponent },
   { path: 'basic-information', component: ApplicantFieldComponent },
-  // { path: 'login', component: LoginComponent },
+  { path: 'auth/login', component: LoginComponent },
   { path: 'todoFirebase', component: TodoComponent, canActivate: [LoginRouteGuard] },
+  // { 
+  //   path: 'login',
+  //   component: LoginComponent ,
+  //   children:[
+  //     {
+  //       path:'',
+  //       children:[
+  //         { path: '', component: manageVideoComponent }
+  //       ]
+  //     }
+  //   ]
+  // },
   { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
   { path: '**', redirectTo: 'dashboard' }
 ];

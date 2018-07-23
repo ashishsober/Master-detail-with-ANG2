@@ -56,12 +56,12 @@ export class AppComponent implements OnInit {
   }
 
   openLoginModal() {
-    this.router.navigate(['login']);
-    this.loginDialogRef = this.dialog.open(LoginModalComponent, {
-      hasBackdrop: true,
-      height: '600px',
-      width: '1152px',
-      disableClose: true
-    });
+    this.router.navigate(['auth/login']);
+    // this.loginDialogRef = this.dialog.open(LoginModalComponent, {
+    //   hasBackdrop: true,
+    //   height: '600px',
+    //   width: '1152px',
+    //   disableClose: true
+    // });
   }
 }
