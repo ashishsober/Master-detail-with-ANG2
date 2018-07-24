@@ -1,74 +1,70 @@
-nav a {
-  padding: 7px 10px;
-  text-decoration: none;
-  margin-top: 3px;
-  display: block;
-  border-radius: 4px;
-  width: 100%;
-  height: 100%;
-  color: white;
-  padding-left: 23px;
-  outline: none;
-}
-
-nav ul:active {
-  color: #ffffff;
-  background-color: #5bdcea;
-}
-
-nav ul:hover {
-  color: #eef0f1;
-  background-color: rgb(120, 120, 122);
-  padding: 0px;
-  margin: 0px;
-}
-
-nav ul {
-  margin-bottom: 2px;
-  padding-left: 4px;
-}
-
 .header-color {
   background-color: #232323;
   color: #eef0f1;
+  .header-width {
+    width: 100%;
+    .search-input-button {
+      float: right;
+      .search-box {
+        border: 1px solid;
+        padding-left: 6px;
+        font-size: 17px;
+        margin-right: -6px;
+        width: 550px;
+        color: #eef0f1;
+        background-color: #8888881a;
+        border-color: #ffd83f40;
+      }
+      .search-box-button {
+        padding-top: 1px;
+        height: 36px;
+      }
+    }
+    .img-circle {
+      float: right;
+      border-radius: 70px;
+      height: 38px;
+      width: 38px;
+    }
+    .login-button {
+      float: right;
+    }
+  } //closing header-width
 }
 
-.searchBox {
-  border: 1px solid;
-  padding-left: 6px;
-  font-size: 17px;
-  margin-right: -6px;
-  width: 550px;
-  color: #eef0f1;
-  background-color: #8888881a;
-  border-color: #ffd83f40;
-}
-
-.searchBoxButton {
-  padding-top: 1px;
-  height: 36px;
-}
-
-.headerWidth {
-  width: 100%
-}
-
-.img-circle {
-  float: right;
-  border-radius: 70px;
-  height: 38px;
-  width: 38px;
-}
-
-.loginButton {
-  float: right;
-}
-
-.sideMenu {
+.side-menu {
   background-color: #232323;
   margin: 0px;
   padding-right: 0px;
   height: 700px;
+  nav {
+    a {
+      padding: 7px 10px;
+      text-decoration: none;
+      margin-top: 3px;
+      display: block;
+      border-radius: 4px;
+      width: 100%;
+      height: 100%;
+      color: white;
+      padding-left: 23px;
+      outline: none;
+    }
+    ul:active {
+      color: #ffffff;
+      background-color: #5bdcea;
+    }
+    ul:hover {
+      color: #eef0f1;
+      background-color: rgb(120, 120, 122);
+      padding: 0px;
+      margin: 0px;
+    }
+    ul {
+      margin-bottom: 2px;
+      padding-left: 4px;
+    }
+  }
 }
 
 .mainMenu {

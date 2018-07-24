@@ -10,47 +10,28 @@ body {
   background-color: #000;
   height: 900px;
   font-family: "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-}
-
-/* . . . */
-
-/* everywhere else */
-
-textarea:focus,
-input:focus {
-  outline: none;
-}
-
-.mat-form-field {
-  width: 100%;
-}
-
-.example-form {
-  min-width: 150px;
-  max-width: 500px;
-  width: 100%;
-}
-
-.example-full-width {
-  width: 50%;
-}
-
-button.mat-raised-button.cdk-mouse-focused {
-  outline: none !important;
-}
-
-button.mat-button.cdk-mouse-focused {
-  outline: none !important;
-}
-
-button.mat-icon-button.cdk-mouse-focused {
-  outline: none !important;
-}
-
-button {
-  outline: none !important;
-}
-
-.mat-dialog-container {
-  padding: 0px !important;
+  /* . . . */
+  /* everywhere else */
+  textarea:focus,
+  input:focus {
+    outline: none;
+  }
+  .mat-form-field {
+    width: 100%;
+  }
+  button.mat-raised-button.cdk-mouse-focused {
+    outline: none !important;
+  }
+  button.mat-button.cdk-mouse-focused {
+    outline: none !important;
+  }
+  button.mat-icon-button.cdk-mouse-focused {
+    outline: none !important;
+  }
+  button {
+    outline: none !important;
+  }
+  .mat-dialog-container {
+    padding: 0px !important;
+  }
 }

@@ -21,11 +21,10 @@ export class AppComponent implements OnInit {
   myPhotoUrl;
   fileNameDialogRef: MatDialogRef<UserInfoModalComponent>;
   loginDialogRef: MatDialogRef<LoginModalComponent>;
-  constructor(private ss: DataService,
-    private router: Router,
-    private firebase_login_service: FirebaseLoginService,
-    private dialog: MatDialog) {
 
+
+  constructor(private ss: DataService, private router: Router, private firebase_login_service: FirebaseLoginService,
+    private dialog: MatDialog) {
     if (sessionStorage.getItem('user_uid') != null) {
       this.viewLogin = true;
       this.viewLogout = true;

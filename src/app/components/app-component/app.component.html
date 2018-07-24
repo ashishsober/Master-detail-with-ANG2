@@ -1,14 +1,14 @@
 <mat-toolbar class="header-color">
-  <div class="row headerWidth">
+  <div class="row header-width">
     <div class="col-md-2">
       <button mat-icon-button>
         <mat-icon>menu</mat-icon>
       </button>
     </div>
     <div class="col-md-8">
-      <div style="float:right;">
-        <input type="text" placeholder="Search" class="searchBox">
-        <button mat-raised-button color="accent" class="searchBoxButton">
+      <div class="search-input-button">
+        <input type="text" placeholder="Search" class="search-box">
+        <button mat-raised-button color="accent" class="search-box-button">
           <mat-icon>search</mat-icon>
         </button>
       </div>
@@ -17,13 +17,13 @@
       <img class="img-circle" width="62" height="55" [src]="myPhotoUrl" (click)="infoModal()">
     </div>
     <div *ngIf="viewLogin == false" class="col-md-2">
-      <button mat-button class="loginButton" (click)="openLoginModal()">{{login}}</button>
+      <button mat-button class="login-button" (click)="openLoginModal()">{{login}}</button>
     </div>
   </div>
 </mat-toolbar>
 
 <div class="row">
-  <div class="col-md-2 sideMenu">
+  <div class="col-md-2 side-menu">
     <nav>
       <ul>
         <a routerLink="/dashboard" routerLinkActive="active">Dashboard</a>
@@ -40,7 +40,7 @@
     </nav>
   </div>
   <div class="col-md-10">
-    <div class="mainMenu">
+    <div class="main-menu">
       <router-outlet></router-outlet>
     </div>
   </div>
