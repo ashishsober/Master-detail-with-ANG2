@@ -7,9 +7,9 @@
       <div>
         <label>Id: {{hero.id}}</label>
       </div>
-      <div>
-        <input [(ngModel)]="hero.name" placeholder="Name">
-      </div>
+        <mat-form-field>
+          <input matInput [(ngModel)]="hero.name" placeholder="Name">
+        </mat-form-field>
     </mat-card-content>
     <mat-card-actions>
       <div>

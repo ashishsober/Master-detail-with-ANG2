@@ -1,6 +1,6 @@
-# Typescript (2.6.2)
+# Typescript (2.7.2)
 
-# Angular 2 Demo App (5.0.3)
+# Angular 6 Demo App (6.0.7)
 
 ## To Start the application type 
 
@@ -13,6 +13,7 @@
           $ https://github.com/angular/quickstart
           $ https://angular.io/docs/ts/latest/tutorial/toh-pt3.html
           $ https://embed.plnkr.co/?show=preview
+          $ https://medium.mybridge.co/18-amazing-open-source-angular-projects-dd9e81d921ee
 
 # Angular Material (2.0.0-alpha.8-2)
  
@@ -36,7 +37,7 @@ if you do the refactoring then we can apply the forRoot() method as i have done.
    
 
 
-# Injected Angular-CLI  
+### Injected Angular-CLI  
 
 * To inject angular cli write ng init and follow the instruction.
 * start the application with ng-serve instead of npm start
@@ -45,12 +46,12 @@ if you do the refactoring then we can apply the forRoot() method as i have done.
         just type the command ' ng build --prod ' it will create a dist folder in the root directory
 
 
-# Created angular Forms
+### Created angular Forms
 
    [Angular form Link](https://angular.io/docs/ts/latest/guide/forms.html)
 
 
-# Firebase ui-web
+### Firebase UI-WEB
 
 1. Using firebase ui for the user Identity 
               
@@ -64,7 +65,7 @@ if you do the refactoring then we can apply the forRoot() method as i have done.
 1. [Related Link](https://github.com/angular/angularfire2/blob/master/docs/3-retrieving-data-as-lists.md)
 
 
-# How to deploy the application in Firebase
+### How to deploy the application in Firebase
 
 * First install firebase-tools
    
@@ -83,16 +84,16 @@ if you do the refactoring then we can apply the forRoot() method as i have done.
         $ firebase deploy
         $ If it ask for reauth, firebase login --reauth --no-localhost
 
-# Using Google Analytics to track and reports website traffic
+### Using Google Analytics to track and reports website traffic
 
 1. [Google Analytics](https://analytics.google.com/)
 
 1. [Tag Manager](https://tagmanager.google.com/)
 
 
-## How to update the package.json
+#### How to update the package.json
 
     $ npm install -g npm-check-updates
     $ npm-check-updates -u  u will come to know which are the modules or library got updated
     $ npm install  or ncu -a to update the package.json
-    `npm i webpack --save-dev`
+    $ `npm i webpack --save-dev`
