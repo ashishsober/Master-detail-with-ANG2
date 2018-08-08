@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Renderer2, ElementRef } from '@angular/core';
 import { DataService } from '../../core/data.service';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute, NavigationStart } from '@angular/router';
 import { FirebaseLoginService } from '../../core/firebase.login.service';
 import { MatDialog, MatDialogRef } from '@angular/material';
 import { UserInfoModalComponent } from '../../modals/user-info-modal/user-info-modal.component';
@@ -21,10 +21,13 @@ export class AppComponent implements OnInit {
   myPhotoUrl;
   fileNameDialogRef: MatDialogRef<UserInfoModalComponent>;
   loginDialogRef: MatDialogRef<LoginModalComponent>;
+  boolValue = false;
+  previousUrl: string;
 
-
-  constructor(private ss: DataService, private router: Router, private firebase_login_service: FirebaseLoginService,
-    private dialog: MatDialog) {
+  constructor(private ss: DataService, private router: Router,
+    private firebase_login_service: FirebaseLoginService,
+    private dialog: MatDialog, private renderer: Renderer2,
+    private el: ElementRef) {
     if (sessionStorage.getItem('user_uid') != null) {
       this.viewLogin = true;
       this.viewLogout = true;
@@ -34,6 +37,22 @@ export class AppComponent implements OnInit {
       this.viewLogout = false;
     }
     this.ss = ss;
+
+    this.router.events
+      .subscribe((event) => {
+        if (event instanceof NavigationStart) {
+          if (event.url.slice(1) === 'dashboard') {
+            this.renderer.removeClass(this.el.nativeElement.childNodes[0],'hide-toolbar-sidebar');
+            this.renderer.removeClass(this.el.nativeElement.childNodes[1].childNodes[0],'hide-toolbar-sidebar');
+            this.renderer.removeClass(this.el.nativeElement.childNodes[1].childNodes[1],'do-the-center');
+          } else if(event.url === '/auth/login') {
+            this.renderer.addClass(this.el.nativeElement.childNodes[0],'hide-toolbar-sidebar');
+            this.renderer.addClass(this.el.nativeElement.childNodes[1].childNodes[0],'hide-toolbar-sidebar');
+            this.renderer.addClass(this.el.nativeElement.childNodes[1].childNodes[1],'do-the-center');
+          }
+        }
+
+      });
   }
 
   ngOnInit() {
@@ -56,6 +75,7 @@ export class AppComponent implements OnInit {
 
   openLoginModal() {
     this.router.navigate(['auth/login']);
+    this.boolValue = true;
     // this.loginDialogRef = this.dialog.open(LoginModalComponent, {
     //   hasBackdrop: true,
     //   height: '600px',
@@ -63,4 +83,6 @@ export class AppComponent implements OnInit {
     //   disableClose: true
     // });
   }
+
+
 }

@@ -10,7 +10,6 @@ import { DataService } from '../../core/data.service';
 })
 export class DashboardComponent implements OnInit {
   heroes: Hero[] = [];
-
   constructor(private dataService: DataService) { }
 
   ngOnInit(): void {

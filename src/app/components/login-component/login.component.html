@@ -1,28 +1,32 @@
-<div class="container contLayout">
-  <div class="row">
-    <div class="col-md-3"></div>
-    <div class="col-md-5">
-      <mat-card>
-        <form (ngSubmit)="onSubmit()">
-          <div class="text-center loginText">Login</div>
-          <mat-form-field>
-            <input type="email" matInput placeholder="Username" [(ngModel)]="user.username" id="username" name="username" required>
-          </mat-form-field>
-          <mat-form-field>
-            <input type="password" matInput placeholder="Password" [(ngModel)]="user.password" id="password" name="password" required>
-          </mat-form-field>
-          <div class="row">
-            <div class="col-centered buttonFooter">
-              <button type="submit" mat-raised-button color="primary">Submit</button>
-              <button mat-raised-button color="warn" (click)="googleLogin()">Google +</button>
-            </div>
-          </div>
-        </form>
-      </mat-card>
+<div class="form-filling-options-modal">
+  <!-- Navbar -->
+  <nav class="myImage">
+    <div class="text">
+      <a class="row" id="nav-brand-chevron-left" (click)="cancel()">
+        <img src="assets/images/iconScSArrowRight02.svg" class="icon_sc_s_arrow_right_02">
+        <span class="go-back">GO BACK</span>
+      </a>
+    </div>
+  </nav>
+
+
+  <!-- Main Container -->
+  <div class="container-fluid main-container">
+    <!-- Apply with existing CC -->
+    <div class="login-form">
+      <form>
+        <h2 class="headerText">Login</h2>
+        <div class="text-center">
+          <input type="text" class="inputLine" placeholder="Username" required="required">
+        </div>
+        <div class="text-center">
+          <input type="password" class="inputLine" placeholder="Password" required="required">
+        </div>
+        <div class="text-center">
+          <button type="submit" class="buttonLogin">LOGIN</button>
+          <button type="button" class="buttonGoogle" (click)="googleLogin()">Google +</button>
+        </div>
+      </form>
     </div>
   </div>
 </div>
-
-<!--<div class="form-group">
-    <input type="file" (change)="onChange($event)"/>
-</div>-->

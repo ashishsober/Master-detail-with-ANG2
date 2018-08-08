@@ -15,7 +15,7 @@
           $ https://embed.plnkr.co/?show=preview
           $ https://medium.mybridge.co/18-amazing-open-source-angular-projects-dd9e81d921ee
 
-# Angular Material (2.0.0-alpha.8-2)
+## Angular Material (2.0.0-alpha.8-2)
  
  
 * [Important Link](https://github.com/angular/material2)
@@ -65,6 +65,7 @@ if you do the refactoring then we can apply the forRoot() method as i have done.
 1. [Related Link](https://github.com/angular/angularfire2/blob/master/docs/3-retrieving-data-as-lists.md)
 
 
+
 ### How to deploy the application in Firebase
 
 * First install firebase-tools
@@ -84,7 +85,10 @@ if you do the refactoring then we can apply the forRoot() method as i have done.
         $ firebase deploy
         $ If it ask for reauth, firebase login --reauth --no-localhost
 
+
 ### Using Google Analytics to track and reports website traffic
+
+
 
 1. [Google Analytics](https://analytics.google.com/)
 

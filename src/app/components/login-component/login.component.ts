@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { FirebaseLoginService } from '../../core/firebase.login.service';
 import { DataService } from '../../core/data.service';
 import { Router, ActivatedRoute } from '@angular/router';
+import { MatDialog, MatDialogRef } from '@angular/material';
 
 @Component({
   moduleId: 'module.id',
@@ -16,7 +17,8 @@ export class LoginComponent {
 
   constructor(private firebase_login_service: FirebaseLoginService,
     private ss: DataService,
-    private router: Router) {
+    private router: Router,
+    private matDialog: MatDialog) {
     this.ss = ss;
   }
 
@@ -40,5 +42,10 @@ export class LoginComponent {
     this.files = event.srcElement.files;
     console.log("My file and blob" + this.files[0]);
     this.firebase_login_service.UploadFile(this.files);
+  }
+
+  cancel() {
+    this.router.navigate(['dashboard']);
+    this.matDialog.closeAll();
   }
 }
