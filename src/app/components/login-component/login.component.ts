@@ -30,11 +30,11 @@ export class LoginComponent {
     console.log("i m inside google Login method");
     this.firebase_login_service.getAuth()
       .then(result => {
+        this.router.navigate(['dashboard']);
         sessionStorage.setItem('user_uid', result.user.uid);
         sessionStorage.setItem('user_photoUrl', result.user.photoURL);
         sessionStorage.setItem('user_emalid', result.user.email);
         this.ss.hide();
-        this.router.navigate(['dashboard']);
       });
   }
 

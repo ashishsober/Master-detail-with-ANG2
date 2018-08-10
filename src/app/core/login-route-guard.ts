@@ -2,25 +2,26 @@ import { CanActivate } from '@angular/router';
 import { Injectable } from '@angular/core';
 import { FirebaseLoginService } from './firebase.login.service';
 import { MatDialog, MatDialogRef } from '@angular/material';
-import { DialogComponent } from '../modals/dialog/dialog.component';
+import { AlertDialogComponent } from '../modals/dialog/alert-dialog.component';
 
 
 @Injectable()
 export class LoginRouteGuard implements CanActivate {
-    fileNameDialogRef: MatDialogRef<DialogComponent>;
+    fileNameDialogRef: MatDialogRef<AlertDialogComponent>;
     constructor(private firebaseLoginService: FirebaseLoginService,
         private dialog: MatDialog) { }
 
     canActivate() {
         let uid = sessionStorage.getItem('user_uid');
-        if (uid != null)
+        if (uid !== null)
             return true;
         else {
-            this.fileNameDialogRef = this.dialog.open(DialogComponent, {
+            this.fileNameDialogRef = this.dialog.open(AlertDialogComponent, {
                 hasBackdrop: true,
-                height: '150px',
+                height: '190px',
                 width: '500px',
-                disableClose: true
+                disableClose: true,
+                data: { message: 'Activation blocked for you, Please do login.' }
             });
             return false;
         }

@@ -16,9 +16,8 @@ import { FirebaseLoginService } from './core/firebase.login.service';
 import { AppRoutingModule } from './app-routing.module';
 import { AppMaterialModule } from './app.material.module';
 import { LoginRouteGuard } from './core/login-route-guard';
-import { DialogComponent } from './modals/dialog/dialog.component';
+import { AlertDialogComponent } from './modals/dialog/alert-dialog.component';
 import { UserInfoModalComponent } from './modals/user-info-modal/user-info-modal.component';
-import { LoginModalComponent } from './modals/login-modal/login-modal.component';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AngularFireDatabaseModule } from 'angularfire2/database-deprecated';
@@ -52,13 +51,12 @@ export const firebaseConfig = {
     ApplicantFieldComponent,
     LoginComponent,
     TodoComponent,
-    DialogComponent,
+    AlertDialogComponent,
     UserInfoModalComponent,
-    LoginModalComponent,
     TextBox,
     SelectBox],
   providers: [DataService, FirebaseLoginService, LoginRouteGuard],
   bootstrap: [AppComponent],
-  entryComponents: [DialogComponent, UserInfoModalComponent, LoginModalComponent]
+  entryComponents: [AlertDialogComponent, UserInfoModalComponent]
 })
 export class AppModule { }

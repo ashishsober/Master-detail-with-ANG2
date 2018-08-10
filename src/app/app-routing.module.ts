@@ -13,7 +13,7 @@ const routes: Routes = [
   { path: 'detail/:id', component: HeroDetailComponent },
   { path: 'heroes', component: HeroesComponent },
   { path: 'basic-information', component: ApplicantFieldComponent },
-  { path: 'auth/login', component: LoginComponent },
+  { path: 'auth/login', component: LoginComponent},
   { path: 'todoFirebase', component: TodoComponent, canActivate: [LoginRouteGuard] },
   // { 
   //   path: 'login',

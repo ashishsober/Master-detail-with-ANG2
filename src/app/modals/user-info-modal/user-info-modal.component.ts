@@ -16,9 +16,9 @@ export class UserInfoModalComponent {
     sessionStorage.clear();
     this.ss.show();//making visible login button and hiding logout button
     this.matDialog.closeAll();
-    this.router.navigate(['login']);
-    this.firebase_login_service.getLogout().then(result => {
-      console.log("My Result after signout" + result);
-    });
+    this.router.navigate(['auth/login']);
+    // this.firebase_login_service.getLogout().then(result => {
+    //   console.log("My Result after signout" + result);
+    // });
   }
 }

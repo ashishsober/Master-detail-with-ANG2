@@ -17,7 +17,7 @@
       <img class="img-circle" width="62" height="55" [src]="myPhotoUrl" (click)="infoModal()">
     </div>
     <div *ngIf="viewLogin == false" class="col-md-2">
-      <button mat-button class="login-button" (click)="openLoginModal()">{{login}}</button>
+      <button mat-button class="login-button" routerLink="/auth/login">{{login}}</button>
     </div>
   </div>
 </mat-toolbar>
@@ -26,21 +26,33 @@
   <div class="col-md-2 side-menu">
     <nav>
       <ul>
-        <a routerLink="/dashboard" routerLinkActive="active">Dashboard</a>
+        <a routerLink="/dashboard" routerLinkActive="active">
+          <i class="fa fa-globe"></i>
+          <span style="padding-left:12px;">Dashboard</span>
+        </a>
       </ul>
       <ul>
-        <a routerLink="/heroes">Heroes</a>
+        <a routerLink="/heroes">
+          <i class="fa fa-th-list"></i>
+          <span style="padding-left:12px;">Heroes</span>
+        </a>
       </ul>
       <ul>
-        <a routerLink="/basic-information">Form</a>
+        <a routerLink="/basic-information">
+          <i class="fa fa-forumbee"></i>
+          <span style="padding-left:12px;">Form</span>
+        </a>
       </ul>
       <ul>
-        <a routerLink="/todoFirebase">Messenger</a>
+        <a routerLink="/todoFirebase">
+          <i class="fa fa-envelope"></i>
+          <span style="padding-left:12px;">Messenger</span>
+        </a>
       </ul>
     </nav>
   </div>
   <div class="col-md-10 main-menu">
-      <router-outlet></router-outlet>
+    <router-outlet></router-outlet>
   </div>
 </div>
 
