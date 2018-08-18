@@ -13,10 +13,10 @@
         </button>
       </div>
     </div>
-    <div *ngIf="viewLogout == true" class="col-md-2">
+    <div *ngIf="viewLogout === true" class="col-md-2">
       <img class="img-circle" width="62" height="55" [src]="myPhotoUrl" (click)="infoModal()">
     </div>
-    <div *ngIf="viewLogin == false" class="col-md-2">
+    <div *ngIf="viewLogin === false" class="col-md-2">
       <button mat-button class="login-button" routerLink="/auth/login">{{login}}</button>
     </div>
   </div>

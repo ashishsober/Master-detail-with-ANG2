@@ -1,4 +1,4 @@
-import { Component, OnInit, Renderer2, ElementRef, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, OnInit, Renderer2, ElementRef } from '@angular/core';
 import { DataService } from '../../core/data.service';
 import { Router, NavigationStart } from '@angular/router';
 import { MatDialog, MatDialogRef } from '@angular/material';
@@ -10,7 +10,7 @@ import { UserInfoModalComponent } from '../../modals/user-info-modal/user-info-m
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements OnInit, OnChanges{
+export class AppComponent implements OnInit {
   title = 'Initial C';
   login: string = 'Login';
   viewLogout: boolean;
@@ -18,7 +18,7 @@ export class AppComponent implements OnInit, OnChanges{
   subscription;
   myPhotoUrl;
   fileNameDialogRef: MatDialogRef<UserInfoModalComponent>;
-
+  navigationSubscription;
   constructor(private ss: DataService, private router: Router,
     private dialog: MatDialog, private renderer: Renderer2,
     private el: ElementRef) {
@@ -32,9 +32,8 @@ export class AppComponent implements OnInit, OnChanges{
       this.viewLogin = false;
       this.viewLogout = false;
     }
-    this.ss = ss;
 
-    this.router.events
+    this.navigationSubscription = this.router.events
       .subscribe((event) => {
         if (event instanceof NavigationStart) {
           if (event.url.slice(1) === 'dashboard') {
@@ -61,10 +60,6 @@ export class AppComponent implements OnInit, OnChanges{
     });
   }
 
-  ngOnChanges(changes: SimpleChanges){
-    alert("on change");
-  }
-
   infoModal() {
     this.fileNameDialogRef = this.dialog.open(UserInfoModalComponent, {
       hasBackdrop: true,
@@ -73,4 +68,5 @@ export class AppComponent implements OnInit, OnChanges{
       position: { top: '10px', right: '100px' }
     });
   }
+
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component } from '@angular/core';
 import { FirebaseLoginService } from '../../core/firebase.login.service';
 import { DataService } from '../../core/data.service';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -18,9 +18,7 @@ export class LoginComponent {
   constructor(private firebase_login_service: FirebaseLoginService,
     private ss: DataService,
     private router: Router,
-    private matDialog: MatDialog) {
-    this.ss = ss;
-  }
+    private matDialog: MatDialog) { }
 
   onSubmit() {
     console.log("my console from onSubmit" + this.user);
