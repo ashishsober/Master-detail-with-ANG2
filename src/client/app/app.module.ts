@@ -21,8 +21,8 @@ import { UserInfoModalComponent } from './modals/user-info-modal/user-info-modal
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AngularFireDatabaseModule } from 'angularfire2/database-deprecated';
-import { TextBox } from './pages/components/ui-form-field-components/text-box/text-box.component';
-import { SelectBox } from './pages/components/ui-form-field-components/select-box/select-box.component';
+import { TextBox } from './@themes/components/text-box/text-box.component';
+import { SelectBox } from './@themes/components/select-box/select-box.component';
 import { ShellComponent } from './pages/components/shell-component/shell.component';
 import { HeaderComponent } from './@themes/components/header/header.component';
 import { SidebarComponent } from './@themes/components/sidebar/sidebar.component';
