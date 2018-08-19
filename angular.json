@@ -12,15 +12,15 @@
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
             "outputPath": "dist",
-            "index": "src/index.html",
-            "main": "src/main.ts",
-            "tsConfig": "src/tsconfig.json",
+            "index": "src/client/index.html",
+            "main": "src/client/main.ts",
+            "tsConfig": "src/client/tsconfig.json",
             "assets": [
-              "src/assets",
-              "src/favicon.ico"
+              "src/client/assets",
+              "src/client/favicon.ico"
             ],
             "styles": [
-              "src/styles.scss"
+              "src/client/styles.scss"
             ],
             "scripts": []
           },
@@ -37,8 +37,8 @@
               "buildOptimizer": true,
               "fileReplacements": [
                 {
-                  "replace": "src/environments/environment.ts",
-                  "with": "src/environments/environment.prod.ts"
+                  "replace": "src/client/environments/environment.ts",
+                  "with": "src/client/environments/environment.prod.ts"
                 }
               ]
             }
@@ -64,15 +64,15 @@
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "src/test.ts",
+            "main": "src/client/test.ts",
             "karmaConfig": "./karma.conf.js",
             "scripts": [],
             "styles": [
-              "src/styles.scss"
+              "src/client/styles.scss"
             ],
             "assets": [
-              "src/assets",
-              "src/favicon.ico"
+              "src/client/assets",
+              "src/client/favicon.ico"
             ]
           }
         },

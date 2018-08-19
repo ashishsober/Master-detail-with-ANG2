@@ -25,7 +25,7 @@ import { TextBox } from './pages/components/ui-form-field-components/text-box/te
 import { SelectBox } from './pages/components/ui-form-field-components/select-box/select-box.component';
 import { ShellComponent } from './pages/components/shell-component/shell.component';
 import { HeaderComponent } from './@themes/components/header/header.component';
-import { fromEvent } from '../../node_modules/rxjs';
+
 export const firebaseConfig = {
   apiKey: "AIzaSyBu4vtqAO8iH8Bs-Jeak50DfeqT5NgkH8E",
   authDomain: "angular-project-5cb99.firebaseapp.com",
