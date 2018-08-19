@@ -1,7 +1,7 @@
 <ngx-header></ngx-header>
   
-  <div class="row">
-    <div class="col-md-2 side-menu">
+  <div class="row" style="top: 64px;position: relative;">
+    <div class="col-md-2 side-menu" style="position: fixed;">
       <nav>
         <ul>
           <a routerLink="/dashboard" routerLinkActive="active">
@@ -29,7 +29,7 @@
         </ul>
       </nav>
     </div>
-    <div class="col-md-10 main-menu">
+    <div class="col-md-10 main-menu" style="margin-left: 236px;position: absolute;">
       <router-outlet></router-outlet>
     </div>
   </div>
