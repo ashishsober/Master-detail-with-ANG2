@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, NgZone } from '@angular/core';
 import { FirebaseLoginService } from '../../core/firebase.login.service';
 import { DataService } from '../../core/data.service';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -15,7 +15,7 @@ export class LoginComponent {
   files: {};
   get myContent() { return JSON.stringify(this.user); }
 
-  constructor(private firebase_login_service: FirebaseLoginService,
+  constructor(private firebase_login_service: FirebaseLoginService,private zone:NgZone,
     private ss: DataService,
     private router: Router,
     private matDialog: MatDialog) { }
@@ -28,11 +28,14 @@ export class LoginComponent {
     console.log("i m inside google Login method");
     this.firebase_login_service.getAuth()
       .then(result => {
-        this.router.navigate(['dashboard']);
-        sessionStorage.setItem('user_uid', result.user.uid);
-        sessionStorage.setItem('user_photoUrl', result.user.photoURL);
-        sessionStorage.setItem('user_emalid', result.user.email);
-        this.ss.hide();
+        this.zone.run(() =>{
+          this.router.navigate(['shell']);
+       });
+          //this.router.navigate(['shell']);
+          sessionStorage.setItem('user_uid', result.user.uid);
+          sessionStorage.setItem('user_photoUrl', result.user.photoURL);
+          sessionStorage.setItem('user_emalid', result.user.email);
+          this.ss.hide();
       });
   }
 
@@ -43,7 +46,7 @@ export class LoginComponent {
   }
 
   cancel() {
-    this.router.navigate(['dashboard']);
+    this.router.navigate(['shell']);
     this.matDialog.closeAll();
   }
 }
