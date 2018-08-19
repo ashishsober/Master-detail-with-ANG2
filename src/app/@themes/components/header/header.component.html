@@ -1,0 +1,23 @@
+<mat-toolbar class="header-color">
+    <div class="row header-width">
+      <div class="col-md-2">
+        <button mat-icon-button>
+          <mat-icon>menu</mat-icon>
+        </button>
+      </div>
+      <div class="col-md-8">
+        <div class="search-input-button">
+          <input type="text" placeholder="Search" class="search-box">
+          <button mat-raised-button color="accent" class="search-box-button">
+            <mat-icon>search</mat-icon>
+          </button>
+        </div>
+      </div>
+      <div *ngIf="viewLogout === true" class="col-md-2">
+        <img class="img-circle" width="62" height="55" [src]="myPhotoUrl" (click)="infoModal()">
+      </div>
+      <div *ngIf="viewLogin === false" class="col-md-2">
+        <button mat-button class="login-button" routerLink="/auth/login">{{login}}</button>
+      </div>
+    </div>
+  </mat-toolbar>

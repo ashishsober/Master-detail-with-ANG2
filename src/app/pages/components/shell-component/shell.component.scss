@@ -1,40 +1,3 @@
-.header-color {
-    background-color: #232323;
-    color: #eef0f1;
-    .header-width {
-      width: 100%;
-      .search-input-button {
-        float: right;
-        .search-box {
-          border: 1px solid;
-          padding-left: 6px;
-          font-size: 17px;
-          margin-right: -6px;
-          width: 550px;
-          color: #eef0f1;
-          background-color: #8888881a;
-          border-color: #ffd83f40;
-        }
-        .search-box-button {
-          padding-top: 1px;
-          height: 36px;
-        }
-      }
-      .img-circle {
-        float: right;
-        border-radius: 70px;
-        height: 38px;
-        width: 38px;
-      }
-      .login-button {
-        float: right;
-      }
-    } //closing header-width
-  }
-  
-  .hide-toolbar-sidebar {
-     display: none;
-  }
   .do-the-center {
     margin: 0 auto;
     margin-top:100px; 
@@ -79,14 +42,3 @@
     padding-left: 15px;
     padding-top: 15px;
   }
-  
-  
-  
-  // align-items: center;
-  // justify-content: space-around;
-  // float: none;
-  // display: flex;
-  // /* justify-content: space-around; */
-  // padding: 83px 0;
-  // margin: 0 auto;
-  // left: -67px;
