@@ -29,7 +29,7 @@ export class LoginComponent {
     this.firebase_login_service.getAuth()
       .then(result => {
         this.zone.run(() =>{
-          this.router.navigate(['shell']);
+          this.router.navigate(['dashboard']);
        });
           sessionStorage.setItem('user_uid', result.user.uid);
           sessionStorage.setItem('user_photoUrl', result.user.photoURL);
@@ -45,7 +45,7 @@ export class LoginComponent {
   }
 
   cancel() {
-    this.router.navigate(['shell']);
+    this.router.navigate(['dashboard']);
     this.matDialog.closeAll();
   }
 }
