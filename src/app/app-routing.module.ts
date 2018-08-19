@@ -1,13 +1,13 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { HeroDetailComponent } from './components/hero-detail-component/hero-detail.component';
-import { HeroesComponent } from './components/heroes-component/heroes.component';
-import { DashboardComponent } from './components/dashboard-component/dashboard.component';
-import { ApplicantFieldComponent } from './components/applicant-form-component/applicant-field.component';
-import { LoginComponent } from './components/login-component/login.component';
-import { TodoComponent } from './components/todo-firebase-component/todo.component';
+import { HeroDetailComponent } from './pages/components/hero-detail-component/hero-detail.component';
+import { HeroesComponent } from './pages/components/heroes-component/heroes.component';
+import { DashboardComponent } from './pages/components/dashboard-component/dashboard.component';
+import { ApplicantFieldComponent } from './pages/components/applicant-form-component/applicant-field.component';
+import { LoginComponent } from './pages/components/login-component/login.component';
+import { TodoComponent } from './pages/components/todo-firebase-component/todo.component';
 import { LoginRouteGuard } from './core/login-route-guard';
-import { ShellComponent } from './components/shell-component/shell.component';
+import { ShellComponent } from './pages/components/shell-component/shell.component';
 
 const routes: Routes = [
   {

@@ -4,13 +4,13 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { AppComponent } from './components/app-component/app.component';
-import { HeroDetailComponent } from './components/hero-detail-component/hero-detail.component';
-import { HeroesComponent } from './components/heroes-component/heroes.component';
-import { DashboardComponent } from './components/dashboard-component/dashboard.component';
-import { ApplicantFieldComponent } from './components/applicant-form-component/applicant-field.component';
-import { LoginComponent } from './components/login-component/login.component';
-import { TodoComponent } from './components/todo-firebase-component/todo.component';
+import { AppComponent } from './app.component';
+import { HeroDetailComponent } from './pages/components/hero-detail-component/hero-detail.component';
+import { HeroesComponent } from './pages/components/heroes-component/heroes.component';
+import { DashboardComponent } from './pages/components/dashboard-component/dashboard.component';
+import { ApplicantFieldComponent } from './pages/components/applicant-form-component/applicant-field.component';
+import { LoginComponent } from './pages/components/login-component/login.component';
+import { TodoComponent } from './pages/components/todo-firebase-component/todo.component';
 import { DataService } from './core/data.service';
 import { FirebaseLoginService } from './core/firebase.login.service';
 import { AppRoutingModule } from './app-routing.module';
@@ -21,9 +21,9 @@ import { UserInfoModalComponent } from './modals/user-info-modal/user-info-modal
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AngularFireDatabaseModule } from 'angularfire2/database-deprecated';
-import { TextBox } from './components/ui-form-field-components/text-box/text-box.component';
-import { SelectBox } from './components/ui-form-field-components/select-box/select-box.component';
-import { ShellComponent } from './components/shell-component/shell.component';
+import { TextBox } from './pages/components/ui-form-field-components/text-box/text-box.component';
+import { SelectBox } from './pages/components/ui-form-field-components/select-box/select-box.component';
+import { ShellComponent } from './pages/components/shell-component/shell.component';
 export const firebaseConfig = {
   apiKey: "AIzaSyBu4vtqAO8iH8Bs-Jeak50DfeqT5NgkH8E",
   authDomain: "angular-project-5cb99.firebaseapp.com",

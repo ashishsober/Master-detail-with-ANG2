@@ -2,8 +2,8 @@ import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { Location } from '@angular/common';
 import { switchMap } from 'rxjs/operators';
-import { DataService } from '../../core/data.service';
-import { Hero } from '../../core/interface';
+import { DataService } from '../../../core/data.service';
+import { Hero } from '../../../core/interface';
 
 
 @Component({

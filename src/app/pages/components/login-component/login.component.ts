@@ -1,6 +1,6 @@
 import { Component, NgZone } from '@angular/core';
-import { FirebaseLoginService } from '../../core/firebase.login.service';
-import { DataService } from '../../core/data.service';
+import { FirebaseLoginService } from '../../../core/firebase.login.service';
+import { DataService } from '../../../core/data.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { MatDialog, MatDialogRef } from '@angular/material';
 
@@ -31,7 +31,6 @@ export class LoginComponent {
         this.zone.run(() =>{
           this.router.navigate(['shell']);
        });
-          //this.router.navigate(['shell']);
           sessionStorage.setItem('user_uid', result.user.uid);
           sessionStorage.setItem('user_photoUrl', result.user.photoURL);
           sessionStorage.setItem('user_emalid', result.user.email);

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Hero } from '../../core/interface';
-import { DataService } from '../../core/data.service';
+import { Hero } from '../../../core/interface';
+import { DataService } from '../../../core/data.service';
 
 @Component({
   moduleId: 'module.id',

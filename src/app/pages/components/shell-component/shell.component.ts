@@ -1,8 +1,8 @@
 import { Component, OnInit, Renderer2, ElementRef } from '@angular/core';
-import { DataService } from '../../core/data.service';
+import { DataService } from '../../../core/data.service';
 import { Router, NavigationStart } from '@angular/router';
 import { MatDialog, MatDialogRef } from '@angular/material';
-import { UserInfoModalComponent } from '../../modals/user-info-modal/user-info-modal.component';
+import { UserInfoModalComponent } from '../../../modals/user-info-modal/user-info-modal.component';
 
 @Component({
   moduleId: 'module.id',
@@ -36,13 +36,11 @@ export class ShellComponent implements OnInit {
   ngOnInit() {
     this.ss.getEmittedValue().subscribe(item => {
       console.log("inside ngOnit method of app component=====" + item);
-     
       this.viewLogin = item;
       this.viewLogout = item;
       if(item){
         this.myPhotoUrl = sessionStorage.getItem('user_photoUrl');
       } 
-   
     });
   }
 
