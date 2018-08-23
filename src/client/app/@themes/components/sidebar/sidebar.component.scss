@@ -1,9 +1,12 @@
 .side-menu {
-    background-color: #232323;
-    margin: 0px;
-    padding-right: 0px;
-    height: 750px;
-    nav {
+  background-color: #232323;
+  margin: 0px;
+  padding-right: 0px;
+  height: 750px;
+  nav {
+    ul {
+      margin-bottom: 2px;
+      padding-left: 4px;
       a {
         padding: 7px 10px;
         text-decoration: none;
@@ -15,20 +18,16 @@
         color: white;
         padding-left: 23px;
         outline: none;
+        &.active {
+          color: #ffffff;
+          background-color: #5bdcea;
+        }
       }
-      ul:active {
-        color: #ffffff;
-        background-color: #5bdcea;
-      }
-      ul:hover {
-        color: #eef0f1;
-        background-color: rgb(120, 120, 122);
-        padding: 0px;
-        margin: 0px;
-      }
-      ul {
-        margin-bottom: 2px;
-        padding-left: 4px;
+      a:hover:not(.active) {
+        background-color: #555;
+        color: white;
+        text-decoration: none;
       }
     }
   }
+}
