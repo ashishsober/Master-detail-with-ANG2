@@ -28,17 +28,17 @@ export class ApplicantFieldComponent implements OnInit {
       .then(heroes => this.heroes = heroes.slice(1, 5));
   }
 
-  getDynamicClass(componentType,seqNo, positioning, i) {
-    console.log(componentType,seqNo, positioning, i);
+  getDynamicClass(rwb_name,seqNo, positioning, i) {
+    console.log('Rwb_name--->'+rwb_name+'  sequence_no----->'+seqNo+'  positioning--->'+ positioning+'  my index----->'+ i);
     this.count.push(i);
     if (this.count.length === 1 && positioning === '2') {
-        return 'col-md-6 right-border half-width';
+        return 'left-border half-width';
     } else if (positioning === '2') {
       this.count = [];
-        return 'col-md-6 no-border half-width';
+        return 'no-border right-border half-width';
     } else {
       this.count = [];
-        return 'col-md-12 full-width';
+        return 'full-width';
     }
   }
 }

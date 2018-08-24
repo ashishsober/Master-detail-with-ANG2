@@ -5,10 +5,17 @@
 .half-width {
     width: 50%;
 }
+.left-border {
+    //border-left: 1px solid green;
+    // padding-left: 0;
+   // margin-right:0; 
+    float: left;
+}
+
 .right-border {
-    border-right: 1px solid green;
-    padding-left: 0;
-    margin-right:0; 
+    // border-right: 1px solid green;
+   // padding-left: 0;
+    //margin-right:0; 
     float: right;
 }
 

@@ -8,4 +8,5 @@ import { Component, OnInit, Output, Input } from '@angular/core';
 })
 export class TextBox {
     @Input()data;
+    constructor(){ }
 }
