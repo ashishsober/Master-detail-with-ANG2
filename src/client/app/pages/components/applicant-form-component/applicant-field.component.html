@@ -23,13 +23,7 @@
           </div>
           <div *ngSwitchCase="'Selection Box'">
             <!-- Selection Box component will come here -->
-            <mat-form-field>
-              <mat-select placeholder="{{ refData.rwb_label_name }}" (click)="lovData()">
-                <mat-option *ngFor="let hero of heroes" [value]="hero.name">
-                  {{hero.name}}
-                </mat-option>
-              </mat-select>
-            </mat-form-field>
+            <select-box [data]="refData"></select-box>
           </div>
          </div>
       </div>
