@@ -360,7 +360,7 @@ export var FIELDMETADATA = {
               "max_selects": null,
               "info_tooltips": null,
               "field_set_with_info": null
-            }
+            },
             {
               "country": "IN",
               "logical_field_name": "date_of_birth",

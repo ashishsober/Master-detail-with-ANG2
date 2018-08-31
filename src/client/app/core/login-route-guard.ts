@@ -18,8 +18,8 @@ export class LoginRouteGuard implements CanActivate {
         else {
             this.fileNameDialogRef = this.dialog.open(AlertDialogComponent, {
                 hasBackdrop: true,
-                height: '190px',
-                width: '500px',
+                height: '316px',
+                width: '874px',
                 disableClose: true,
                 data: { message: 'Activation blocked for you, Please do login.' }
             });

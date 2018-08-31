@@ -1,9 +1,9 @@
-<div class ="dialogBody">
-    <h2 mat-dialog-title style="text-align: center;">Alert</h2>
+<div class ="dialog-body">
+    <div mat-dialog-title class="response-title"></div>
     <mat-dialog-content style="text-align: center;">
         <span>{{data.message}}</span>
     </mat-dialog-content>
-    <mat-dialog-actions align="end">
-      <button mat-button mat-dialog-close mat-raised-button type="button" class="myButton"  (click)="redirectToLogin()">OK</button>
+    <mat-dialog-actions align="center">
+      <button mat-dialog-close type="button" class="retry"  (click)="redirectToLogin()">OK</button>
     </mat-dialog-actions>
 </div>

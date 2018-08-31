@@ -1,7 +1,25 @@
-.myButton {
-  background-color: yellow;
-}
+.dialog-body {
+  .response-title {
+    background-image:url("../../../assets/images/ico_warning_sign_red.svg");
+    background-position: 0px 0px;
+    background-repeat: no-repeat;
+    background-size: 61px 61px;
+    background-color: #FFFFFF;
+    width: 61px;
+    height: 61px;
+    margin: 60px auto 15px;
+  }
+  .retry {
+    width: 100%;
+    padding: 30px;
+    background-color: #cf021b;
+    margin: 20px 35px;
+    color: #f6f6f6;
+    font-weight: 100;
+    cursor: pointer;
+    font-size: 12px;
+    font-size: 0.75rem;
+  }
 
-.dialogBody {
-  margin: 20px;
+
 }
