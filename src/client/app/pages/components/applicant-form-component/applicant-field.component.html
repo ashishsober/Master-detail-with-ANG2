@@ -1,33 +1,54 @@
-<div class="app-content">
-  <mat-card>
-    <div *ngFor="let refData of mydata; let i=index">
-      <div [ngClass]="getDynamicClass(refData.rwb_label_name,refData.seq_no,refData.positioning,i)">
-        <div [ngSwitch]="refData.component_type">
-          <div *ngSwitchCase="'Text'">
-            <!-- text box component will come here -->
-            <text-box [data]="refData"></text-box>
+<form #f="ngForm" (ngSubmit)="onSubmit(f)" novalidate>
+  <div class="app-content">
+    <mat-card>
+      <div *ngFor="let refData of mydata; let i=index">
+        <div [ngClass]="getDynamicClass(refData.rwb_label_name,refData.seq_no,refData.positioning,i)">
+          <div [ngSwitch]="refData.component_type">
+            <div *ngSwitchCase="'Text'">
+              <!-- text box component will come here -->
+              <!-- <text-box 
+               [labelName]="refData.rwb_label_name" 
+               name="{{refData.logical_field_name}}"
+               ngModel>
+              </text-box> -->
+              <mat-form-field> 
+                <input matInput type="text" 
+                placeholder="{{refData.rwb_label_name}}" 
+                name="{{refData.logical_field_name}}" 
+                ngModel 
+                maxlength="{{refData.length}}"
+                minlength="{{refData.min_length}}"
+                >
+              </mat-form-field>
+            </div>
+            <div *ngSwitchCase="'Date'">
+              <!-- DATE component will come here -->
+              <mat-form-field>
+                <input matInput [matDatepicker]="picker" placeholder="Choose a date">
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+              </mat-form-field>
+            </div>
+            <div *ngSwitchCase="'Number'">
+              <!-- Number component will come here -->
+              <mat-form-field>
+                <input matInput type="number" 
+                placeholder="{{ refData.rwb_label_name }}" 
+                name="{{refData.logical_field_name}}" 
+                ngModel 
+                maxlength="{{refData.length}}"
+                minlength="{{refData.min_length}}"
+                >
+              </mat-form-field>
+            </div>
+            <div *ngSwitchCase="'Selection Box'">
+              <!-- Selection Box component will come here -->
+              <select-box [data]="refData"></select-box>
+            </div>
           </div>
-          <div *ngSwitchCase="'Date'">
-            <!-- DATE component will come here -->
-            <mat-form-field>
-              <input matInput [matDatepicker]="picker" placeholder="Choose a date">
-              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-              <mat-datepicker #picker></mat-datepicker>
-            </mat-form-field>
-          </div>
-          <div *ngSwitchCase="'Number'">
-            <!-- Number component will come here -->
-            <mat-form-field>
-              <input type="number" matInput placeholder="{{ refData.rwb_label_name }}">
-            </mat-form-field>
-          </div>
-          <div *ngSwitchCase="'Selection Box'">
-            <!-- Selection Box component will come here -->
-            <select-box [data]="refData"></select-box>
-          </div>
-         </div>
+        </div>
       </div>
-    </div>
       <button type="submit" class="btn btn-primary btn-lg" style="width: 100%">Submit</button>
-  </mat-card>
-</div>
+    </mat-card>
+  </div>
+</form>

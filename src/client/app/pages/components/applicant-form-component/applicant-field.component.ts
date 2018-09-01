@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../../../core/data.service';
-
+import { NgForm } from '@angular/forms';
 
 @Component({
   moduleId: 'module.id',
@@ -12,14 +12,13 @@ import { DataService } from '../../../core/data.service';
 export class ApplicantFieldComponent implements OnInit {
   mydata;
   count = [];
-
+  
   constructor(private heroService: DataService) { }
 
   ngOnInit() {
     this.heroService.getFieldmetadata()
       .then(data => {
         this.mydata = data.fieldmetadata.data.stages[0].fields;
-        //console.log("my fieldmetadata===" + this.mydata);
       });
   }
 
@@ -35,5 +34,11 @@ export class ApplicantFieldComponent implements OnInit {
       this.count = [];
       return 'full-width';
     }
+  }
+
+
+  onSubmit(f: NgForm) {
+    console.log("my form value-----"+f.value);  // { first: '', last: '' }
+    console.log(f.valid);  // false
   }
 }

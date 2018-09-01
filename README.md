@@ -20,17 +20,7 @@
  
 * [Important Link](https://github.com/angular/material2)
 
-* After install add all the modules in system.config.js file in the map section 
-shown below
-
-        map: {
-              // our app is within the app folder
-               app: 'app',
-              '@angular2-material/core': 'npm:@angular2-material/core/core.umd.js',
-          }
-
-
-and import all the modules in the app.module.ts file,do not apply forRoot() method,
+* Import all the modules in the app.module.ts file,do not apply forRoot() method,
 if you do the refactoring then we can apply the forRoot() method as i have done.and please add providers also for radio-button and some other modules.
 
 * for Grid system using Bootstrap layout 
@@ -68,7 +58,7 @@ if you do the refactoring then we can apply the forRoot() method as i have done.
 
 ### How to deploy the application in Firebase
 
-* First install firebase-tools
+* First install firebase-tools globally
    
         $npm install -g firebase-tools
 
