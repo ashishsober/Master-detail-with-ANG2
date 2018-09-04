@@ -1,4 +1,4 @@
-<form #f="ngForm" (ngSubmit)="onSubmit(f)" novalidate>
+<form #form="ngForm" (ngSubmit)="onSubmit(form)" novalidate>
   <div class="app-content">
     <mat-card>
       <div *ngFor="let refData of mydata; let i=index">
@@ -18,13 +18,13 @@
                 ngModel 
                 maxlength="{{refData.length}}"
                 minlength="{{refData.min_length}}"
-                >
+                required="{{refData.mandatory}}">
               </mat-form-field>
             </div>
             <div *ngSwitchCase="'Date'">
               <!-- DATE component will come here -->
               <mat-form-field>
-                <input matInput [matDatepicker]="picker" placeholder="Choose a date">
+                <input matInput [matDatepicker]="picker" placeholder="Date of Birth">
                 <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                 <mat-datepicker #picker></mat-datepicker>
               </mat-form-field>
@@ -32,12 +32,14 @@
             <div *ngSwitchCase="'Number'">
               <!-- Number component will come here -->
               <mat-form-field>
-                <input matInput type="number" 
-                placeholder="{{ refData.rwb_label_name }}" 
+                <input matInput type="text" 
+                placeholder="{{refData.rwb_label_name}}" 
                 name="{{refData.logical_field_name}}" 
-                ngModel 
+                ngModel
+                pattern="\d*" 
                 maxlength="{{refData.length}}"
                 minlength="{{refData.min_length}}"
+                required="{{refData.mandatory}}"
                 >
               </mat-form-field>
             </div>
@@ -48,7 +50,7 @@
           </div>
         </div>
       </div>
-      <button type="submit" class="btn btn-primary btn-lg" style="width: 100%">Submit</button>
+      <button type="submit" class="btn btn-primary btn-lg" style="width: 100%" [disabled]="form.pristine || form.invalid">Submit</button>
     </mat-card>
   </div>
 </form>
