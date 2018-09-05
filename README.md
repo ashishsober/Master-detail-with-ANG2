@@ -23,7 +23,7 @@
 * Import all the modules in the app.module.ts file,do not apply forRoot() method,
 if you do the refactoring then we can apply the forRoot() method as i have done.and please add providers also for radio-button and some other modules.
 
-* for Grid system using Bootstrap layout 
+* For Grid system using Bootstrap layout 
    
 
 
@@ -36,9 +36,10 @@ if you do the refactoring then we can apply the forRoot() method as i have done.
         just type the command ' ng build --prod ' it will create a dist folder in the root directory
 
 
-### Created angular Forms
+### Created Aangular Forms
 
-   [Angular form Link](https://angular.io/docs/ts/latest/guide/forms.html)
+  1. [Angular form Link](https://angular.io/docs/ts/latest/guide/forms.html)
+  1. Created template driven form (Custom Forms)
 
 
 ### Firebase UI-WEB
@@ -78,11 +79,7 @@ if you do the refactoring then we can apply the forRoot() method as i have done.
 
 ### Using Google Analytics to track and reports website traffic
 
-
-
 1. [Google Analytics](https://analytics.google.com/)
-
-1. [Tag Manager](https://tagmanager.google.com/)
 
 
 #### How to update the package.json
