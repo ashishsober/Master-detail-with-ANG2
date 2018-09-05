@@ -7,7 +7,16 @@ import {MAT_DIALOG_DATA} from '@angular/material';
   styleUrls: ['./alert-dialog.component.scss']
 })
 export class AlertDialogComponent {
-  constructor(private router: Router, @Inject(MAT_DIALOG_DATA) public data: any) { }
+  responseStatus:string;
+  responseAction:string;
+  message:string;
+  constructor(private router: Router, @Inject(MAT_DIALOG_DATA) public appData: any) { 
+    console.log(appData);
+    this.responseStatus = appData.application.response_type.toUpperCase();//info,hard
+    this.responseAction = appData.application.response_action.toUpperCase();//contibue stop..
+    this.message = appData.application.message;
+
+  }
   redirectToLogin() {
     this.router.navigate(['auth/login']);
   }

@@ -1,5 +1,5 @@
 .dialog-body {
-  .response-title {
+  .error-icon {
     background-image:url("../../../assets/images/ico_warning_sign_red.svg");
     background-position: 0px 0px;
     background-repeat: no-repeat;
@@ -8,11 +8,25 @@
     width: 61px;
     height: 61px;
     margin: 60px auto 15px;
+    &.blue-error-icon {
+      background-image:url("../../../assets/images/ico_warning_sign_green.svg");
+    }
   }
   .retry {
     width: 100%;
     padding: 20px;
     background-color: #cf021b;
+    margin: 35px 35px;
+    color: #f6f6f6;
+    font-weight: 100;
+    cursor: pointer;
+    font-size: 12px;
+    font-size: 0.75rem;
+  }
+  .continue {
+    width: 100%;
+    padding: 20px;
+    background-color: #00A546;
     margin: 35px 35px;
     color: #f6f6f6;
     font-weight: 100;

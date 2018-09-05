@@ -76,7 +76,7 @@ export class ApplicantFieldComponent implements OnInit {
       height: '316px',
       width: '874px',
       disableClose: true,
-      data: { message: appData.application.message }
+      data: appData
     });
   }
 }

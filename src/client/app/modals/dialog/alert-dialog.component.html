@@ -1,9 +1,11 @@
 <div class ="dialog-body">
-    <div mat-dialog-title class="response-title"></div>
+    <div mat-dialog-title class="error-icon" [ngClass] = "{ 'blue-error-icon' : responseAction == 'CONTINUE'}"></div>
     <mat-dialog-content style="text-align: center;">
-        <span>{{data.message}}</span>
+        <span>{{ message }}</span>
     </mat-dialog-content>
     <mat-dialog-actions align="center">
-      <button mat-dialog-close type="button" class="retry"  (click)="redirectToLogin()">OK</button>
+      <button mat-dialog-close type="button" class="retry"  *ngIf="responseAction == 'LOGIN'" (click)="redirectToLogin()">OK</button>
+      <button mat-dialog-close type="button" class="continue" *ngIf="responseAction == 'CONTINUE'">OK, CONTINUE</button>
+      <button mat-dialog-close type="button" class="retry"  *ngIf="responseAction == 'STOP'">OK</button>
     </mat-dialog-actions>
 </div>

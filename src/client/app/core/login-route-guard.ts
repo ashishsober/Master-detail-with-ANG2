@@ -12,6 +12,14 @@ export class LoginRouteGuard implements CanActivate {
 
     canActivate() {
         let uid = sessionStorage.getItem('user_uid');
+        let myObj = {
+            applicants: "",
+            application: {
+                "message": "Activation blocked for you, Please do login.",
+                "response_type": "hard",
+                "response_action": "login"
+            }
+        };
         if (uid !== null)
             return true;
         else {
@@ -20,7 +28,7 @@ export class LoginRouteGuard implements CanActivate {
                 height: '316px',
                 width: '874px',
                 disableClose: true,
-                data: { message: 'Activation blocked for you, Please do login.' }
+                data: myObj
             });
             return false;
         }
