@@ -1,4 +1,5 @@
-import { Hero } from './interface';
+import { Hero, lov } from './interface';
+
 
 export var HEROES: Hero[] = [
   { "id": 11, "name": "Mr. Nice" },
@@ -11,6 +12,84 @@ export var HEROES: Hero[] = [
   { "id": 18, "name": "Dr IQ" },
   { "id": 19, "name": "Magma" },
   { "id": 20, "name": "Tornado" }
+];
+
+export var titles: lov[] = [{
+  "CODE_DESC": "Mr",
+  "CODE_VALUE": 'MR'
+},
+{
+  "CODE_DESC": "Mrs",
+  "CODE_VALUE": 'MRS'
+},
+{
+  "CODE_DESC": "Ms",
+  "CODE_VALUE": "MS"
+},
+{
+  "CODE_DESC": "Prof",
+  "CODE_VALUE": "PRF"
+},
+{
+  "CODE_DESC": "Doctor",
+  "CODE_VALUE": "DR"
+}
+];
+
+export var gender: lov[] = [{
+  "CODE_DESC": "Male",
+  "CODE_VALUE": "M"
+},
+{
+  "CODE_DESC": "Female",
+  "CODE_VALUE": "F"
+},
+{
+  "CODE_DESC": "Transgender",
+  "CODE_VALUE": "T"
+}
+];
+
+export var country: lov[] = [{
+  "CODE_DESC": "INDIA",
+  "CODE_VALUE": "IN"
+},
+{
+  "CODE_DESC": "AFGHANISTAN",
+  "CODE_VALUE": "AF"
+},
+{
+  "CODE_DESC": "ALBANIA",
+  "CODE_VALUE": "AL"
+},
+{
+  "CODE_DESC": "ALGERIA",
+  "CODE_VALUE": "DZ"
+},
+{
+  "CODE_DESC": "AMERICAN SAMOA ASM",
+  "CODE_VALUE": "AS"
+},
+{
+  "CODE_DESC": "ANDORRA",
+  "CODE_VALUE": "AD"
+},
+{
+  "CODE_DESC": "ANGOLA",
+  "CODE_VALUE": "AO"
+},
+{
+  "CODE_DESC": "ANGUILLA",
+  "CODE_VALUE": "AI"
+},
+{
+  "CODE_DESC": "ANTARCTICA",
+  "CODE_VALUE": "AQ"
+},
+{
+  "CODE_DESC": "ANTIGUA AND BARBUDA",
+  "CODE_VALUE": "AG"
+}
 ];
 
 

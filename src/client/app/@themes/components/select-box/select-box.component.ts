@@ -1,6 +1,7 @@
 import { Component, OnInit, Output, Input } from '@angular/core';
-import { Hero } from '../../../core/interface';
+import { Hero, lov } from '../../../core/interface';
 import { DataService } from '../../../core/data.service';
+import { titles } from '../../../core/mock-data';
 
 @Component({
     moduleId: 'module.id',
@@ -9,11 +10,11 @@ import { DataService } from '../../../core/data.service';
 })
 export class SelectBox {
     @Input() data;
-    heroes: Hero[] = [];
-    constructor(private heroService: DataService) { }
+    selectboxData: lov[] = [];
+    constructor(private dataService: DataService) { }
     
     lovData(lovFieldData: string) {
-        this.heroService.getHeroes()
-            .then(heroes => this.heroes = heroes.slice(1, 5));
+        this.dataService.getLov(lovFieldData)
+            .then(data => this.selectboxData = data);
     }
 }

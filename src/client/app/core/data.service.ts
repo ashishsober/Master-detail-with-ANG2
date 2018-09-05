@@ -1,6 +1,6 @@
 import { Injectable, Input, Output, EventEmitter } from '@angular/core';
-import { HEROES, FIELDMETADATA } from './mock-data';
-import { Hero } from './interface';
+import { HEROES, FIELDMETADATA, titles, gender, country } from './mock-data';
+import { Hero, lov } from './interface';
 // import { Observable } from 'rxjs/Rx';
 import { Observable } from 'rxjs';
 import { Http, Response, Headers, RequestOptions } from '@angular/http';
@@ -46,5 +46,15 @@ export class DataService {
 
       getFieldmetadata(): Promise<any> {
             return Promise.resolve(FIELDMETADATA);
+      }
+
+      getLov(lov: string): Promise<lov[]> {
+            switch (lov) {
+                  case 'Title': return Promise.resolve(titles);
+                  case 'Nationality':return Promise.resolve(country);
+                  default: return Promise.resolve(gender);
+            
+            }
+
       }
 }
