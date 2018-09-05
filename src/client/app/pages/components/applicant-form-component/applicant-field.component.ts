@@ -1,22 +1,22 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../../../core/data.service';
 import { NgForm } from '@angular/forms';
+import { lov } from '../../../core/interface';
 
 @Component({
   moduleId: 'module.id',
   selector: 'my-material',
   templateUrl: './applicant-field.component.html',
   styleUrls: ['./applicant-field.component.scss']
-
 })
 export class ApplicantFieldComponent implements OnInit {
   mydata;
   count = [];
-  
-  constructor(private heroService: DataService) { }
+
+  constructor(private dataService: DataService) { }
 
   ngOnInit() {
-    this.heroService.getFieldmetadata()
+    this.dataService.getFieldmetadata()
       .then(data => {
         this.mydata = data.fieldmetadata.data.stages[0].fields;
       });
@@ -38,7 +38,7 @@ export class ApplicantFieldComponent implements OnInit {
 
 
   onSubmit(f: NgForm) {
-    console.log("my form value-----"+f.value);  // { first: '', last: '' }
+    console.log("my form value-----" + f.value);
     console.log(f.valid);  // false
   }
 }

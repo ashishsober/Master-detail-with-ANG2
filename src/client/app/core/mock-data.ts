@@ -135,7 +135,7 @@ export var FIELDMETADATA = {
               "field_set_name": "Basic Information",
               "component_type": "Text",
               "mandatory": "false",
-              "length": "5",
+              "length": "25",
               "type": "Text",
               "lov": "No",
               "regex": "^[a-zA-Z./'&@]+(?: [a-zA-Z./'&@]+)*$",

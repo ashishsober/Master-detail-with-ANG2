@@ -6,12 +6,6 @@
         <div [ngClass]="getDynamicClass(refData.rwb_label_name,refData.seq_no,refData.positioning,i)">
           <div [ngSwitch]="refData.component_type">
             <div *ngSwitchCase="'Text'">
-              <!-- text box component will come here -->
-              <!-- <text-box 
-               [labelName]="refData.rwb_label_name" 
-               name="{{refData.logical_field_name}}"
-               ngModel>
-              </text-box> -->
               <mat-form-field> 
                 <input matInput type="text" 
                 placeholder="{{refData.rwb_label_name}}" 
@@ -31,7 +25,6 @@
               </mat-form-field>
             </div>
             <div *ngSwitchCase="'Number'">
-              <!-- Number component will come here -->
               <mat-form-field>
                 <input matInput type="text" 
                 placeholder="{{refData.rwb_label_name}}" 
@@ -45,8 +38,12 @@
               </mat-form-field>
             </div>
             <div *ngSwitchCase="'Selection Box'">
-              <!-- Selection Box component will come here -->
-              <select-box [data]="refData"></select-box>
+              <select-box 
+              [placeholder] = "refData.rwb_label_name"
+              [lovfieldname]="refData.lov_field_name"
+              name="{{refData.logical_field_name}}"
+              ngModel
+              ></select-box>
             </div>
           </div>
         </div>

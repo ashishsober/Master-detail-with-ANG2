@@ -1,7 +1,7 @@
 <mat-form-field>
-  <mat-select placeholder="{{ data.rwb_label_name }}" (click)="lovData(data.lov_field_name)">
-    <mat-option *ngFor="let data of selectboxData" [value]="data.CODE_VALUE">
-      {{ data.CODE_DESC}}
+  <mat-select placeholder="{{placeholder}}" (click)=lovData(lovfieldname)>
+    <mat-option *ngFor="let data1 of selectboxData" [value]="data1.CODE_VALUE" (onSelectionChange)="onselect($event.source.value)">
+      {{ data1.CODE_DESC}}
     </mat-option>
   </mat-select>
 </mat-form-field>
