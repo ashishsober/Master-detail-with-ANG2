@@ -8,8 +8,7 @@ import { AlertDialogComponent } from '../modals/dialog/alert-dialog.component';
 @Injectable()
 export class LoginRouteGuard implements CanActivate {
     fileNameDialogRef: MatDialogRef<AlertDialogComponent>;
-    constructor(private firebaseLoginService: FirebaseLoginService,
-        private dialog: MatDialog) { }
+    constructor(private dialog: MatDialog) { }
 
     canActivate() {
         let uid = sessionStorage.getItem('user_uid');

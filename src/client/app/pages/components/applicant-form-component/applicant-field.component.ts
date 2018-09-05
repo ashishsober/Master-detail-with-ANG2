@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../../../core/data.service';
 import { NgForm } from '@angular/forms';
-import { lov } from '../../../core/interface';
+import { MatDialog, MatDialogRef } from '@angular/material';
+import { AlertDialogComponent } from '../../../modals/dialog/alert-dialog.component';
 
 @Component({
   moduleId: 'module.id',
@@ -12,8 +13,10 @@ import { lov } from '../../../core/interface';
 export class ApplicantFieldComponent implements OnInit {
   mydata;
   count = [];
-
-  constructor(private dataService: DataService) { }
+  appData;
+  fileNameDialogRef: MatDialogRef<AlertDialogComponent>;
+  constructor(private dataService: DataService,
+    private dialog: MatDialog) { }
 
   ngOnInit() {
     this.dataService.getFieldmetadata()
@@ -39,6 +42,41 @@ export class ApplicantFieldComponent implements OnInit {
 
   onSubmit(f: NgForm) {
     console.log("my form value-----" + f.value);
-    console.log(f.valid);  // false
+    if (f.valid) {
+      this.dataService.postSubmitApplicant(f.value).subscribe(data => {
+        this.appData = data;
+        this.checkServerResponse(this.appData);
+      }, err => {
+        console.log(err);
+      });
+    }
+  }
+
+  checkServerResponse(appData) {
+    let applicationStatus = appData.application.response_type.toUpperCase(); //info
+    let responseAction = appData.application.response_action.toUpperCase();
+    switch (responseAction) {
+      case 'STOP':
+        this.errorModal(appData);
+        break;
+      case 'CONTINUE':
+      case 'SUCCESS':
+        this.errorModal(appData);
+        break;
+      default:
+        //error modal to show  
+        this.errorModal(appData);
+    }
+
+  }
+
+  errorModal(appData) {
+    this.fileNameDialogRef = this.dialog.open(AlertDialogComponent, {
+      hasBackdrop: true,
+      height: '316px',
+      width: '874px',
+      disableClose: true,
+      data: { message: appData.application.message }
+    });
   }
 }
