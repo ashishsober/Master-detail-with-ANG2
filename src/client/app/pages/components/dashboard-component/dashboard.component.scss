@@ -1,12 +1,12 @@
-[class*='col-'] {
-  float: left;
-  padding-right: 20px;
-  padding-bottom: 20px;
-}
+// [class*='col-'] {
+//   float: left;
+//   padding-right: 20px;
+//   padding-bottom: 20px;
+// }
 
-[class*='col-']:last-of-type {
-  padding-right: 0;
-}
+// [class*='col-']:last-of-type {
+//   padding-right: 0;
+// }
 
 a {
   text-decoration: none;
@@ -45,6 +45,7 @@ h4 {
   min-width: 120px;
   background-color: #607D8B;
   border-radius: 2px;
+  margin: 5px;
 }
 .module:hover {
   background-color: #EEE;
