@@ -5,7 +5,7 @@
     </mat-dialog-content>
     <mat-dialog-actions align="center">
       <button mat-dialog-close type="button" class="retry"  *ngIf="responseAction == 'LOGIN'" (click)="redirectToLogin()">OK</button>
-      <button mat-dialog-close type="button" class="continue" *ngIf="responseAction == 'CONTINUE'">OK, CONTINUE</button>
+      <button mat-dialog-close type="button" class="continue" *ngIf="responseAction == 'CONTINUE'" (click)="redirectToBasicInfo()">OK, CONTINUE</button>
       <button mat-dialog-close type="button" class="retry"  *ngIf="responseAction == 'STOP'">OK</button>
     </mat-dialog-actions>
 </div>

@@ -1,7 +1,16 @@
-<ngx-header (click)="showMenu = !showMenu"></ngx-header>
-<div class="row" style="top: 64px;position: relative;">
-  <ngx-sidebar *ngIf="showMenu"></ngx-sidebar>
-  <div class="col-md-10 main-menu" style="margin-left: 240px;position: absolute;">
+
+<div class="row">
+  <div class="col-md-12">
+    <ngx-header></ngx-header>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-2">
+    <ngx-sidebar></ngx-sidebar>
+  </div>
+  <div class="col-md-10">
     <router-outlet></router-outlet>
   </div>
 </div>
+

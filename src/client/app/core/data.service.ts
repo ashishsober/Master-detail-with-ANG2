@@ -69,6 +69,13 @@ export class DataService {
                   .catch(this.handleError);
       }
 
+      getUsersCount(): Observable<any> {
+            let url = "http://localhost:1337/register/users/count";
+            return this.http.get(url)
+                  .map(this.extractData)
+                  .catch(this.handleError);
+      }
+
       private extractData(res: Response) {
             let body = res.json();
             return body || {}

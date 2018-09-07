@@ -46,12 +46,30 @@ h4 {
   background-color: #607D8B;
   border-radius: 2px;
 }
-
 .module:hover {
   background-color: #EEE;
   cursor: pointer;
   color: #607d8b;
 }
+
+.user-module {
+  padding: 20px;
+  text-align: center;
+  color: #eee;
+  max-height: 120px;
+  min-width: 120px;
+  background-color: #8b606a;
+  border-radius: 2px;
+  width: 49%
+}
+
+.user-module:hover {
+  background-color: #EEE;
+  cursor: pointer;
+  color: #607d8b;
+}
+
+
 
 .grid-pad {
   padding: 10px 0;

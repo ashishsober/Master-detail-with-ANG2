@@ -1,5 +1,6 @@
-<mat-toolbar class="header-color" style="position: fixed;z-index: 1;">
-    <div class="row header-width">
+<mat-toolbar class="header-color">
+  <div class="col">
+    <div class="row">
       <div class="col-md-2">
         <button mat-icon-button>
           <mat-icon>menu</mat-icon>
@@ -19,5 +20,6 @@
       <div *ngIf="viewLogin === false" class="col-md-2">
         <button mat-button class="login-button" routerLink="/auth/login">{{login}}</button>
       </div>
+    </div>
     </div>
   </mat-toolbar>

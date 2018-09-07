@@ -33,4 +33,16 @@ body {
   .mat-dialog-container {
     padding: 0px !important;
   }
+
+  .row {
+    margin-left: 0px;
+    margin-right: 0px;
+    [class*="col-"] {
+      padding-left: 0 !important;
+      padding-right: 0 !important;
+    }
+  }
+  .col{
+    padding: 0;
+  }
 }

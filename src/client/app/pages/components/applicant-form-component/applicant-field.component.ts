@@ -16,7 +16,7 @@ export class ApplicantFieldComponent implements OnInit {
   appData;
   fileNameDialogRef: MatDialogRef<AlertDialogComponent>;
   constructor(private dataService: DataService,
-    private dialog: MatDialog) { }
+              private dialog: MatDialog) { }
 
   ngOnInit() {
     this.dataService.getFieldmetadata()
@@ -45,14 +45,14 @@ export class ApplicantFieldComponent implements OnInit {
     if (f.valid) {
       this.dataService.postSubmitApplicant(f.value).subscribe(data => {
         this.appData = data;
-        this.checkServerResponse(this.appData);
+        this.checkServerResponse(this.appData,f);
       }, err => {
         console.log(err);
       });
     }
   }
 
-  checkServerResponse(appData) {
+  checkServerResponse(appData,form:NgForm) {
     let applicationStatus = appData.application.response_type.toUpperCase(); //info
     let responseAction = appData.application.response_action.toUpperCase();
     switch (responseAction) {
@@ -62,6 +62,7 @@ export class ApplicantFieldComponent implements OnInit {
       case 'CONTINUE':
       case 'SUCCESS':
         this.errorModal(appData);
+        form.reset();
         break;
       default:
         //error modal to show  
