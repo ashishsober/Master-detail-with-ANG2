@@ -25,7 +25,8 @@ import { SelectBox } from './@themes/components/select-box/select-box.component'
 import { ShellComponent } from './pages/components/shell-component/shell.component';
 import { HeaderComponent } from './@themes/components/header/header.component';
 import { SidebarComponent } from './@themes/components/sidebar/sidebar.component';
-import { UserAppModule } from './pages/user-app/user-app.module';
+//import { UserAppModule } from './pages/user-app/user-app.module';
+import { UserAppDataComponent } from './pages/user-app/user-app-data/user-app-data.component';
 export const firebaseConfig = {
   apiKey: "AIzaSyBu4vtqAO8iH8Bs-Jeak50DfeqT5NgkH8E",
   authDomain: "angular-project-5cb99.firebaseapp.com",
@@ -59,7 +60,7 @@ export const firebaseConfig = {
     SelectBox,
     ShellComponent,
     HeaderComponent,
-    SidebarComponent],
+    SidebarComponent,UserAppDataComponent],
   providers: [DataService, FirebaseLoginService, LoginRouteGuard],
   bootstrap: [AppComponent],
   entryComponents: [AlertDialogComponent, UserInfoModalComponent]

@@ -8,7 +8,7 @@ import { LoginComponent } from './pages/components/login-component/login.compone
 import { TodoComponent } from './pages/components/todo-firebase-component/todo.component';
 import { LoginRouteGuard } from './core/login-route-guard';
 import { ShellComponent } from './pages/components/shell-component/shell.component';
-import { UserAppModule } from './pages/user-app/user-app.module';
+import { UserAppDataComponent } from './pages/user-app/user-app-data/user-app-data.component';
 const routes: Routes = [
   {
     path: '', component: ShellComponent,
@@ -24,6 +24,7 @@ const routes: Routes = [
   // },
   // { path: 'userapp', loadChildren:'/src/app/pages/user-app/user-app.module#UserAppModule'},
   { path: 'auth/login', component: LoginComponent },
+  { path: 'userapp', component: UserAppDataComponent },
   { path: '',   redirectTo: '', pathMatch: 'full' },
   { path: '**', redirectTo: '' ,pathMatch: 'full'}
  
