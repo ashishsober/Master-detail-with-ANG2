@@ -8,7 +8,7 @@ import { LoginComponent } from './pages/components/login-component/login.compone
 import { TodoComponent } from './pages/components/todo-firebase-component/todo.component';
 import { LoginRouteGuard } from './core/login-route-guard';
 import { ShellComponent } from './pages/components/shell-component/shell.component';
-
+import { UserAppModule } from './pages/user-app/user-app.module';
 const routes: Routes = [
   {
     path: '', component: ShellComponent,
@@ -21,8 +21,13 @@ const routes: Routes = [
       { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
     ]
   },
+  // },
+  // { path: 'userapp', loadChildren:'/src/app/pages/user-app/user-app.module#UserAppModule'},
   { path: 'auth/login', component: LoginComponent },
-  { path: '**', redirectTo: '' }
+  { path: '',   redirectTo: '', pathMatch: 'full' },
+  { path: '**', redirectTo: '' ,pathMatch: 'full'}
+ 
+  
 ];
 
 @NgModule({
