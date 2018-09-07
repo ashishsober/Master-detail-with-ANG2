@@ -25,7 +25,7 @@ import { SelectBox } from './@themes/components/select-box/select-box.component'
 import { ShellComponent } from './pages/components/shell-component/shell.component';
 import { HeaderComponent } from './@themes/components/header/header.component';
 import { SidebarComponent } from './@themes/components/sidebar/sidebar.component';
-//import { UserAppModule } from './pages/user-app/user-app.module';
+import { UserAppModule } from './pages/user-app/user-app.module';
 import { UserAppDataComponent } from './pages/user-app/user-app-data/user-app-data.component';
 export const firebaseConfig = {
   apiKey: "AIzaSyBu4vtqAO8iH8Bs-Jeak50DfeqT5NgkH8E",
@@ -46,7 +46,8 @@ export const firebaseConfig = {
     AngularFireAuthModule,
     AngularFireDatabaseModule,
     AppRoutingModule,
-    AppMaterialModule
+    AppMaterialModule,
+    UserAppModule
   ],
   declarations: [AppComponent,
     HeroDetailComponent,
