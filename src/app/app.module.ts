@@ -46,8 +46,7 @@ export const firebaseConfig = {
     UserInfoModalComponent,
     SelectBox,
     ShellComponent,
-    HeaderComponent,
-    SidebarComponent],
+    ],
     imports: [
       BrowserModule,
       BrowserAnimationsModule,
@@ -56,7 +55,7 @@ export const firebaseConfig = {
       AngularFireAuthModule,
       AngularFireDatabaseModule,
       AppRoutingModule,
-      SharedModule,
+      SharedModule
     ],
   providers: [DataService, FirebaseLoginService, LoginRouteGuard],
   bootstrap: [AppComponent],

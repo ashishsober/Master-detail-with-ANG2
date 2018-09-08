@@ -8,15 +8,16 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { MatIconRegistry } from '@angular/material';
+import { SidebarComponent } from './@themes/components/sidebar/sidebar.component';
 @NgModule({
     imports: [
         CommonModule,
         FlexLayoutModule,
         HttpModule,
-        AppMaterialModule
+        AppMaterialModule,
         ],
-    declarations: [],
+    declarations: [HeaderComponent,SidebarComponent],
     providers: [],//services to inject
-    exports: [AppMaterialModule]
+    exports: [AppMaterialModule,HeaderComponent,SidebarComponent]
  })
  export class SharedModule {  }
