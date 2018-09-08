@@ -5,14 +5,12 @@ import { UserAppDataComponent } from './user-app-data/user-app-data.component';
 
 const userAppRoutes: Routes = [
   {
-    path: 'userapp', component: UserAppComponent,
+    path: '', component: UserAppComponent,
     children: [
-      { path: '', component: UserAppDataComponent }
-      //{ path: 'detail/:id', component: HeroDetailComponent },
+      { path: 'UserAppDataComponent', component: UserAppDataComponent },
+      { path: '', redirectTo: 'UserAppDataComponent',pathMatch: 'full' }
     ]
   }
-  //{ path: 'auth/login', component: LoginComponent },
- 
 ];
 
 @NgModule({

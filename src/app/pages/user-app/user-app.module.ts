@@ -1,4 +1,3 @@
-import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
@@ -10,11 +9,10 @@ import { UserAppDataComponent } from './user-app-data/user-app-data.component';
 
 @NgModule({
   imports: [
-    BrowserModule,
     CommonModule,
     UserAppRoutingModule,
   ],
-  declarations: [UserAppComponent
+  declarations: [UserAppComponent,UserAppDataComponent
   ]
 })
 export class UserAppModule { }
