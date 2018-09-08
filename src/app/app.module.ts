@@ -25,7 +25,7 @@ import { SelectBox } from './@themes/components/select-box/select-box.component'
 import { ShellComponent } from './pages/components/shell-component/shell.component';
 import { HeaderComponent } from './@themes/components/header/header.component';
 import { SidebarComponent } from './@themes/components/sidebar/sidebar.component';
-
+import { SharedModule } from './shared.module';
 export const firebaseConfig = {
   apiKey: "AIzaSyBu4vtqAO8iH8Bs-Jeak50DfeqT5NgkH8E",
   authDomain: "angular-project-5cb99.firebaseapp.com",
@@ -51,14 +51,13 @@ export const firebaseConfig = {
     imports: [
       BrowserModule,
       BrowserAnimationsModule,
-      FormsModule,
-      HttpModule,
-      FlexLayoutModule,
+      FormsModule,/* no need to inject in shared module */
       AngularFireModule.initializeApp(firebaseConfig),
       AngularFireAuthModule,
       AngularFireDatabaseModule,
-      AppMaterialModule,
-      AppRoutingModule
+      AppMaterialModule, /* no need to inject in shared module */
+      AppRoutingModule,
+      SharedModule,
     ],
   providers: [DataService, FirebaseLoginService, LoginRouteGuard],
   bootstrap: [AppComponent],
