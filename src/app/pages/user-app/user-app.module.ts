@@ -5,8 +5,8 @@ import { UserAppComponent } from './user-app.component';
 import { UserAppRoutingModule } from './user-app-routing.module';
 import { UserAppDataComponent } from './user-app-data/user-app-data.component';
 import { SharedModule } from '../../shared.module';
-
-@NgModule({
+import { ProfileComponent } from './profiles/profile.component'
+;@NgModule({
   imports: [
     CommonModule,
     FormsModule,

@@ -57,8 +57,7 @@ export const firebaseConfig = {
     AlertDialogComponent,
     UserInfoModalComponent,
     SelectBox,
-    ShellComponent,
-    SidebarComponent
+    ShellComponent
   ],
   providers: [DataService, FirebaseLoginService, LoginRouteGuard],
   bootstrap: [AppComponent],
