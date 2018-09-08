@@ -8,7 +8,7 @@ const userAppRoutes: Routes = [
     path: '', component: UserAppComponent,
     children: [
       { path: 'UserAppDataComponent', component: UserAppDataComponent },
-      { path: '', redirectTo: 'UserAppDataComponent',pathMatch: 'full' }
+      { path: '', redirectTo: 'UserAppDataComponent', pathMatch: 'full' }
     ]
   }
 ];

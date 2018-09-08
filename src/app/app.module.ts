@@ -14,7 +14,6 @@ import { TodoComponent } from './pages/components/todo-firebase-component/todo.c
 import { DataService } from './core/data.service';
 import { FirebaseLoginService } from './core/firebase.login.service';
 import { AppRoutingModule } from './app-routing.module';
-import { AppMaterialModule } from './app.material.module';
 import { LoginRouteGuard } from './core/login-route-guard';
 import { AlertDialogComponent } from './modals/dialog/alert-dialog.component';
 import { UserInfoModalComponent } from './modals/user-info-modal/user-info-modal.component';
@@ -26,6 +25,7 @@ import { ShellComponent } from './pages/components/shell-component/shell.compone
 import { HeaderComponent } from './@themes/components/header/header.component';
 import { SidebarComponent } from './@themes/components/sidebar/sidebar.component';
 import { SharedModule } from './shared.module';
+
 export const firebaseConfig = {
   apiKey: "AIzaSyBu4vtqAO8iH8Bs-Jeak50DfeqT5NgkH8E",
   authDomain: "angular-project-5cb99.firebaseapp.com",
@@ -35,7 +35,19 @@ export const firebaseConfig = {
 };
 
 @NgModule({
-  declarations: [AppComponent,
+  imports: [
+    BrowserModule,
+    BrowserAnimationsModule,
+    FormsModule,/* no need to inject in shared module */
+    AngularFireModule.initializeApp(firebaseConfig),
+    AngularFireAuthModule,
+    AngularFireDatabaseModule,
+    SharedModule,
+    AppRoutingModule,
+  ],
+  exports: [],
+  declarations: [
+    AppComponent,
     HeroDetailComponent,
     HeroesComponent,
     DashboardComponent,
@@ -48,17 +60,6 @@ export const firebaseConfig = {
     ShellComponent,
     SidebarComponent
   ],
-  imports: [
-    BrowserModule,
-    BrowserAnimationsModule,
-    FormsModule,/* no need to inject in shared module */
-    AngularFireModule.initializeApp(firebaseConfig),
-    AngularFireAuthModule,
-    AngularFireDatabaseModule,
-    SharedModule,
-    AppRoutingModule,
-  ],
-  exports: [],
   providers: [DataService, FirebaseLoginService, LoginRouteGuard],
   bootstrap: [AppComponent],
   entryComponents: [AlertDialogComponent, UserInfoModalComponent]

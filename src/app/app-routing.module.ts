@@ -9,7 +9,7 @@ import { TodoComponent } from './pages/components/todo-firebase-component/todo.c
 import { LoginRouteGuard } from './core/login-route-guard';
 import { ShellComponent } from './pages/components/shell-component/shell.component';
 const routes: Routes = [
-  
+
   {
     path: '', component: ShellComponent,
     children: [
@@ -21,13 +21,12 @@ const routes: Routes = [
       { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
     ]
   },
-  { path: 'userapp', loadChildren:'app/pages/user-app/user-app.module#UserAppModule'},
+  { path: 'userapp', loadChildren: 'app/pages/user-app/user-app.module#UserAppModule' },
   { path: 'auth/login', component: LoginComponent },
-  //{ path: 'userapp', component: UserAppDataComponent },
-  { path: '',   redirectTo: '', pathMatch: 'full' },
-  { path: '**', redirectTo: '' ,pathMatch: 'full'}
- 
-  
+  { path: '', redirectTo: '', pathMatch: 'full' },
+  { path: '**', redirectTo: '', pathMatch: 'full' }
+
+
 ];
 // const config: ExtraOptions = {
 //   useHash: true,
