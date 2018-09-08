@@ -16,7 +16,8 @@ import { ProfileComponent } from './profiles/profile.component'
   exports: [],
   declarations: [
     UserAppComponent,
-    UserAppDataComponent
+    UserAppDataComponent,
+    ProfileComponent
   ]
 })
 export class UserAppModule { }

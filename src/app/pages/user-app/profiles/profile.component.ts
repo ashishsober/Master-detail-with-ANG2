@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 
 @Component({
   moduleId: 'module.id',
-  selector: 'profile-root',
+  selector: 'user-profile-root',
   templateUrl: './profile.component.html'
 })
 export class ProfileComponent {

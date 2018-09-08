@@ -6,10 +6,15 @@ import { ProfileComponent } from './profiles/profile.component';
 
 const userAppRoutes: Routes = [
   {
-    path: '', component: UserAppComponent,
+    path: '', component: UserAppComponent,/** router outlet is here */
     children: [
-      { path: 'UserAppDataComponent', component: UserAppDataComponent },
-      // { path: 'profile', component: ProfileComponent },
+      {
+        path: 'UserAppDataComponent', component: UserAppDataComponent,/** router outlet is here */
+        children: [
+          { path: 'profile', component: ProfileComponent },
+          { path: '', redirectTo: 'profile', pathMatch: 'full' },
+        ]
+      },
       { path: '', redirectTo: 'UserAppDataComponent', pathMatch: 'full' }
     ]
   }
