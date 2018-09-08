@@ -55,7 +55,6 @@ export const firebaseConfig = {
       AngularFireModule.initializeApp(firebaseConfig),
       AngularFireAuthModule,
       AngularFireDatabaseModule,
-      AppMaterialModule, /* no need to inject in shared module */
       AppRoutingModule,
       SharedModule,
     ],
