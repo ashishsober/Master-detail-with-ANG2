@@ -88,3 +88,4 @@ if you do the refactoring then we can apply the forRoot() method as i have done.
     $ npm-check-updates -u  u will come to know which are the modules or library got updated
     $ npm install  or ncu -a to update the package.json
     $ `npm i webpack --save-dev`
+    $ do not update the flexlayout it should `be beta.16`
