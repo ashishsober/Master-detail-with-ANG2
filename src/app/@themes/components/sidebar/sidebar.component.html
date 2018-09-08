@@ -1,27 +1,9 @@
 <div class="side-menu">
-    <nav>
+    <nav *ngFor = "let item of sidebarList">
       <ul>
-        <a routerLink="/dashboard" routerLinkActive="active">
-          <i class="fa fa-globe"></i>
-          <span style="padding-left:12px;">Dashboard</span>
-        </a>
-      </ul>
-      <ul>
-        <a routerLink="/heroes" routerLinkActive="active">
-          <i class="fa fa-th-list"></i>
-          <span style="padding-left:12px;">Heroes</span>
-        </a>
-      </ul>
-      <ul>
-        <a routerLink="/basic-information" routerLinkActive="active">
-          <i class="fa fa-forumbee"></i>
-          <span style="padding-left:12px;">Form</span>
-        </a>
-      </ul>
-      <ul>
-        <a routerLink="/todoFirebase" routerLinkActive="active">
-          <i class="fa fa-envelope"></i>
-          <span style="padding-left:12px;">Messenger</span>
+        <a [routerLink]="['/' + item.link]" routerLinkActive="active">
+          <i class="{{item.icon}}"></i>
+          <span style="padding-left:12px;">{{ item.label }}</span>
         </a>
       </ul>
     </nav>

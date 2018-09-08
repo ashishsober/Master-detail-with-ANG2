@@ -16,8 +16,8 @@ import { SidebarComponent } from './@themes/components/sidebar/sidebar.component
         HttpModule,
         AppMaterialModule,
         ],
-    declarations: [HeaderComponent,SidebarComponent],
+    declarations: [HeaderComponent],
     providers: [],//services to inject
-    exports: [AppMaterialModule,HeaderComponent,SidebarComponent]
+    exports: [AppMaterialModule,HeaderComponent]
  })
  export class SharedModule {  }

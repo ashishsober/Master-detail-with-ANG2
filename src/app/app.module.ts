@@ -46,17 +46,19 @@ export const firebaseConfig = {
     UserInfoModalComponent,
     SelectBox,
     ShellComponent,
-    ],
-    imports: [
-      BrowserModule,
-      BrowserAnimationsModule,
-      FormsModule,/* no need to inject in shared module */
-      AngularFireModule.initializeApp(firebaseConfig),
-      AngularFireAuthModule,
-      AngularFireDatabaseModule,
-      AppRoutingModule,
-      SharedModule
-    ],
+    SidebarComponent
+  ],
+  imports: [
+    BrowserModule,
+    BrowserAnimationsModule,
+    FormsModule,/* no need to inject in shared module */
+    AngularFireModule.initializeApp(firebaseConfig),
+    AngularFireAuthModule,
+    AngularFireDatabaseModule,
+    SharedModule,
+    AppRoutingModule,
+  ],
+  exports: [],
   providers: [DataService, FirebaseLoginService, LoginRouteGuard],
   bootstrap: [AppComponent],
   entryComponents: [AlertDialogComponent, UserInfoModalComponent]
