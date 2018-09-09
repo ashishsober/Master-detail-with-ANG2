@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { UserAppComponent } from './user-app.component';
 import { UserAppDataComponent } from './user-app-data/user-app-data.component';
 import { ProfileComponent } from './profiles/profile.component';
+import { LocationComponent } from './location-component/location.component';
 
 const userAppRoutes: Routes = [
   {
@@ -12,6 +13,7 @@ const userAppRoutes: Routes = [
         path: 'UserAppDataComponent', component: UserAppDataComponent,/** router outlet is here */
         children: [
           { path: 'profile', component: ProfileComponent },
+          { path: 'location', component: LocationComponent },
           { path: '', redirectTo: 'profile', pathMatch: 'full' },
         ]
       },

@@ -6,7 +6,8 @@ import { UserAppRoutingModule } from './user-app-routing.module';
 import { UserAppDataComponent } from './user-app-data/user-app-data.component';
 import { SharedModule } from '../../shared.module';
 import { ProfileComponent } from './profiles/profile.component'
-;@NgModule({
+import { LocationComponent } from './location-component/location.component';
+@NgModule({
   imports: [
     CommonModule,
     FormsModule,
@@ -17,7 +18,8 @@ import { ProfileComponent } from './profiles/profile.component'
   declarations: [
     UserAppComponent,
     UserAppDataComponent,
-    ProfileComponent
+    ProfileComponent,
+    LocationComponent
   ]
 })
 export class UserAppModule { }
