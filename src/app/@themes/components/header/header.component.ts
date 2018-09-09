@@ -19,11 +19,10 @@ export class HeaderComponent implements OnInit {
   myPhotoUrl;
   fileNameDialogRef: MatDialogRef<UserInfoModalComponent>;
   constructor(private ss: DataService, private router: Router,
-    private dialog: MatDialog, private renderer: Renderer2,
-    private el: ElementRef) {
+    private dialog: MatDialog) {
     let uid = sessionStorage.getItem('user_uid');
     if (uid !== null) {
-      this.router.navigate(['shell']);
+      //this.router.navigate(['shell']);
       this.viewLogin = true;
       this.viewLogout = true;
       this.myPhotoUrl = sessionStorage.getItem('user_photoUrl');
