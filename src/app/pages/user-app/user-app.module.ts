@@ -12,6 +12,7 @@ import { BoardMessageComponent } from './location-component/board-message/board-
 import { GeneralComponent } from './location-component/general-component/general.component';
 import { PotViewComponent } from './location-component/pot-view-component/pot-view.component';
 import { PlayerComponent } from './location-component/player-component/player.component'
+import { HandComponent } from './location-component/@core/hand.component';
 @NgModule({
   imports: [
     CommonModule,
@@ -25,11 +26,13 @@ import { PlayerComponent } from './location-component/player-component/player.co
     UserAppDataComponent,
     ProfileComponent,
     LocationComponent,
+
     BoardComponent,
     BoardMessageComponent,
     GeneralComponent,
     PotViewComponent,
-    PlayerComponent
+    PlayerComponent,
+    HandComponent
   ]
 })
 export class UserAppModule { }
