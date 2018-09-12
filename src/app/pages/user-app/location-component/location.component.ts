@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HandService } from './@core/hand.service';
 import { BotService } from './@core/bot.service';
-import { HoldemService } from './@core/holdem.service';
+
 @Component({
   moduleId: 'module.id',
   selector: 'user-location-root',
@@ -12,8 +12,7 @@ import { HoldemService } from './@core/holdem.service';
 //holdem.js
 export class LocationComponent implements OnInit{
 
-constructor(private holdemService: HoldemService,
-  private botService: BotService){}
+constructor(private botService: BotService){}
 BG_COLOR = "006600";
   ngOnInit(){
     this.preload_base_pix();//doing no function call

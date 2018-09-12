@@ -6,7 +6,7 @@ export class BotService {
     
 }
 // export class BotService {
-//     constructor(private holdemService :HoldemService,
+//     constructor(
 //         private handService:HandService ) { }
 
 //     /*
