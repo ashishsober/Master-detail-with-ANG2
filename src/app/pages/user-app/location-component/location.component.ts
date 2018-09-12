@@ -233,10 +233,10 @@ deal_and_write_b() {
     players[4].cardb="s11";
     //*/
 
-    setTimeout(this.write_player(j,0,0,1), pause_time * this.speed);
+    setTimeout(() => this.write_player(j,0,0,1), pause_time * this.speed);
     pause_time += 550;
   }
-  setTimeout("main()", pause_time * this.speed);
+  setTimeout(() => this.main(), pause_time * this.speed);
 }
 
 deal_flop() {
@@ -253,7 +253,7 @@ deal_flop() {
   setTimeout("this.write_board('0')", (pause_time + 100) * this.speed);
   setTimeout("this.write_board('1')", (pause_time + 250) * this.speed);
   setTimeout("this.write_board('2')", (pause_time + 400) * this.speed);
-  if (this.get_num_betting() > 1) setTimeout("main()", (pause_time + 1000) * this.speed);
+  if (this.get_num_betting() > 1) setTimeout(() => this.main(), (pause_time + 1000) * this.speed);
   else setTimeout("ready_for_next_card()", 999 * this.speed);
 }
 
@@ -265,9 +265,9 @@ deal_fourth() {
 
   setTimeout("this.write_board('3')", (pause_time + 100) * this.speed);
   if (this.get_num_betting() > 1)
-    setTimeout("this.main()", 2000 * this.speed);
+    setTimeout(() => this.main(), 2000 * this.speed);
   else
-    setTimeout("this.ready_for_next_card()", 999 * this.speed);
+    setTimeout(this.ready_for_next_card(), 999 * this.speed);
 }
 
 deal_fifth() {
@@ -278,7 +278,7 @@ deal_fifth() {
 
   setTimeout("write_board('4')", (pause_time + 100) * this.speed);
   if (this.get_num_betting() > 1)
-    setTimeout("main()", 2000 * this.speed);
+    setTimeout(() => this.main(), 2000 * this.speed);
   else
     setTimeout("ready_for_next_card()", 999 * this.speed);
 }
@@ -813,10 +813,10 @@ set_deck(v) {
 
 get_base_deck() {
   var n = Math.floor(Math.random() * 4);
-  if (n < 1) return ['d.gif'];
-  if (n < 2) return ['c.gif'];
-  if (n < 3) return ['s.gif'];
-  return ['h.gif'];
+  if (n < 1) return ['assets/game-images/d.gif'];
+  if (n < 2) return ['assets/game-images/c.gif'];
+  if (n < 3) return ['assets/game-images/s.gif'];
+  return ['assets/game-images/h.gif'];
 }
 
 set_speed(s, i) {
