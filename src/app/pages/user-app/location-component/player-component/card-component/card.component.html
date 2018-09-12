@@ -1,23 +1,22 @@
 <td bgcolor="FFFFFF" background="assets/game-images/cardback.gif" style="width:62px;height: 80px;font-size:40px">
-    <span [ngSwitch]="card.substring(1)">
-      <span *ngSwitchCase="11">J</span>
-      <span *ngSwitchCase="12">Q</span>
-      <span *ngSwitchCase="13">K</span>
-      <span *ngSwitchCase="14">A</span>
-      <span *ngSwitchDefault>{{card.substring(1)}}</span>
-    </span>
-    <a href='http://google.com/' target=_blank>
-      <span *ngIf="card.substring(0,1) === 'd'">
-        <img src="assets/game-images/d.gif" border=0 title=d alt=d>
-      </span>
-      <span *ngIf="card.substring(0,1) === 'c'">
-        <img src="assets/game-images/c.gif" border=0 title=c alt=c>
-      </span>
-      <span *ngIf="card.substring(0,1) === 'h'">
-        <img src="assets/game-images/h.gif" border=0 title=c alt=c>
-      </span>
-      <span *ngIf="card.substring(0,1) === 's'">
-        <img src="assets/game-images/s.gif" border=0 title=c alt=c>
-      </span>
-    </a>
-  </td>
+  <span [ngSwitch]="card.substring(1)">
+    <span *ngSwitchCase="11">J</span>
+    <span *ngSwitchCase="12">Q</span>
+    <span *ngSwitchCase="13">K</span>
+    <span *ngSwitchCase="14">A</span>
+    <span *ngSwitchDefault>{{card.substring(1)}}</span>
+  </span>
+  
+  <span *ngIf="card.substring(0,1) === 'd'">
+    <img src="assets/game-images/d.gif" border=0 title=d alt=d>
+  </span>
+  <span *ngIf="card.substring(0,1) === 'c'">
+    <img src="assets/game-images/c.gif" border=0 title=c alt=c>
+  </span>
+  <span *ngIf="card.substring(0,1) === 'h'">
+    <img src="assets/game-images/h.gif" border=0 title=c alt=c>
+  </span>
+  <span *ngIf="card.substring(0,1) === 's'">
+    <img src="assets/game-images/s.gif" border=0 title=c alt=c>
+  </span>
+</td>
