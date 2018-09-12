@@ -11,7 +11,7 @@ export class SidebarComponent implements OnInit{
   sidebarList;
   constructor(private route:Router){}
   ngOnInit(){
-    if(this.route.url === '/userapp/UserAppDataComponent/profile'){
+    if(this.route.url === '/userapp/UserAppDataComponent/profile' || this.route.url === '/userapp/UserAppDataComponent/location'){
       this.sidebarList = [
         {label:'Profiles',link:'./profile',icon:'fa fa-globe'},
         {label:'Location',link:'./location',icon:'fa fa-th-list'}
