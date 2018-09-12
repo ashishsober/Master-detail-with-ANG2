@@ -1,1 +1,15 @@
-<h2>location</h2>
+<!-- <ngx-setting-root></ngx-setting-root> -->
+<!-- <ngx-general></ngx-general> -->
+<div class="oval">
+    <div *ngFor="let player of players" style="display:inline-block;">
+        
+           <ngx-player 
+            [name]="player.name"
+            [bankroll]="player.bankroll"
+            [carda]="player.carda"
+            [cardb]="player.cardb"
+            [subtotal_bet]= "player.subtotal_bet">
+            </ngx-player>
+            
+    </div>
+</div>

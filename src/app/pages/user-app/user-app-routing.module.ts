@@ -17,7 +17,7 @@ const userAppRoutes: Routes = [
         path: 'UserAppDataComponent', component: UserAppDataComponent,/** router outlet is here */
         children: [
           { path: 'profile', component: ProfileComponent },
-          { path: 'location', component: PlayerComponent },
+          { path: 'location', component: LocationComponent },
           { path: '', redirectTo: 'profile', pathMatch: 'full' },
           { path: '**', redirectTo: 'profile', pathMatch: 'full' },
         ]

@@ -1,26 +1,68 @@
-<div bgcolor=006600 topmargin=4 bottommargin=0>
-  <pre>
-        <b>
-           <font size=+2>
-           <font color=FFFFFF>@ You</font></font>
-        </b> [500]<font size=-1 face=times color=006600>CHEAT! dQ c7</font>
-    <table bgcolor=006600 height=87 width=130>
-        <tr align=center>
-            <td bgcolor=FFFFFF width=50%>
-             <font size=+2 color=FF0000><b>Q</b></font> 
-                <a href='http://google.com/' target=_blank>
-                    <img src="assets/game-images/d.gif" border=0 title=d alt=d>
-                </a>
-            </td>
-            <td></td>
-            <td  bgcolor=FFFFFF width=50%>
-                <font size=+2 color=000000><b>7</b></font> 
-                <a href='http://google.com/' target=_blank>
-                    <img src="assets/game-images/c.gif" border=0 title=c alt=c>
-                </a>
-            </td>
+<div class="col" style="margin: 30px;">
+  <div class="row">
+    <div bgcolor="006600" style="display:inline-block;">
+      <b>
+        <font color="FFFFFF">@ {{ name }} ----[{{bankroll}}]</font>
+      </b>
+      <div>
+        <font face=times color="FFFFFF">
+          CHEAT! {{ carda }} {{ cardb }}
+        </font>
+      </div>
+
+
+      <table bgcolor="006600">
+        <tr style="font-size:40px;">
+          <td bgcolor="FFFFFF">
+            <span [ngSwitch]="carda.substring(1)">
+              <span *ngSwitchCase="11">J</span>
+              <span *ngSwitchCase="12">Q</span>
+              <span *ngSwitchCase="13">K</span>
+              <span *ngSwitchCase="14">A</span>
+              <span *ngSwitchDefault>{{carda.substring(1)}}</span>
+            </span>
+            <a href='http://google.com/' target=_blank>
+              <span *ngIf="carda.substring(0,1) === 'd'">
+                <img src="assets/game-images/d.gif" border=0 title=d alt=d>
+              </span>
+              <span *ngIf="carda.substring(0,1) === 'c'">
+                <img src="assets/game-images/c.gif" border=0 title=c alt=c>
+              </span>
+              <span *ngIf="carda.substring(0,1) === 'h'">
+                <img src="assets/game-images/h.gif" border=0 title=c alt=c>
+              </span>
+              <span *ngIf="carda.substring(0,1) === 's'">
+                <img src="assets/game-images/s.gif" border=0 title=c alt=c>
+              </span>
+            </a>
+          </td>
+          <td></td>
+          <td bgcolor="FFFFFF">
+            <span [ngSwitch]="cardb.substring(1)">
+              <span *ngSwitchCase="11">J</span>
+              <span *ngSwitchCase="12">Q</span>
+              <span *ngSwitchCase="13">K</span>
+              <span *ngSwitchCase="14">A</span>
+              <span *ngSwitchDefault>{{cardb.substring(1)}}</span>
+            </span>
+            <a href='http://google.com/' target=_blank>
+              <span *ngIf="cardb.substring(0,1) === 'd'">
+                <img src="assets/game-images/d.gif" border=0 title=d alt=d>
+              </span>
+              <span *ngIf="cardb.substring(0,1) === 'c'">
+                <img src="assets/game-images/c.gif" border=0 title=c alt=c>
+              </span>
+              <span *ngIf="cardb.substring(0,1) === 'h'">
+                <img src="assets/game-images/h.gif" border=0 title=c alt=c>
+              </span>
+              <span *ngIf="cardb.substring(0,1) === 's'">
+                <img src="assets/game-images/s.gif" border=0 title=c alt=c>
+              </span>
+            </a>
+          </td>
         </tr>
-    </table>
-    <small></small>
-</pre>
+      </table>
+      <font color="FFFFFF">{{ subtotal_bet }}</font>
+    </div>
+  </div>
 </div>

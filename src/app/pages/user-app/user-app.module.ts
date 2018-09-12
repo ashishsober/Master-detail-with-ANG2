@@ -11,8 +11,12 @@ import { BoardComponent } from './location-component/board-component/board.compo
 import { BoardMessageComponent } from './location-component/board-message/board-message.component';
 import { GeneralComponent } from './location-component/general-component/general.component';
 import { PotViewComponent } from './location-component/pot-view-component/pot-view.component';
-import { PlayerComponent } from './location-component/player-component/player.component'
-import { HandComponent } from './location-component/@core/hand.component';
+import { PlayerComponent } from './location-component/player-component/player.component';
+import { HoldemService } from './location-component/@core/holdem.service';
+import { HandService } from './location-component/@core/hand.service';
+import { BotService } from './location-component/@core/bot.service';
+import { SettingComponent } from './location-component/setting-component/setting.component';
+
 @NgModule({
   imports: [
     CommonModule,
@@ -32,7 +36,8 @@ import { HandComponent } from './location-component/@core/hand.component';
     GeneralComponent,
     PotViewComponent,
     PlayerComponent,
-    HandComponent
-  ]
+    SettingComponent
+  ],
+  providers:[HoldemService,BotService,HandService]
 })
 export class UserAppModule { }

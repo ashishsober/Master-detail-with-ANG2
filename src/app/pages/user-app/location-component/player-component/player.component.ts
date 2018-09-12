@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   moduleId: 'module.id',
@@ -7,4 +7,9 @@ import { Component } from '@angular/core';
 })
 export class PlayerComponent {
   constructor(){}
+  @Input() name:string;
+  @Input() bankroll;
+  @Input() carda;
+  @Input() cardb;
+  @Input() subtotal_bet;
 }
