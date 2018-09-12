@@ -17,5 +17,3 @@ export class Player {
         this.subtotal_bet = subtotal_bet;
     }
 }
-
-//let ashish =new this.player("Stan Deman", 0, "", "", "", 0, 0);

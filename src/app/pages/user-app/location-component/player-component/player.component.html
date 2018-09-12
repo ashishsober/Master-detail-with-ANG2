@@ -9,8 +9,8 @@
           CHEAT! {{ carda }} {{ cardb }}
         </font>
       </div>
-      <table bgcolor="006600">
-        <tr style="font-size:40px;">
+      <table *ngIf="carda || cardb">
+        <tr>
           <ngx-card [card]="carda"></ngx-card>
           <td></td>
           <ngx-card [card]="cardb"></ngx-card>
