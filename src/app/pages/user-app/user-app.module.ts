@@ -15,6 +15,7 @@ import { PlayerComponent } from './location-component/player-component/player.co
 import { HandService } from './location-component/@core/hand.service';
 import { BotService } from './location-component/@core/bot.service';
 import { SettingComponent } from './location-component/setting-component/setting.component';
+import { CardComponent } from './location-component/player-component/card-component/card.component';
 
 @NgModule({
   imports: [
@@ -35,7 +36,8 @@ import { SettingComponent } from './location-component/setting-component/setting
     GeneralComponent,
     PotViewComponent,
     PlayerComponent,
-    SettingComponent
+    SettingComponent,
+    CardComponent
   ],
   providers:[BotService,HandService]
 })

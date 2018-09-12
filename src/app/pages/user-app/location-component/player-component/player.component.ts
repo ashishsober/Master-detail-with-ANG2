@@ -6,10 +6,13 @@ import { Component, Input } from '@angular/core';
   templateUrl: './player.component.html'
 })
 export class PlayerComponent {
-  constructor(){}
+  
   @Input() name:string;
   @Input() bankroll;
   @Input() carda;
   @Input() cardb;
   @Input() subtotal_bet;
+  constructor(){
+    console.log(this.carda);
+  }
 }
