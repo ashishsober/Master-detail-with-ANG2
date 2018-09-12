@@ -9,11 +9,11 @@
           CHEAT! {{ carda }} {{ cardb }}
         </font>
       </div>
-      <table *ngIf="carda || cardb">
+      <table>
         <tr>
-          <ngx-card [card]="carda"></ngx-card>
+          <span *ngIf="carda"><ngx-card [card]="carda"></ngx-card></span>
           <td></td>
-          <ngx-card [card]="cardb"></ngx-card>
+          <span *ngIf="cardb"><ngx-card [card]="cardb"></ngx-card></span>
         </tr>
       </table>
       <font color="FFFFFF">{{ subtotal_bet }}</font>
