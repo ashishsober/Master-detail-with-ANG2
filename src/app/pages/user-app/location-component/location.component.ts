@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HandService } from './@core/hand.service';
 import { BotService } from './@core/bot.service';
-import { Player } from './@core/player-data.service';
+import { Player, PlayerDataService } from './@core/player-data.service';
 @Component({
   moduleId: 'module.id',
   selector: 'user-location-root',
@@ -41,7 +41,7 @@ export class LocationComponent implements OnInit {
   total_bet;
   subtotal_bet;
 
-  constructor(private botService: BotService) { }
+  constructor(private botService: BotService,private playerDataService:PlayerDataService) { }
 
   ngOnInit() {
     this.preload_base_pix();//doing no function call
@@ -65,10 +65,8 @@ export class LocationComponent implements OnInit {
       this.cards[j++] = "c" + i;
       this.cards[j++] = "s" + i;
     }
-
   }
 
-  ashish = new Player("Stan Deman", 0, "", "", "", 0, 0);
   my_players = [
     new Player("Stan Deman", 0, "", "", "", 0, 0),
     new Player("Karth Kerai", 0, "", "", "", 0, 0),
@@ -124,7 +122,7 @@ export class LocationComponent implements OnInit {
     this.current_min_raise = 0;
     this.collect_cards();
     //write_ad();
-    this.button_index = this.get_next_player_position(this.button_index, 1);
+    this.button_index = this.playerDataService.get_next_player_position(this.button_index, 1,this.players);
 
     for (var i = 0; i < this.players.length; i++) this.write_player(i, 0, 0, 1);
     for (var i = 0; i < this.board.length; i++) this.write_frame("board" + i, "<html><body bgcolor=" + this.BG_COLOR + "></body></html>", "");
@@ -173,58 +171,20 @@ export class LocationComponent implements OnInit {
       this.SMALL_BLIND = 25;
       this.BIG_BLIND = 50;
     }
-    var small_blind = this.get_next_player_position(this.button_index, 1);
+    var small_blind = this.playerDataService.get_next_player_position(this.button_index, 1,this.players);
     this.bet(small_blind, this.SMALL_BLIND);
     this.write_player(small_blind, 0, 0, 0);
-    var big_blind = this.get_next_player_position(small_blind, 1);
+    var big_blind = this.playerDataService.get_next_player_position(small_blind, 1,this.players);
     this.bet(big_blind, this.BIG_BLIND);
     this.write_player(big_blind, 0, 0, 0);
     this.players[big_blind].status = "OPTION";
-    this.current_bettor_index = this.get_next_player_position(big_blind, 1);
-    this.deal_and_write_a();
+    this.current_bettor_index = this.playerDataService.get_next_player_position(big_blind, 1,this.players);
+    this.playerDataService.deal_and_write_a(this.button_index,this.players,this.deck_index,this.cards,this.speed);
   }
 
-  deal_and_write_a() {
-    var pause_time = 0;
-    for (var i = 0; i < this.players.length; i++) {
-      var j = this.get_next_player_position(this.button_index, 1 + i);
-      if (this.players[j].carda) break;
-      this.players[j].carda = this.cards[this.deck_index++];
+  
 
-      /*
-      players[0].carda="d6";
-      players[1].carda="h7";
-      players[2].carda="s14";
-      players[3].carda="d7";
-      players[4].carda="h9";
-      //*/
-
-      setTimeout(() => this.write_player(j, 0, 0, 1), pause_time * this.speed);
-      pause_time += 550;
-    }
-    setTimeout(() => this.deal_and_write_b(), pause_time * this.speed);
-  }
-
-  deal_and_write_b() {
-    var pause_time = 0;
-    for (var i = 0; i < this.players.length; i++) {
-      var j = this.get_next_player_position(this.button_index, 1 + i);
-      if (this.players[j].cardb) break;
-      this.players[j].cardb = this.cards[this.deck_index++];
-
-      /*
-      players[0].cardb="h11";
-      players[1].cardb="c2";
-      players[2].cardb="c14";
-      players[3].cardb="d12";
-      players[4].cardb="s11";
-      //*/
-
-      setTimeout(() => this.write_player(j, 0, 0, 1), pause_time * this.speed);
-      pause_time += 550;
-    }
-    setTimeout(() => this.main(), pause_time * this.speed);
-  }
+  
 
   deal_flop() {
     var pause_time = 777;
@@ -352,129 +312,129 @@ export class LocationComponent implements OnInit {
       }
     }
     if (increment_bettor_index)
-      this.current_bettor_index = this.get_next_player_position(this.current_bettor_index, 1);
+      this.current_bettor_index = this.playerDataService.get_next_player_position(this.current_bettor_index, 1, this.players);
     if (can_break)
       setTimeout("ready_for_next_card()", 999 * this.speed);
     else this.main();
   }
 
   handle_end_of_round() {
-    var candidates = new Array(this.players.length);
-    var allocations = new Array(this.players.length);
-    var my_total_bets_per_player = new Array(this.players.length);
-    for (var i = 0; i < candidates.length; i++) {
-      allocations[i] = 0;
-      my_total_bets_per_player[i] = this.players[i].total_bet;
-      if (this.players[i].status != "FOLD" && this.players[i].status != "BUST") candidates[i] = this.players[i];
-    }
+    // var candidates = new Array(this.players.length);
+    // var allocations = new Array(this.players.length);
+    // var my_total_bets_per_player = new Array(this.players.length);
+    // for (var i = 0; i < candidates.length; i++) {
+    //   allocations[i] = 0;
+    //   my_total_bets_per_player[i] = this.players[i].total_bet;
+    //   if (this.players[i].status != "FOLD" && this.players[i].status != "BUST") candidates[i] = this.players[i];
+    // }
 
-    var my_total_pot_size = this.get_pot_size();
-    var my_best_hand_name = "";
-    var best_hand_players;
-    while (1) {
-      var winners = this.handComponent.get_winners(candidates);
-      if (!my_best_hand_name) {
-        my_best_hand_name = this.handComponent.get_last_winning_hand_name();
-        best_hand_players = winners;
+    // var my_total_pot_size = this.get_pot_size();
+    // var my_best_hand_name = "";
+    // var best_hand_players;
+    // while (1) {
+    //   var winners = this.handComponent.get_winners(candidates);
+    //   if (!my_best_hand_name) {
+    //     my_best_hand_name = this.handComponent.get_last_winning_hand_name();
+    //     best_hand_players = winners;
 
-        if (winners[0]) this.HUMAN_WINS_AGAIN++;
-        else this.HUMAN_WINS_AGAIN = 0;
+    //     if (winners[0]) this.HUMAN_WINS_AGAIN++;
+    //     else this.HUMAN_WINS_AGAIN = 0;
 
-      }
-      if (!winners) break;
+    //   }
+    //   if (!winners) break;
 
-      var lowest_in_for = my_total_pot_size * 2;
-      var num_winners = 0;
-      for (var i = 0; i < winners.length; i++) {
-        if (!winners[i]) continue;
-        num_winners++;
-        if (my_total_bets_per_player[i] < lowest_in_for) lowest_in_for = my_total_bets_per_player[i];
-      }
+    //   var lowest_in_for = my_total_pot_size * 2;
+    //   var num_winners = 0;
+    //   for (var i = 0; i < winners.length; i++) {
+    //     if (!winners[i]) continue;
+    //     num_winners++;
+    //     if (my_total_bets_per_player[i] < lowest_in_for) lowest_in_for = my_total_bets_per_player[i];
+    //   }
 
-      var my_pot = 0;
-      for (var i = 0; i < this.players.length; i++) {
-        if (lowest_in_for >= my_total_bets_per_player[i]) {
-          my_pot += my_total_bets_per_player[i];
-          my_total_bets_per_player[i] = 0;
-        } else {
-          my_pot += lowest_in_for;
-          my_total_bets_per_player[i] -= lowest_in_for;
-        }
-      }
+    //   var my_pot = 0;
+    //   for (var i = 0; i < this.players.length; i++) {
+    //     if (lowest_in_for >= my_total_bets_per_player[i]) {
+    //       my_pot += my_total_bets_per_player[i];
+    //       my_total_bets_per_player[i] = 0;
+    //     } else {
+    //       my_pot += lowest_in_for;
+    //       my_total_bets_per_player[i] -= lowest_in_for;
+    //     }
+    //   }
 
-      var share = my_pot / num_winners;
-      for (var i = 0; i < winners.length; i++) {
-        if (my_total_bets_per_player[i] < .01) candidates[i] = null;
-        if (!winners[i]) continue;
-        allocations[i] += share;
-        my_total_pot_size -= share;
-      }
-    }
+    //   var share = my_pot / num_winners;
+    //   for (var i = 0; i < winners.length; i++) {
+    //     if (my_total_bets_per_player[i] < .01) candidates[i] = null;
+    //     if (!winners[i]) continue;
+    //     allocations[i] += share;
+    //     my_total_pot_size -= share;
+    //   }
+    // }
 
-    var winner_text = "";
-    var human_loses = 0;
-    for (var i = 0; i < allocations.length; i++) {
-      if (allocations[i] > 0) {
-        var a_string = "" + allocations[i];
-        var dot_index = a_string.indexOf(".");
-        if (dot_index > 0) {
-          a_string = "" + a_string + "00";
-          let add_dot_index: any = dot_index + 3;
-          let add_Sub_String: any = a_string.substring(0, add_dot_index);
-          allocations[i] = add_Sub_String - 0;
-        }
-        winner_text += allocations[i] + " to " + this.players[i].name + ". ";
-        this.players[i].bankroll += allocations[i];
-        if (best_hand_players[i]) this.write_player(i, 2, 1, 0);
-        else this.write_player(i, 1, 1, 0);
-      } else {
-        if (!this.has_money(i) && this.players[i].status != "BUST") {
-          this.players[i].status = "BUST";
-          if (i == 0) human_loses = 1;
-        }
-        if (this.players[i].status != "FOLD") this.write_player(i, 0, 1, 0);
-      }
-    }
+    // var winner_text = "";
+    // var human_loses = 0;
+    // for (var i = 0; i < allocations.length; i++) {
+    //   if (allocations[i] > 0) {
+    //     var a_string = "" + allocations[i];
+    //     var dot_index = a_string.indexOf(".");
+    //     if (dot_index > 0) {
+    //       a_string = "" + a_string + "00";
+    //       let add_dot_index: any = dot_index + 3;
+    //       let add_Sub_String: any = a_string.substring(0, add_dot_index);
+    //       allocations[i] = add_Sub_String - 0;
+    //     }
+    //     winner_text += allocations[i] + " to " + this.players[i].name + ". ";
+    //     this.players[i].bankroll += allocations[i];
+    //     if (best_hand_players[i]) this.write_player(i, 2, 1, 0);
+    //     else this.write_player(i, 1, 1, 0);
+    //   } else {
+    //     if (!this.has_money(i) && this.players[i].status != "BUST") {
+    //       this.players[i].status = "BUST";
+    //       if (i == 0) human_loses = 1;
+    //     }
+    //     if (this.players[i].status != "FOLD") this.write_player(i, 0, 1, 0);
+    //   }
+    // }
 
-    var detail = "";
-    for (var i = 0; i < this.players.length; i++) {
-      detail += this.players[i].name + " bet " + this.players[i].total_bet + " & got " + allocations[i] + ".\\n";
-    }
-    detail = " (<a href='javascript:alert(\"" + detail + "\")'>details</a>)";
+    // var detail = "";
+    // for (var i = 0; i < this.players.length; i++) {
+    //   detail += this.players[i].name + " bet " + this.players[i].total_bet + " & got " + allocations[i] + ".\\n";
+    // }
+    // detail = " (<a href='javascript:alert(\"" + detail + "\")'>details</a>)";
 
-    var hilite_a = " name=c",
-      hilite_b = "";
-    if (human_loses) { hilite_a = "", hilite_b = " name=c"; }
-    var the_buttons = "<input" + hilite_a + " type=button value='Continue Game' onclick='parent.new_round()'><input" + hilite_b + " type=button value='Restart Game' onclick='parent.confirm_new()'>";
-    if (this.players[0].status == "BUST" && !human_loses) {
-      the_buttons = "<input name=c type=button value='Restart Game' onclick='parent.STOP_AUTOPLAY=1'>";
-      setTimeout("autoplay_new_round()", 1500 + 1100 * this.speed);
-    }
+    // var hilite_a = " name=c",
+    //   hilite_b = "";
+    // if (human_loses) { hilite_a = "", hilite_b = " name=c"; }
+    // var the_buttons = "<input" + hilite_a + " type=button value='Continue Game' onclick='parent.new_round()'><input" + hilite_b + " type=button value='Restart Game' onclick='parent.confirm_new()'>";
+    // if (this.players[0].status == "BUST" && !human_loses) {
+    //   the_buttons = "<input name=c type=button value='Restart Game' onclick='parent.STOP_AUTOPLAY=1'>";
+    //   setTimeout("autoplay_new_round()", 1500 + 1100 * this.speed);
+    // }
 
-    var html = "<html><body topmargin=2 bottommargin=0 bgcolor=" + this.BG_HILITE + " onload='document.f.c.focus();'><table><tr><td>" + this.get_pot_size_html() +
-      "</td></tr></table><br><font size=+2 color=FF0000><b>WINNER! " + my_best_hand_name + ". " + winner_text + "</b></font>" + detail + "<br>" +
-      "<form name=f>" + the_buttons + "<input type=button value=Quit onclick='parent.confirm_quit()'></form></body></html>";
-    this.write_frame("general", html, "");
-    let date: any = new Date();
-    var elapsed_seconds = (date - this.START_DATE) / 1000;
-    var elapsed_minutes: any = "" + (elapsed_seconds / 60);
-    var dot_i = elapsed_minutes.indexOf(".");
-    if (dot_i > 0) elapsed_minutes = elapsed_minutes.substring(0, dot_i);
-    var and_seconds = "" + (elapsed_seconds - elapsed_minutes * 60);
-    dot_i = and_seconds.indexOf(".");
-    if (dot_i > 0) and_seconds = and_seconds.substring(0, dot_i);
+    // var html = "<html><body topmargin=2 bottommargin=0 bgcolor=" + this.BG_HILITE + " onload='document.f.c.focus();'><table><tr><td>" + this.get_pot_size_html() +
+    //   "</td></tr></table><br><font size=+2 color=FF0000><b>WINNER! " + my_best_hand_name + ". " + winner_text + "</b></font>" + detail + "<br>" +
+    //   "<form name=f>" + the_buttons + "<input type=button value=Quit onclick='parent.confirm_quit()'></form></body></html>";
+    // this.write_frame("general", html, "");
+    // let date: any = new Date();
+    // var elapsed_seconds = (date - this.START_DATE) / 1000;
+    // var elapsed_minutes: any = "" + (elapsed_seconds / 60);
+    // var dot_i = elapsed_minutes.indexOf(".");
+    // if (dot_i > 0) elapsed_minutes = elapsed_minutes.substring(0, dot_i);
+    // var and_seconds = "" + (elapsed_seconds - elapsed_minutes * 60);
+    // dot_i = and_seconds.indexOf(".");
+    // if (dot_i > 0) and_seconds = and_seconds.substring(0, dot_i);
 
-    if (human_loses == 1) alert("Sorry, you busted, " + this.players[0].name + ".\n\n" + elapsed_minutes + " minutes " + and_seconds + " seconds, " + this.NUM_ROUNDS + " deals.");
-    else {
-      var num_playing = 0;
-      for (var i = 0; i < this.players.length; i++) { if (this.has_money(i)) num_playing += 1; }
-      if (num_playing < 2) {
-        var end_msg = "GAME OVER!";
-        if (this.has_money(0)) end_msg += "\n\nYOU WIN " + this.players[0].name.toUpperCase() + "!!!";
-        else end_msg += "\n\nSorry you lost.";
-        alert(end_msg + "\n\nThis game lasted " + elapsed_minutes + " minutes " + and_seconds + " seconds, " + this.NUM_ROUNDS + " deals.");
-      }
-    }
+    // if (human_loses == 1) alert("Sorry, you busted, " + this.players[0].name + ".\n\n" + elapsed_minutes + " minutes " + and_seconds + " seconds, " + this.NUM_ROUNDS + " deals.");
+    // else {
+    //   var num_playing = 0;
+    //   for (var i = 0; i < this.players.length; i++) { if (this.has_money(i)) num_playing += 1; }
+    //   if (num_playing < 2) {
+    //     var end_msg = "GAME OVER!";
+    //     if (this.has_money(0)) end_msg += "\n\nYOU WIN " + this.players[0].name.toUpperCase() + "!!!";
+    //     else end_msg += "\n\nSorry you lost.";
+    //     alert(end_msg + "\n\nThis game lasted " + elapsed_minutes + " minutes " + and_seconds + " seconds, " + this.NUM_ROUNDS + " deals.");
+    //   }
+    // }
   }
 
   autoplay_new_round() {
@@ -495,9 +455,9 @@ export class LocationComponent implements OnInit {
     }
     this.current_min_raise = this.BIG_BLIND;
     this.reset_player_statuses(2);
-    if (this.players[this.button_index].status == "FOLD") this.players[this.get_next_player_position(this.button_index, -1)].status = "OPTION";
+    if (this.players[this.button_index].status == "FOLD") this.players[this.playerDataService.get_next_player_position(this.button_index, -1,this.players)].status = "OPTION";
     else this.players[this.button_index].status = "OPTION";
-    this.current_bettor_index = this.get_next_player_position(this.button_index, 1);
+    this.current_bettor_index = this.playerDataService.get_next_player_position(this.button_index, 1, this.players);
     var show_cards = 0;
     if (num_betting < 2) show_cards = 1;
 
@@ -562,81 +522,81 @@ export class LocationComponent implements OnInit {
     return 1;
   }
 
-  human_call() {
-    this.players[0].status = "CALL";
-    this.current_bettor_index = this.get_next_player_position(0, 1);
-    this.bet(0, this.current_bet - this.players[0].subtotal_bet);
-    this.write_player(0, 0, 0, 0);
-    //write_ad();
-    this.main();
-  }
+  // human_call() {
+  //   this.players[0].status = "CALL";
+  //   this.current_bettor_index = this.get_next_player_position(0, 1);
+  //   this.bet(0, this.current_bet - this.players[0].subtotal_bet);
+  //   this.write_player(0, 0, 0, 0);
+  //   //write_ad();
+  //   this.main();
+  // }
 
-  human_raise() {
-    var to_call = this.current_bet - this.players[0].subtotal_bet;
-    var prompt_text = "Minimum raise is " + this.current_min_raise + ". How much do you raise? DON'T include the " + to_call + " needed to call.";
-    if (to_call == 0) prompt_text = "The minimum bet is " + this.current_min_raise + ". How much you wanna bet?";
-    var bet_amount = prompt(prompt_text, "");
-    if (bet_amount == null) return;
-    this.handle_human_bet(bet_amount);
-  }
+  // human_raise() {
+  //   var to_call = this.current_bet - this.players[0].subtotal_bet;
+  //   var prompt_text = "Minimum raise is " + this.current_min_raise + ". How much do you raise? DON'T include the " + to_call + " needed to call.";
+  //   if (to_call == 0) prompt_text = "The minimum bet is " + this.current_min_raise + ". How much you wanna bet?";
+  //   var bet_amount = prompt(prompt_text, "");
+  //   if (bet_amount == null) return;
+  //   this.handle_human_bet(bet_amount);
+  // }
 
-  handle_human_bet(bet_amount) {
-    bet_amount = "" + bet_amount;
-    var m;
-    for (var i = 0; i < bet_amount.length; i++) {
-      var c = bet_amount.substring(i, i + 1);
-      if (c == "0" || c > 0) m += "" + c;
-    }
-    if (m == "") return;
-    bet_amount = m - 0;
-    if (bet_amount < 0 || isNaN(bet_amount)) bet_amount = 0;
-    var to_call = this.current_bet - this.players[0].subtotal_bet;
-    bet_amount += to_call;
-    var is_ok_bet = this.bet(0, bet_amount);
-    if (is_ok_bet) {
-      this.players[0].status = "CALL";
-      this.current_bettor_index = this.get_next_player_position(0, 1);
-      this.write_player(0, 0, 0, 0);
-      // write_ad();
-      this.main();
-    }
-  }
+  // handle_human_bet(bet_amount) {
+  //   bet_amount = "" + bet_amount;
+  //   var m;
+  //   for (var i = 0; i < bet_amount.length; i++) {
+  //     var c = bet_amount.substring(i, i + 1);
+  //     if (c == "0" || c > 0) m += "" + c;
+  //   }
+  //   if (m == "") return;
+  //   bet_amount = m - 0;
+  //   if (bet_amount < 0 || isNaN(bet_amount)) bet_amount = 0;
+  //   var to_call = this.current_bet - this.players[0].subtotal_bet;
+  //   bet_amount += to_call;
+  //   var is_ok_bet = this.bet(0, bet_amount);
+  //   if (is_ok_bet) {
+  //     this.players[0].status = "CALL";
+  //     this.current_bettor_index = this.get_next_player_position(0, 1);
+  //     this.write_player(0, 0, 0, 0);
+  //     // write_ad();
+  //     this.main();
+  //   }
+  // }
 
-  human_fold() {
-    this.players[0].status = "FOLD";
-    this.current_bettor_index = this.get_next_player_position(0, 1);
-    this.write_player(0, 0, 0, 0);
-    this.write_basic_general();
-    //write_ad();
-    this.main();
-  }
+  // human_fold() {
+  //   this.players[0].status = "FOLD";
+  //   this.current_bettor_index = this.get_next_player_position(0, 1);
+  //   this.write_player(0, 0, 0, 0);
+  //   this.write_basic_general();
+  //   //write_ad();
+  //   this.main();
+  // }
 
-  bot_bet(x) {
-    var b = 0;
-    var n = this.current_bet - this.players[x].subtotal_bet;
-    if (!this.board[0]) b = this.botService.get_preflop_bet();
-    // else b = this.botService.get_postflop_bet();
-    if (b >= this.players[x].bankroll) //ALL IN
-      this.players[x].status = "";
-    else if (b < n) { //BET 2 SMALL
-      b = 0;
-      this.players[x].status = "FOLD";
-    } else if (b == n) { //CALL
-      this.players[x].status = "CALL";
-    } else if (b > n) {
-      if (b - n < this.current_min_raise) { //RAISE 2 SMALL
-        b = n;
-        this.players[x].status = "CALL";
-      } else this.players[x].status = ""; //RAISE
-    }
-    if (this.bet(x, b) == 0) {
-      this.players[x].status = "FOLD";
-      this.bet(x, 0);
-    }
-    this.write_player(this.current_bettor_index, 0, 0, 0);
-    this.current_bettor_index = this.get_next_player_position(this.current_bettor_index, 1);
-    this.main();
-  }
+  // bot_bet(x) {
+  //   var b = 0;
+  //   var n = this.current_bet - this.players[x].subtotal_bet;
+  //   if (!this.board[0]) b = this.botService.get_preflop_bet();
+  //   // else b = this.botService.get_postflop_bet();
+  //   if (b >= this.players[x].bankroll) //ALL IN
+  //     this.players[x].status = "";
+  //   else if (b < n) { //BET 2 SMALL
+  //     b = 0;
+  //     this.players[x].status = "FOLD";
+  //   } else if (b == n) { //CALL
+  //     this.players[x].status = "CALL";
+  //   } else if (b > n) {
+  //     if (b - n < this.current_min_raise) { //RAISE 2 SMALL
+  //       b = n;
+  //       this.players[x].status = "CALL";
+  //     } else this.players[x].status = ""; //RAISE
+  //   }
+  //   if (this.bet(x, b) == 0) {
+  //     this.players[x].status = "FOLD";
+  //     this.bet(x, 0);
+  //   }
+  //   this.write_player(this.current_bettor_index, 0, 0, 0);
+  //   this.current_bettor_index = this.get_next_player_position(this.current_bettor_index, 1);
+  //   this.main();
+  // }
 
   write_player(n, hilite, show_cards, mode) {
     var carda = "",
@@ -758,7 +718,6 @@ export class LocationComponent implements OnInit {
 
     try {
       console.log("type of component  " + f);
-
       frames[f].document.open("text/html", "replace");
       frames[f].document.write(html);
       frames[f].document.close();
@@ -823,18 +782,7 @@ export class LocationComponent implements OnInit {
     // adt=setTimeout("write_ad("+n+")",n);
   }
 
-  get_next_player_position(i, delta) {
-    var j = 0,
-      step = 1;
-    if (delta < 0) step = -1;
-    while (1) {
-      i += step;
-      if (i >= this.players.length) i = 0;
-      else if (i < 0) i = this.players.length - 1;
-      if (this.players[i].status == "BUST" || this.players[i].status == "FOLD" || ++j < delta) { } else break;
-    }
-    return i;
-  }
+ 
   original_pix;
   pix = this.get_base_deck();
   pix_index = 0;
