@@ -9,7 +9,7 @@ export class CardComponent implements OnInit {
   @Input() card;
 
   constructor(private locationComponent: LocationComponent) {
-    console.log("Inside the card compenent---- ",this.card);
+    //console.log("Inside the card compenent---- ",this.card);
   }
 
   ngOnInit() {
