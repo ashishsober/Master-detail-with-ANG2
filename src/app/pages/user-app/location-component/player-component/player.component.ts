@@ -12,7 +12,5 @@ export class PlayerComponent {
   @Input() carda;
   @Input() cardb;
   @Input() subtotal_bet;
-  constructor(){
-    console.log(this.carda);
-  }
+  constructor(){ }
 }
