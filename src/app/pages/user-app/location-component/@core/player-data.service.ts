@@ -4,50 +4,36 @@ import * as Rx from 'rxjs';
 @Injectable()
 export class PlayerDataService {
 
-    subject = new Rx.BehaviorSubject(Math.random());
-
     deal_and_write_a(button_index, players, deck_index, cards, speed) {
         var pause_time = 0;
         for (var i = 0; i < players.length; i++) {
-            var j = this.get_next_player_position(button_index, 1 + i, players);
-            if (players[j].carda) break;
-            players[j].carda = cards[deck_index++];
-
-            /*
-            players[0].carda="d6";
-            players[1].carda="h7";
-            players[2].carda="s14";
-            players[3].carda="d7";
-            players[4].carda="h9";
-            //*/
-
-            //setTimeout(() => this.write_player(j, 0, 0, 1), pause_time * this.speed);
-            pause_time += 550;
+            this.doSetTimeoutForDeal_A(i, button_index, players, deck_index++, cards);
         }
-        setTimeout(() => this.deal_and_write_b(button_index, players, deck_index, cards, speed), pause_time * speed);
+        //setTimeout(() => this.write_player(j, 0, 0, 1), pause_time * this.speed);
+        setTimeout(() => this.deal_and_write_b(button_index, players, deck_index, cards, speed),25000);
     }
 
-
+    doSetTimeoutForDeal_A(i, button_index, players, deck_index, cards) {
+        setTimeout(() => {
+            var j = this.get_next_player_position(button_index, 1 + i, players);
+            console.log("player position--->" ,i * 5000);
+            players[j].carda = cards[deck_index];
+        },i * 5000);
+    }
 
     deal_and_write_b(button_index, players, deck_index, cards, speed) {
-        var pause_time = 0;
         for (var i = 0; i < players.length; i++) {
-            var j = this.get_next_player_position(button_index, 1 + i, players);
-            if (players[j].cardb) break;
-            players[j].cardb = cards[deck_index++];
-
-            /*
-            players[0].cardb="h11";
-            players[1].cardb="c2";
-            players[2].cardb="c14";
-            players[3].cardb="d12";
-            players[4].cardb="s11";
-            //*/
-
+            this.doSetTimeoutForDeal_B(i, button_index, players, deck_index++, cards);
             //setTimeout(() => this.write_player(j, 0, 0, 1), pause_time * this.speed);
-            pause_time += 550;
         }
         //setTimeout(() => this.main(), pause_time * speed);
+    }
+
+    doSetTimeoutForDeal_B(i, button_index, players, deck_index, cards) {
+        setTimeout(() => {
+            var j = this.get_next_player_position(button_index, 1 + i, players);
+            players[j].cardb = cards[deck_index];
+        },i * 5000);
     }
 
     get_next_player_position(i, delta, players) {

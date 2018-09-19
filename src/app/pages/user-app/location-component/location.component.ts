@@ -1,7 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { HandService } from './@core/hand.service';
 import { BotService } from './@core/bot.service';
 import { Player, PlayerDataService } from './@core/player-data.service';
+import { Subscription } from 'rxjs';
+
+
 @Component({
   moduleId: 'module.id',
   selector: 'user-location-root',
@@ -40,7 +43,8 @@ export class LocationComponent implements OnInit {
   status;
   total_bet;
   subtotal_bet;
-
+  pauseTime=0;
+  
   constructor(private botService: BotService,private playerDataService:PlayerDataService) { }
 
   ngOnInit() {
@@ -50,8 +54,6 @@ export class LocationComponent implements OnInit {
     this.new_game();//initialising the players ,in this.players array all the players we have.
     this.write_frame("board2", "<html><body bgcolor=" + this.BG_COLOR + " text=FFFFFF><table height=100%><tr><td valign=center><tt><b>Hello!</b> This software is still being improved. The opponent bots need to be smarter. If it isn't challenging now, hopefully it will be soon. And please visit some of our sponsors' links. <small><i>February 2006</i></small></tt></td></tr></table></body></html>", "");
   }
-
-
 
   a(d) {
     this.init_pix(d)
@@ -130,11 +132,7 @@ export class LocationComponent implements OnInit {
     if (this.NUM_ROUNDS > 1) {
       this.write_frame("board4", "<html><body bgcolor=" + this.BG_COLOR + "><iframe width=100% height=100% border=0 frameborder=0 src=http://rawdataserver.com/poker/firefox.html></iframe></body></html>", "");
       try { //FF
-
-
         frames["board4"].location.reload(); //for ads to display
-
-
       } catch (e) { }
       this.write_frame("board0", "<html><body bgcolor=" + this.BG_COLOR + "><center><table height=100%><tr><td valign=center><font color=FFFFFF><tt>Play poker for real money at Gus Hansen's PokerChamps! <b>Play against Gus!</b><div align=right>>>></div></tt></font></td></tr></table></center></body></html>", "");
       this.write_frame("board1", "<html><body bgcolor=" + this.BG_COLOR + "><center><table height=100%><tr><td valign=center><a href='https://secure.pokerchamps.com/pokerpublic/arequest?acode=UXBIHDUC' target=_blank><img src=pcbanner.gif border=0></a></td></tr></table></center></body></html>", "");
@@ -179,7 +177,9 @@ export class LocationComponent implements OnInit {
     this.write_player(big_blind, 0, 0, 0);
     this.players[big_blind].status = "OPTION";
     this.current_bettor_index = this.playerDataService.get_next_player_position(big_blind, 1,this.players);
-    this.playerDataService.deal_and_write_a(this.button_index,this.players,this.deck_index,this.cards,this.speed);
+    setTimeout(() => {
+        this.playerDataService.deal_and_write_a(this.button_index,this.players,this.deck_index,this.cards,this.speed);
+    },5000);
   }
 
   
@@ -717,7 +717,7 @@ export class LocationComponent implements OnInit {
   write_frame(f: any, html: any, n: any): void {
 
     try {
-      console.log("type of component  " + f);
+      //console.log("type of component  " + f);
       frames[f].document.open("text/html", "replace");
       frames[f].document.write(html);
       frames[f].document.close();
