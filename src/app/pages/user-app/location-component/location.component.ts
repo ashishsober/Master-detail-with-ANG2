@@ -1,9 +1,9 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { HandService } from './@core/hand.service';
 import { BotService } from './@core/bot.service';
-import { Player, PlayerDataService } from './@core/player-data.service';
+import { PlayerDataService } from './@core/player-data.service';
 import { Subscription } from 'rxjs';
-
+import { Player } from './@core/player.class';
 
 @Component({
   moduleId: 'module.id',
