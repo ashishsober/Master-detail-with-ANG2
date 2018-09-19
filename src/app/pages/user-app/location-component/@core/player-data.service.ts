@@ -10,15 +10,15 @@ export class PlayerDataService {
             this.doSetTimeoutForDeal_A(i, button_index, players, deck_index++, cards);
         }
         //setTimeout(() => this.write_player(j, 0, 0, 1), pause_time * this.speed);
-        setTimeout(() => this.deal_and_write_b(button_index, players, deck_index, cards, speed),25000);
+        setTimeout(() => this.deal_and_write_b(button_index, players, deck_index, cards, speed),15000);
     }
 
     doSetTimeoutForDeal_A(i, button_index, players, deck_index, cards) {
         setTimeout(() => {
             var j = this.get_next_player_position(button_index, 1 + i, players);
-            console.log("player position--->" ,i * 5000);
+            console.log("player position--->" ,i * 3000);
             players[j].carda = cards[deck_index];
-        },i * 5000);
+        },i * 3000);
     }
 
     deal_and_write_b(button_index, players, deck_index, cards, speed) {
@@ -33,7 +33,7 @@ export class PlayerDataService {
         setTimeout(() => {
             var j = this.get_next_player_position(button_index, 1 + i, players);
             players[j].cardb = cards[deck_index];
-        },i * 5000);
+        },i * 3000);
     }
 
     get_next_player_position(i, delta, players) {

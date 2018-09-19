@@ -179,7 +179,7 @@ export class LocationComponent implements OnInit {
     this.current_bettor_index = this.playerDataService.get_next_player_position(big_blind, 1,this.players);
     setTimeout(() => {
         this.playerDataService.deal_and_write_a(this.button_index,this.players,this.deck_index,this.cards,this.speed);
-    },5000);
+    },3000);
   }
 
   
