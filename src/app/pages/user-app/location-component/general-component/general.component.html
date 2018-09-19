@@ -1,41 +1,45 @@
-<!-- <div topmargin=2 bottommargin=0 bgcolor=EFEF30 onload='document.f.c.focus();'>
-  <table>
-    <tr>
-      <td>
-        <font color=00EE00 size=+1><b>Pot Value: 395</b></font>
-      </td>
-    </tr>
-  </table>
-  <br>
-  <font size=+1 color=00EE00><b>WINNER! Two Pair. 395 to Gus Handsome. </b></font>
-  (<a href='javascript:alert("You bet 140 & got 0.\nTonya Bonya bet 75 & got 0.\nGus Handsome bet 140 & got 395.\nStan Deman bet 10 & got 0.\nKarth Kerai bet 30 & got 0.\n")'>details</a>)
-  <br>
-  <form name=f>
-    <input name=c type=button value='Continue Game' onclick='parent.new_round()'>
-    <input type=button value='Restart Game' onclick='parent.confirm_new()'>
-    <input type=button value=Quit onclick='parent.confirm_quit()'>
-  </form>
-</div> -->
+<div class="row">
+  <div class="offset-md-10"></div>
+  <font color="00EE00" size="+1"><b>TOTAL POT: 25</b></font>
+</div>
+
+<div class="row">
+  <div class="offset-md-9"></div>
+  <font color="00EE00" size="+1"><b>Current total bet: 10</b><br> You need <font color="FF0000" size="+3">10</font>
+    more to
+    call.</font>
+</div>
+
+<div class="row">
+  <div class="offset-md-9"></div>
+  <div class="col-md-1">
+    <button type="button" class="btn btn-danger" name="c" onclick="parent.human_call()" style="width: 76px;">Call</button>
+  </div>
+  <div class="col-md-1">
+    <button type="button" class="btn btn-info" onclick="parent.human_raise()" style="width: 76px;">Raise</button>
+  </div>
+  <div class="col-md-1">
+    <button type="button" class="btn btn-warning" onclick="parent.human_fold()" style="width: 76px;">Fold</button>
+  </div>
+</div>
 
 
 
-
-<div vlink="0000FF" topmargin="2" bottommargin="0" bgcolor="EFEF30" onload="document.f.c.focus();">
-  <table width="100%">
+<!-- <table>
     <tbody>
       <tr>
         <td colspan="2">
-          <font color="00EE00" size="+4"><b>TOTAL POT: 25</b></font>
+          <font color="00EE00" size="+1"><b>TOTAL POT: 25</b></font>
         </td>
       </tr>
       <tr>
         <td>
-          <font size="+2"><b>Current total bet: 10</b><br> You need <font color="FF0000" size="+3">10</font> more to
+          <font size="+1"><b>Current total bet: 10</b><br> You need <font color="FF0000" size="+3">10</font> more to
             call.</font>
-          <form name="f"><input name="c" type="button" value="     Call     " onclick="parent.human_call()"><input type="button"
-              value="   Raise   " onclick="parent.human_raise()"><input type="button" value="Fold" onclick="parent.human_fold()"></form>
+          
         </td>
         <td valign="bottom">
+
           <table bgcolor="006600">
             <tbody>
               <tr>
@@ -45,15 +49,15 @@
                     href="javascript:parent.handle_human_bet(100)">100</a>&nbsp;&nbsp;&nbsp;<a href="javascript:parent.handle_human_bet(500)">All
                     In!</a>
                   <form onsubmit="parent.handle_human_bet(b.value);return false;">
-                    <font size="+2">&nbsp;</font><input type="text" size="4" name="b"><input type="submit" value="Raise">
+                    <font size="+2">&nbsp;</font>
+                    <input type="text" size="4" name="b"><input type="submit" value="Raise">
                   </form>
                 </td>
               </tr>
             </tbody>
           </table>
+
         </td>
       </tr>
     </tbody>
-  </table>
-</div>
-
+  </table> -->

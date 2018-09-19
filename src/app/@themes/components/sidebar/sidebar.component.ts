@@ -14,7 +14,7 @@ export class SidebarComponent implements OnInit{
     if(this.route.url === '/userapp/UserAppDataComponent/profile' || this.route.url === '/userapp/UserAppDataComponent/location'){
       this.sidebarList = [
         {label:'Profiles',link:'./profile',icon:'fa fa-globe'},
-        {label:'Location',link:'./location',icon:'fa fa-th-list'}
+        {label:'Table',link:'./location',icon:'fa fa-th-list'}
        ];
     } else {
       this.sidebarList = [
