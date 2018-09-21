@@ -17,6 +17,7 @@ import { BotService } from './location-component/@core/bot.service';
 import { SettingComponent } from './location-component/setting-component/setting.component';
 import { CardComponent } from './location-component/player-component/card-component/card.component';
 import { PlayerDataService } from './location-component/@core/player-data.service';
+import { GenericMethods } from './location-component/@core/generic-methods';
 
 @NgModule({
   imports: [
@@ -43,7 +44,8 @@ import { PlayerDataService } from './location-component/@core/player-data.servic
   providers: [
     BotService,
     HandService,
-    PlayerDataService
+    PlayerDataService,
+    GenericMethods
   ]
 })
 export class UserAppModule { }

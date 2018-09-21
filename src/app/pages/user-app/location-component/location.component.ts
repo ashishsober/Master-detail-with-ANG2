@@ -4,6 +4,7 @@ import { BotService } from './@core/bot.service';
 import { PlayerDataService } from './@core/player-data.service';
 import { Subscription } from 'rxjs';
 import { Player } from './@core/player.class';
+import { GenericMethods } from './@core/generic-methods';
 
 @Component({
   moduleId: 'module.id',
@@ -34,8 +35,6 @@ export class LocationComponent implements OnInit {
   deck_index;
   button_index;
   current_bettor_index;
-  current_bet;
-  current_min_raise;
   name;
   bankroll;
   carda;
@@ -45,7 +44,10 @@ export class LocationComponent implements OnInit {
   subtotal_bet;
   pauseTime=0;
   
-  constructor(private botService: BotService,private playerDataService:PlayerDataService) { }
+  constructor(private botService: BotService,
+    private playerDataService:PlayerDataService,
+    private genericMethods:GenericMethods
+    ) { }
 
   ngOnInit() {
     this.preload_base_pix();//doing no function call
@@ -93,7 +95,7 @@ export class LocationComponent implements OnInit {
       this.players[i] = this.my_players[i - 1];
     }
     this.reset_player_statuses(0);
-    this.clear_bets();
+    this.genericMethods.clear_bets(this.players);
 
     //assigning the money to the players
     for (var i = 0; i < this.players.length; i++) {
@@ -110,7 +112,7 @@ export class LocationComponent implements OnInit {
     this.NUM_ROUNDS++;
     var num_playing = 0;
     for (var i = 0; i < this.players.length; i++) {
-      if (this.has_money(i))
+      if (this.genericMethods.has_money(i,this.players))
         num_playing += 1;
     }
     if (num_playing < 2) {
@@ -119,9 +121,9 @@ export class LocationComponent implements OnInit {
     }
     this.preload_pix();
     this.reset_player_statuses(1);
-    this.clear_bets();
+    this.genericMethods.clear_bets(this.players);
     this.clear_pot();
-    this.current_min_raise = 0;
+    this.genericMethods.current_min_raise = 0;
     this.collect_cards();
     //write_ad();
     this.button_index = this.playerDataService.get_next_player_position(this.button_index, 1,this.players);
@@ -160,7 +162,7 @@ export class LocationComponent implements OnInit {
     this.BIG_BLIND = 10;
     var num_playing = 0;
     for (var i = 0; i < this.players.length; i++) {
-      if (this.has_money(i)) num_playing += 1;
+      if (this.genericMethods.has_money(i,this.players)) num_playing += 1;
     }
     if (num_playing == 3) {
       this.SMALL_BLIND = 10;
@@ -170,15 +172,15 @@ export class LocationComponent implements OnInit {
       this.BIG_BLIND = 50;
     }
     var small_blind = this.playerDataService.get_next_player_position(this.button_index, 1,this.players);
-    this.bet(small_blind, this.SMALL_BLIND);
+    this.genericMethods.bet(small_blind, this.SMALL_BLIND,this.players);
     this.write_player(small_blind, 0, 0, 0);
     var big_blind = this.playerDataService.get_next_player_position(small_blind, 1,this.players);
-    this.bet(big_blind, this.BIG_BLIND);
+    this.genericMethods.bet(big_blind, this.BIG_BLIND,this.players);
     this.write_player(big_blind, 0, 0, 0);
     this.players[big_blind].status = "OPTION";
-    this.current_bettor_index = this.playerDataService.get_next_player_position(big_blind, 1,this.players);
+   //this.current_bettor_index = this.playerDataService.get_next_player_position(big_blind, 1,this.players);
     setTimeout(() => {
-        this.playerDataService.deal_and_write_a(this.button_index,this.players,this.deck_index,this.cards,this.speed);
+        this.playerDataService.deal_and_write_a(this.button_index,this.players,this.deck_index,this.cards,this.speed,big_blind);
     },1000);
   }
 
@@ -200,7 +202,7 @@ export class LocationComponent implements OnInit {
     setTimeout("this.write_board('0')", (pause_time + 100) * this.speed);
     setTimeout("this.write_board('1')", (pause_time + 250) * this.speed);
     setTimeout("this.write_board('2')", (pause_time + 400) * this.speed);
-    if (this.get_num_betting() > 1) setTimeout(() => this.main(), (pause_time + 1000) * this.speed);
+    if (this.get_num_betting() > 1) setTimeout(() => this.playerDataService.main(this.players), (pause_time + 1000) * this.speed);
     else setTimeout("ready_for_next_card()", 999 * this.speed);
   }
 
@@ -212,7 +214,7 @@ export class LocationComponent implements OnInit {
 
     setTimeout("this.write_board('3')", (pause_time + 100) * this.speed);
     if (this.get_num_betting() > 1)
-      setTimeout(() => this.main(), 2000 * this.speed);
+      setTimeout(() => this.playerDataService.main(this.players), 2000 * this.speed);
     else
       setTimeout(this.ready_for_next_card(), 999 * this.speed);
   }
@@ -225,7 +227,7 @@ export class LocationComponent implements OnInit {
 
     setTimeout("write_board('4')", (pause_time + 100) * this.speed);
     if (this.get_num_betting() > 1)
-      setTimeout(() => this.main(), 2000 * this.speed);
+      setTimeout(() => this.playerDataService.main(this.players), 2000 * this.speed);
     else
       setTimeout("ready_for_next_card()", 999 * this.speed);
   }
@@ -244,79 +246,7 @@ export class LocationComponent implements OnInit {
 
 
 
-  main() {
-    var increment_bettor_index = 0;
-    if (this.players[this.current_bettor_index].status == "BUST" || this.players[this.current_bettor_index].status == "FOLD") {
-      increment_bettor_index = 1;
-    } else if (!this.has_money(this.current_bettor_index)) {
-      this.players[this.current_bettor_index].status = "CALL";
-      increment_bettor_index = 1;
-    } else if (this.players[this.current_bettor_index].status == "CALL" && this.players[this.current_bettor_index].subtotal_bet == this.current_bet) {
-      increment_bettor_index = 1;
-    } else {
-      this.players[this.current_bettor_index].status = "";
-      if (this.current_bettor_index == 0) {
-        var call_button_text = "     Call     ";
-        var fold_button = "<input type=button value=Fold onclick='parent.human_fold()'>";
-        var bet_button_text = "   Raise   ";
-        var to_call = this.current_bet - this.players[0].subtotal_bet;
-        if (to_call > this.players[0].bankroll) to_call = this.players[0].bankroll;
-        if (to_call == 0) {
-          call_button_text = "   Check   ";
-          fold_button = "";
-          bet_button_text = "     Bet     ";
-        }
-        var quick_values = new Array(6);
-        if (to_call < this.players[0].bankroll) quick_values[0] = this.current_min_raise;
-        var quick_start = quick_values[0];
-        if (quick_start < 20) quick_start = 20;
-        else quick_start = this.current_min_raise + 20;
-        for (var i = 0; i < 5; i++) { if (quick_start + 20 * i < this.players[0].bankroll) quick_values[i + 1] = quick_start + 20 * i; }
-        var bet_or_raise = "Bet";
-        var quick_color = "";
-        if (to_call > 0) {
-          bet_or_raise = "Raise";
-          quick_color = " bgcolor=" + this.BG_COLOR;
-        }
-        var quick_bets = "<b>Quick " + bet_or_raise + "s</b><br>";
-        for (var i = 0; i < 6; i++) {
-          if (quick_values[i]) quick_bets += "<a href='javascript:parent.handle_human_bet(" + quick_values[i] + ")'>" + quick_values[i] + "</a>" + "&nbsp;&nbsp;&nbsp;";
-        }
-        quick_bets += "<a href='javascript:parent.handle_human_bet(" + this.players[0].bankroll + ")'>All In!</a>" +
-          "<form onsubmit='parent.handle_human_bet(b.value);return false;'><font size=+2>&nbsp;</font><input type=text size=4 name=b><input type=submit value=" + bet_or_raise + "></form>";
-        var html = "<html><body vlink=0000FF topmargin=2 bottommargin=0 bgcolor=" + this.BG_HILITE + " onload='document.f.c.focus();'><table width=100%><tr><td colspan=2>" + this.get_pot_size_html() +
-          "</td></tr><tr><td><font size=+2><b>Current total bet: " + this.current_bet + "</b><br> You need <font color=FF0000 size=+3>" + to_call + "</font> more to call.</font>" +
-          "<form name=f><input name=c type=button value='" + call_button_text + "' onclick='parent.human_call()'><input type=button value='" + bet_button_text + "' onclick='parent.human_raise()'>" + fold_button +
-          "</form></td><td valign=bottom><table" + quick_color + "><tr><td align=center>" + quick_bets + "</td></tr></table></td></tr></table></body></html>";
-        this.write_player(0, 1, 0, 1);
-        this.write_frame("general", html, "");
-        return;
-      } else {
-        this.write_player(this.current_bettor_index, 1, 0, 1);
-        setTimeout("bot_bet(" + this.current_bettor_index + ")", 777 * this.speed);
-        return;
-      }
-    }
-    var can_break = true;
-    for (var j = 0; j < this.players.length; j++) {
-      var s = this.players[j].status;
-      if (s == "OPTION") {
-        can_break = false;
-        break;
-      }
-      if (s != "BUST" && s != "FOLD") {
-        if (this.has_money(j) && this.players[j].subtotal_bet < this.current_bet) {
-          can_break = false;
-          break;
-        }
-      }
-    }
-    if (increment_bettor_index)
-      this.current_bettor_index = this.playerDataService.get_next_player_position(this.current_bettor_index, 1, this.players);
-    if (can_break)
-      setTimeout("ready_for_next_card()", 999 * this.speed);
-    else this.main();
-  }
+ 
 
   handle_end_of_round() {
     // var candidates = new Array(this.players.length);
@@ -448,12 +378,12 @@ export class LocationComponent implements OnInit {
   ready_for_next_card() {
     var num_betting = this.get_num_betting();
     for (var i = 0; i < this.players.length; i++) { this.players[i].total_bet += this.players[i].subtotal_bet; }
-    this.clear_bets();
+    this.genericMethods.clear_bets(this.players);
     if (this.board[4]) {
       this.handle_end_of_round();
       return;
     }
-    this.current_min_raise = this.BIG_BLIND;
+    this.genericMethods.current_min_raise = this.BIG_BLIND;
     this.reset_player_statuses(2);
     if (this.players[this.button_index].status == "FOLD") this.players[this.playerDataService.get_next_player_position(this.button_index, -1,this.players)].status = "OPTION";
     else this.players[this.button_index].status = "OPTION";
@@ -471,56 +401,7 @@ export class LocationComponent implements OnInit {
     else if (!this.board[4]) this.deal_fifth();
   }
 
-  bet(player_index, bet_amount) {
-    if (this.players[player_index].status == "FOLD") { } //FOLD
-    else if (bet_amount >= this.players[player_index].bankroll) { //ALL IN
-      bet_amount = this.players[player_index].bankroll;
-
-      var old_current_bet = this.current_bet;
-
-      if (this.players[player_index].subtotal_bet + bet_amount > this.current_bet)
-        this.current_bet = this.players[player_index].subtotal_bet + bet_amount;
-
-      var new_current_min_raise = this.current_bet - old_current_bet;
-      if (new_current_min_raise > this.current_min_raise) this.current_min_raise = new_current_min_raise;
-
-      this.players[player_index].status = "CALL";
-    } else if (bet_amount + this.players[player_index].subtotal_bet == this.current_bet) { //CALL
-      this.players[player_index].status = "CALL";
-    } else if (this.current_bet > this.players[player_index].subtotal_bet + bet_amount) { //2 SMALL
-
-      //COMMENT OUT TO FIND BUGS
-      if (player_index == 0)
-
-        alert("The current bet to match is " + this.current_bet + "." +
-          "\nYou must bet a total of at least " + (this.current_bet - this.players[player_index].subtotal_bet) + " or fold.");
-      return 0;
-    } else if (bet_amount + this.players[player_index].subtotal_bet > this.current_bet //RAISE 2 SMALL
-      &&
-      this.get_pot_size() > 0 &&
-      bet_amount + this.players[player_index].subtotal_bet - this.current_bet < this.current_min_raise) {
-
-      //COMMENT OUT TO FIND BUGS
-      if (player_index == 0)
-
-        alert("Minimum raise is currently " + this.current_min_raise + ".");
-      return 0;
-    } else { //RAISE
-      this.players[player_index].status = "CALL";
-
-      var old_current_bet = this.current_bet;
-      this.current_bet = this.players[player_index].subtotal_bet + bet_amount;
-
-      if (this.get_pot_size() > 0) {
-        this.current_min_raise = this.current_bet - old_current_bet;
-        if (this.current_min_raise < this.BIG_BLIND) this.current_min_raise = this.BIG_BLIND;
-      }
-    }
-    this.players[player_index].subtotal_bet += bet_amount;
-    this.players[player_index].bankroll -= bet_amount;
-    this.write_basic_general();
-    return 1;
-  }
+ 
 
   // human_call() {
   //   this.players[0].status = "CALL";
@@ -630,10 +511,10 @@ export class LocationComponent implements OnInit {
     if (n == this.button_index) button = "<font color=FFFFFF>@</font>";
     var bet_text = "";
     var allin = "bet:";
-    if (!this.has_money(n)) allin = "<font color=FF0000>ALL IN:</font>";
+    if (!this.genericMethods.has_money(n,this.players)) allin = "<font color=FF0000>ALL IN:</font>";
     if (mode != 1 || this.players[n].subtotal_bet > 0 || this.players[n].status == "CALL")
       bet_text = "<b><font size=+2>" + allin + " <font color=00EE00>" + this.players[n].subtotal_bet + "</font></font></b>";
-    else if (!this.has_money(n) && this.players[n].status != "FOLD" && this.players[n].status != "BUST")
+    else if (!this.genericMethods.has_money(n,this.players) && this.players[n].status != "FOLD" && this.players[n].status != "BUST")
       bet_text = "<b><font size=+2 color=FF0000>ALL IN</font></b>";
     if (this.players[n].status == "FOLD")
       bet_text = "<b><font size=+2>FOLDED</font></b>";
@@ -669,21 +550,12 @@ export class LocationComponent implements OnInit {
   }
 
   get_pot_size_html() {
-    return "<font color=00EE00 size=+4><b>TOTAL POT: " + this.get_pot_size() + "</b></font>";
+    return "<font color=00EE00 size=+4><b>TOTAL POT: " + this.genericMethods.get_pot_size(this.players) + "</b></font>";
   }
 
-  get_pot_size() {
-    var p = 0;
-    for (var i = 0; i < this.players.length; i++)
-      p += this.players[i].total_bet + this.players[i].subtotal_bet;
-    return p;
-  }
+  
 
-  clear_bets() {
-    for (var i = 0; i < this.players.length; i++)
-      this.players[i].subtotal_bet = 0;
-    this.current_bet = 0;
-  }
+  
 
   clear_pot() {
     for (var i = 0; i < this.players.length; i++)
@@ -701,7 +573,7 @@ export class LocationComponent implements OnInit {
   get_num_betting() {
     var n = 0;
     for (var i = 0; i < this.players.length; i++)
-      if (this.players[i].status != "FOLD" && this.players[i].status != "BUST" && this.has_money(i)) n++;
+      if (this.players[i].status != "FOLD" && this.players[i].status != "BUST" && this.genericMethods.has_money(i,this.players)) n++;
     return n;
   }
 
@@ -855,10 +727,7 @@ export class LocationComponent implements OnInit {
     document.cookie = key + "=" + val + ";expires=" + u;
   }
 
-  has_money(i) {
-    if (this.players[i].bankroll >= .01) return true;
-    return false;
-  }
+  
 
   confirm_new() {
     if (confirm("Are you sure that you want to restart the entire game?")) this.new_game();
