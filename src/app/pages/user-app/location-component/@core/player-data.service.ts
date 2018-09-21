@@ -19,51 +19,21 @@ export class PlayerDataService {
         var pause_time = 0;
         this.big_blind = big_blind_data;
         for (var i = 0; i < players.length; i++) {
-            this.doSetTimeoutForDeal_A(i, button_index, players, deck_index++, cards);
+            this.genericMethods.doSetTimeoutForDeal_A(i, button_index, players, deck_index++, cards);
         }
         setTimeout(() => this.deal_and_write_b(button_index, players, deck_index, cards, speed), 10000);
     }
 
-    doSetTimeoutForDeal_A(i, button_index, players, deck_index, cards) {
-        setTimeout(() => {
-            var j = this.get_next_player_position(button_index, 1 + i, players);
-            console.log("player position--->", i * 2000);
-            players[j].carda = cards[deck_index];
-        }, i * 2000);
-    }
-
     deal_and_write_b(button_index, players, deck_index, cards, speed) {
         for (var i = 0; i < players.length; i++) {
-            this.doSetTimeoutForDeal_B(i, button_index, players, deck_index++, cards);
+            this.genericMethods.doSetTimeoutForDeal_B(i, button_index, players, deck_index++, cards);
         }
-        setTimeout(() => this.main(players,button_index), 14000);
+        setTimeout(() => this.main(players, button_index), 14000);
     }
 
-    doSetTimeoutForDeal_B(i, button_index, players, deck_index, cards) {
-        setTimeout(() => {
-            var j = this.get_next_player_position(button_index, 1 + i, players);
-            players[j].cardb = cards[deck_index];
-        }, i * 2000);
-    }
-
-    get_next_player_position(i, delta, players) {
-        var j = 0,
-            step = 1;
-        if (delta < 0) step = -1;
-        while (1) {
-            i += step;
-            if (i >= players.length) i = 0;
-            else if (i < 0) i = players.length - 1;
-            if (players[i].status == "BUST" || players[i].status == "FOLD" || ++j < delta) { } else break;
-        }
-        return i;
-    }
-
-
-
-    main(players,button_index) {
+    main(players, button_index) {
         var increment_bettor_index = 0;
-        this.current_bettor_index = this.get_next_player_position(this.big_blind, 1, players);
+        this.current_bettor_index = this.genericMethods.get_next_player_position(this.big_blind, 1, players);
 
         if (players[this.current_bettor_index].status == "BUST" || players[this.current_bettor_index].status == "FOLD") {
             increment_bettor_index = 1;
@@ -109,11 +79,11 @@ export class PlayerDataService {
                 //   "<form name=f><input name=c type=button value='" + call_button_text + "' onclick='parent.human_call()'><input type=button value='" + bet_button_text + "' onclick='parent.human_raise()'>" + fold_button +
                 //   "</form></td><td valign=bottom><table" + quick_color + "><tr><td align=center>" + quick_bets + "</td></tr></table></td></tr></table></body></html>";
 
-                this.write_player(0, 1, 0, 1,players,button_index);
+                this.write_player(0, 1, 0, 1, players, button_index);
                 //this.write_frame("general", html, "");
                 return;
             } else {
-                this.write_player(this.current_bettor_index, 1, 0, 1,players,button_index);
+                this.write_player(this.current_bettor_index, 1, 0, 1, players, button_index);
                 //setTimeout("bot_bet(" + this.current_bettor_index + ")", 777 * this.speed);
                 return;
             }
@@ -133,15 +103,13 @@ export class PlayerDataService {
             }
         }
         if (increment_bettor_index)
-            this.current_bettor_index = this.get_next_player_position(this.current_bettor_index, 1, players);
+            this.current_bettor_index = this.genericMethods.get_next_player_position(this.current_bettor_index, 1, players);
         if (can_break)
             setTimeout("ready_for_next_card()", 20000);
-        else this.main(players,button_index);
+        else this.main(players, button_index);
     }
 
-
-
-
+    
     write_player(n, hilite, show_cards, mode, players, button_index) {
         var carda = "",
             cardb = "";
@@ -203,7 +171,7 @@ export class PlayerDataService {
         var r = card.substring(1);
         var rank = this.genericMethods.make_readable_rank(r);
         return "<font size=+2 color=" + color + "><b>" + rank + "</b></font> <a href='" + this.SUIT_LINK + "' target=_blank><img src=" + suit + ".gif border=0 title=" + suit + " alt=" + suit + "></a>";
-      }
+    }
 
 
 

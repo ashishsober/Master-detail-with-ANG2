@@ -125,7 +125,7 @@ export class LocationComponent implements OnInit {
     this.genericMethods.current_min_raise = 0;
     this.collect_cards();
     //write_ad();
-    this.button_index = this.playerDataService.get_next_player_position(this.button_index, 1, this.players);
+    this.button_index = this.genericMethods.get_next_player_position(this.button_index, 1, this.players);
 
     for (var i = 0; i < this.players.length; i++) this.playerDataService.write_player(i, 0, 0, 1, this.players,this.button_index);
     for (var i = 0; i < this.board.length; i++) this.write_frame("board" + i, "<html><body bgcolor=" + this.playerDataService.BG_COLOR + "></body></html>", "");
@@ -170,10 +170,10 @@ export class LocationComponent implements OnInit {
       this.SMALL_BLIND = 25;
       this.BIG_BLIND = 50;
     }
-    var small_blind = this.playerDataService.get_next_player_position(this.button_index, 1, this.players);
+    var small_blind = this.genericMethods.get_next_player_position(this.button_index, 1, this.players);
     this.genericMethods.bet(small_blind, this.SMALL_BLIND, this.players);
     this.playerDataService.write_player(small_blind, 0, 0, 0, this.players,this.button_index);
-    var big_blind = this.playerDataService.get_next_player_position(small_blind, 1, this.players);
+    var big_blind = this.genericMethods.get_next_player_position(small_blind, 1, this.players);
     this.genericMethods.bet(big_blind, this.BIG_BLIND, this.players);
     this.playerDataService.write_player(big_blind, 0, 0, 0, this.players,this.button_index);
     this.players[big_blind].status = "OPTION";
@@ -380,9 +380,9 @@ export class LocationComponent implements OnInit {
     }
     this.genericMethods.current_min_raise = this.BIG_BLIND;
     this.reset_player_statuses(2);
-    if (this.players[this.button_index].status == "FOLD") this.players[this.playerDataService.get_next_player_position(this.button_index, -1, this.players)].status = "OPTION";
+    if (this.players[this.button_index].status == "FOLD") this.players[this.genericMethods.get_next_player_position(this.button_index, -1, this.players)].status = "OPTION";
     else this.players[this.button_index].status = "OPTION";
-    this.current_bettor_index = this.playerDataService.get_next_player_position(this.button_index, 1, this.players);
+    this.current_bettor_index = this.genericMethods.get_next_player_position(this.button_index, 1, this.players);
     var show_cards = 0;
     if (num_betting < 2) show_cards = 1;
 

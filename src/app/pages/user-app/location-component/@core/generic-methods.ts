@@ -20,14 +20,14 @@ export class GenericMethods {
         for (var i = 0; i < players.length; i++)
             players[i].total_bet = 0;
     }
-   //not need further as handle in template
+    //not need further as handle in template
     make_readable_rank(r) {
         if (r < 11) return r;
         else if (r == 11) return "J";
         else if (r == 12) return "Q";
         else if (r == 13) return "K";
         else if (r == 14) return "A";
-      }
+    }
 
     bet(player_index, bet_amount, players) {
         let BIG_BLIND = bet_amount;
@@ -87,5 +87,33 @@ export class GenericMethods {
         for (var i = 0; i < players.length; i++)
             p += players[i].total_bet + players[i].subtotal_bet;
         return p;
+    }
+
+    get_next_player_position(i, delta, players) {
+        var j = 0,
+            step = 1;
+        if (delta < 0) step = -1;
+        while (1) {
+            i += step;
+            if (i >= players.length) i = 0;
+            else if (i < 0) i = players.length - 1;
+            if (players[i].status == "BUST" || players[i].status == "FOLD" || ++j < delta) { } else break;
+        }
+        return i;
+    }
+
+    doSetTimeoutForDeal_A(i, button_index, players, deck_index, cards) {
+        setTimeout(() => {
+            var j = this.get_next_player_position(button_index, 1 + i, players);
+            console.log("player position--->", i * 2000);
+            players[j].carda = cards[deck_index];
+        }, i * 2000);
+    }
+
+    doSetTimeoutForDeal_B(i, button_index, players, deck_index, cards) {
+        setTimeout(() => {
+            var j = this.get_next_player_position(button_index, 1 + i, players);
+            players[j].cardb = cards[deck_index];
+        }, i * 2000);
     }
 }
