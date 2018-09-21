@@ -12,5 +12,6 @@ export class PlayerComponent {
   @Input() carda;
   @Input() cardb;
   @Input() subtotal_bet;
+  @Input() background ;
   constructor(){ }
 }

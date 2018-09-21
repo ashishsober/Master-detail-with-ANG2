@@ -3,7 +3,17 @@ import { Injectable, Input, Output, EventEmitter } from '@angular/core';
 
 
 @Injectable()
-export class HandService {}
+export class HandService {
+
+    get_rank(card) {
+        if (card) return card.substring(1) - 0; else return "";
+    }
+
+    get_suit(card) {
+        if (card) return card.substring(0, 1); else return "";
+    }
+
+}
 // export class HandService {
 
 //     // needed board array in this compoenent to fully work
@@ -491,13 +501,9 @@ export class HandService {}
 //         else return ret;
 //     }
 
-//     get_suit(card) {
-//         if (card) return card.substring(0, 1); else return "";
-//     }
 
-//     get_rank(card) {
-//         if (card) return card.substring(1) - 0; else return "";
-//     }
+
+
 
 //     get_predominant_suit(my_cards) {
 //         var suit_count = [0, 0, 0, 0];

@@ -6,8 +6,9 @@ export class Player {
     public status: string;
     public total_bet: number;
     public subtotal_bet: number;
+    public background : { };
 
-    constructor(name: string, bankroll: number, carda: string, cardb: string, status: string, total_bet: number, subtotal_bet: number) {
+    constructor(name: string, bankroll: number, carda: string, cardb: string, status: string, total_bet: number, subtotal_bet: number,background:object) {
         this.name = name;
         this.bankroll = bankroll;
         this.carda = carda;
@@ -15,5 +16,6 @@ export class Player {
         this.status = status;
         this.total_bet = total_bet;
         this.subtotal_bet = subtotal_bet;
+        this.background = background;
     }
 }

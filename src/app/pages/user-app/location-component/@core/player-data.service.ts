@@ -1,19 +1,20 @@
 import { Injectable } from "@angular/core";
 import * as Rx from 'rxjs';
 import { GenericMethods } from './generic-methods';
-
+import { BotService } from './bot.service';
 
 
 
 @Injectable()
 export class PlayerDataService {
     big_blind;
-    BG_COLOR = "006600";
-    BG_HILITE = "EFEF30";
+    BG_COLOR = "#006600";
+    BG_HILITE = "#EFEF30";
     SUIT_LINK = "http://google.com/";
-    private current_bettor_index;
+    current_bettor_index;
 
-    constructor(private genericMethods: GenericMethods) { }
+    constructor(private genericMethods: GenericMethods,
+        private botService:BotService ) { }
 
     deal_and_write_a(button_index, players, deck_index, cards, speed, big_blind_data) {
         var pause_time = 0;
@@ -84,7 +85,8 @@ export class PlayerDataService {
                 return;
             } else {
                 this.write_player(this.current_bettor_index, 1, 0, 1, players, button_index);
-                //setTimeout("bot_bet(" + this.current_bettor_index + ")", 777 * this.speed);
+                //setTimeout("bot_bet(" + this.current_bettor_index + ")", 22000);
+                setTimeout(() => this.bot_bet(this.current_bettor_index,players,button_index), 22000);
                 return;
             }
         }
@@ -109,7 +111,7 @@ export class PlayerDataService {
         else this.main(players, button_index);
     }
 
-    
+
     write_player(n, hilite, show_cards, mode, players, button_index) {
         var carda = "",
             cardb = "";
@@ -126,7 +128,7 @@ export class PlayerDataService {
             background_a = background;
             if (n == 0 || (show_cards && players[n].status != "FOLD")) {
                 background_a = "";
-                background_color_a = "FFFFFF";
+                background_color_a = "#FFFFFF";
                 carda = this.get_card_html(players[n].carda);
             }
         }
@@ -134,23 +136,32 @@ export class PlayerDataService {
             background_b = background;
             if (n == 0 || (show_cards && players[n].status != "FOLD")) {
                 background_b = "";
-                background_color_b = "FFFFFF";
+                background_color_b = "#FFFFFF";
                 cardb = this.get_card_html(players[n].cardb);
             }
         }
         var button = "";
-        if (n == button_index) button = "<font color=FFFFFF>@</font>";
+        if (n == button_index) button = "<font color=#FFFFFF>@</font>";
         var bet_text = "";
         var allin = "bet:";
-        if (!this.genericMethods.has_money(n, players)) allin = "<font color=FF0000>ALL IN:</font>";
+        if (!this.genericMethods.has_money(n, players)) allin = "<font color=#FF0000>ALL IN:</font>";
         if (mode != 1 || players[n].subtotal_bet > 0 || players[n].status == "CALL")
-            bet_text = "<b><font size=+2>" + allin + " <font color=00EE00>" + players[n].subtotal_bet + "</font></font></b>";
+            bet_text = "<b><font size=+2>" + allin + " <font color=#00EE00>" + players[n].subtotal_bet + "</font></font></b>";
         else if (!this.genericMethods.has_money(n, players) && players[n].status != "FOLD" && players[n].status != "BUST")
-            bet_text = "<b><font size=+2 color=FF0000>ALL IN</font></b>";
+            bet_text = "<b><font size=+2 color=#FF0000>ALL IN</font></b>";
         if (players[n].status == "FOLD")
             bet_text = "<b><font size=+2>FOLDED</font></b>";
         else if (players[n].status == "BUST")
-            bet_text = "<b><font size=+2 color=FF0000>BUSTED</font></b>";
+            bet_text = "<b><font size=+2 color=#FF0000>BUSTED</font></b>";
+
+        //insert values to the particular player into the player object
+        players[n].background.base_background = base_background;
+        players[n].background.background_color_a = background_color_a;
+        players[n].background.background_a = background_a;
+        players[n].background.background_color_b = background_color_b;
+        players[n].background.background_b = background_b;
+
+
 
         var html = "<html><body bgcolor=" + base_background + " topmargin=4 bottommargin=0><pre><b><font size=+2>" + button + players[n].name + "</font></b>" +
             " [" + players[n].bankroll + "]" +
@@ -159,15 +170,43 @@ export class PlayerDataService {
 
         if (navigator.userAgent.indexOf("MSIE") > -1) html += "\n"; //FF
         html += "\n</small>" + bet_text + "</center></pre></body></html>";
-        //return "player" + n;
+        return "player" + n;
         //this.write_frame("player" + n, html, "");
     }
 
 
+
+    bot_bet(x ,players,button_index) {
+        var b = 0;
+        var n = this.genericMethods.current_bet - players[x].subtotal_bet;
+        if (!this.genericMethods.board[0]) b = this.botService.get_preflop_bet(players,this.current_bettor_index);
+        // else b = this.botService.get_postflop_bet();
+        if (b >= players[x].bankroll) //ALL IN
+            players[x].status = "";
+        else if (b < n) { //BET 2 SMALL
+            b = 0;
+            players[x].status = "FOLD";
+        } else if (b == n) { //CALL
+            players[x].status = "CALL";
+        } else if (b > n) {
+            if (b - n < this.genericMethods.current_min_raise) { //RAISE 2 SMALL
+                b = n;
+                players[x].status = "CALL";
+            } else players[x].status = ""; //RAISE
+        }
+        if (this.genericMethods.bet(x, b, players) == 0) {
+            players[x].status = "FOLD";
+            this.genericMethods.bet(x, 0, players);
+        }
+        this.write_player(this.current_bettor_index, 0, 0, 0, players,button_index);
+        this.current_bettor_index = this.genericMethods.get_next_player_position(this.current_bettor_index, 1, players);
+        this.main(players,button_index);
+    }
+
     get_card_html(card) {
         var suit = card.substring(0, 1);
-        var color = "FF0000";
-        if (suit == "c" || suit == "s") color = "000000";
+        var color = "#FF0000";
+        if (suit == "c" || suit == "s") color = "#000000";
         var r = card.substring(1);
         var rank = this.genericMethods.make_readable_rank(r);
         return "<font size=+2 color=" + color + "><b>" + rank + "</b></font> <a href='" + this.SUIT_LINK + "' target=_blank><img src=" + suit + ".gif border=0 title=" + suit + " alt=" + suit + "></a>";

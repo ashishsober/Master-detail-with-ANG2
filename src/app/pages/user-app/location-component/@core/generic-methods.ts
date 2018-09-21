@@ -4,6 +4,9 @@ import { Injectable } from "@angular/core";
 export class GenericMethods {
     current_bet: number;
     current_min_raise: number;
+    board;
+    BIG_BLIND;
+    HUMAN_WINS_AGAIN;
 
     has_money(i, players) {
         if (players[i].bankroll >= .01) return true;
@@ -30,7 +33,7 @@ export class GenericMethods {
     }
 
     bet(player_index, bet_amount, players) {
-        let BIG_BLIND = bet_amount;
+        var BIG_BLIND = bet_amount;
         if (players[player_index].status == "FOLD") { } //FOLD
         else if (bet_amount >= players[player_index].bankroll) { //ALL IN
             bet_amount = players[player_index].bankroll;
@@ -116,4 +119,20 @@ export class GenericMethods {
             players[j].cardb = cards[deck_index];
         }, i * 2000);
     }
+
+    reset_player_statuses(type,players) {
+        for (var i = 0; i < players.length; i++) {
+          if (type == 0) players[i].status = "";
+          else if (type == 1 && players[i].status != "BUST") players[i].status = "";
+          else if (type == 2 && players[i].status != "FOLD" && players[i].status != "BUST") players[i].status = "";
+        }
+      }
+
+      collect_cards(players) {
+        this.board = new Array(5);
+        for (var i = 0; i < players.length; i++) {
+          players[i].carda = "";
+          players[i].cardb = "";
+        }
+      }
 }
