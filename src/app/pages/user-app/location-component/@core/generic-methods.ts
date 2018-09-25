@@ -1,4 +1,6 @@
 import { Injectable } from "@angular/core";
+import * as Rx from 'rxjs';
+
 
 @Injectable()
 export class GenericMethods {
@@ -7,6 +9,7 @@ export class GenericMethods {
     board;
     BIG_BLIND;
     HUMAN_WINS_AGAIN;
+    emittingGeneralComponent = new Rx.BehaviorSubject(false);
 
     has_money(i, players) {
         if (players[i].bankroll >= .01) return true;
@@ -120,36 +123,44 @@ export class GenericMethods {
         }, i * 2000);
     }
 
-    reset_player_statuses(type,players) {
+    reset_player_statuses(type, players) {
         for (var i = 0; i < players.length; i++) {
-          if (type == 0) players[i].status = "";
-          else if (type == 1 && players[i].status != "BUST") players[i].status = "";
-          else if (type == 2 && players[i].status != "FOLD" && players[i].status != "BUST") players[i].status = "";
+            if (type == 0) players[i].status = "";
+            else if (type == 1 && players[i].status != "BUST") players[i].status = "";
+            else if (type == 2 && players[i].status != "FOLD" && players[i].status != "BUST") players[i].status = "";
         }
-      }
+    }
 
-      collect_cards(players) {
+    collect_cards(players) {
         this.board = new Array(5);
         for (var i = 0; i < players.length; i++) {
-          players[i].carda = "";
-          players[i].cardb = "";
+            players[i].carda = "";
+            players[i].cardb = "";
         }
-      }
+    }
 
-      write_frame(f: any, html: any, n: any): void {
-
-        try {
-          //console.log("type of component  " + f);
-          frames[f].document.open("text/html", "replace");
-          frames[f].document.write(html);
-          frames[f].document.close();
-          var u = navigator.userAgent;
-          if (u.indexOf("Opera") < 0 && u.indexOf("Safari") < 0 && u.indexOf("MSIE") > -1) frames[f].location.reload();
-        } catch (e) { //FF
-          if (!n) n = 0;
-          //if (n < 9)
-          // this.write_frame(f, html, ++n);
+    write_frame(f: any, html: any, n: any, player): void {
+        if(f === "general"){
+            console.log("inside write_frame function--", player,"  my component name to trigger--",f);
+            this.emittingGeneralComponent.next(true);
         }
-      }
-    
+        // try {
+        //   //console.log("type of component  " + f);
+        //   frames[f].document.open("text/html", "replace");
+        //   frames[f].document.write(html);
+        //   frames[f].document.close();
+        //   var u = navigator.userAgent;
+        //   if (u.indexOf("Opera") < 0 && u.indexOf("Safari") < 0 && u.indexOf("MSIE") > -1) frames[f].location.reload();
+        // } catch (e) { //FF
+        //   if (!n) n = 0;
+        //   //if (n < 9)
+        //   // this.write_frame(f, html, ++n);
+        // }
+    }
+
+    get_pot_size_html(players) {
+        return "<font color=00EE00 size=+4><b>TOTAL POT: " + this.get_pot_size(players) + "</b></font>";
+    }
+
+
 }
