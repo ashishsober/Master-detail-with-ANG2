@@ -13,8 +13,8 @@ export class PlayerDataService {
     SUIT_LINK = "http://google.com/";
     bot_bet_timer;
     timer;
-    constructor(private genericMethods: GenericMethods,
-        private botService: BotService) { }
+
+    constructor(private genericMethods: GenericMethods) { }
 
     deal_and_write_a(button_index, players, deck_index, cards, speed, current_bettor_index) {
         var pause_time = 0;
@@ -24,7 +24,7 @@ export class PlayerDataService {
         this.timer = setTimeout(() => this.deal_and_write_b(button_index, players, deck_index, cards, speed, current_bettor_index), 10000);
     }
 
-    deal_and_write_b(button_index, players, deck_index, cards, speed,current_bettor_index) {
+    deal_and_write_b(button_index, players, deck_index, cards, speed, current_bettor_index) {
         clearTimeout(this.timer);
         for (var i = 0; i < players.length; i++) {
             this.genericMethods.doSetTimeoutForDeal_B(i, button_index, players, deck_index++, cards);
@@ -85,8 +85,8 @@ export class PlayerDataService {
                 //this.write_frame("general", html, "");
                 return;
             } else {
-                this.write_player(current_bettor_index, 1, 0, 1, players, button_index,);
-                this.bot_bet_timer = setTimeout(() => this.bot_bet(current_bettor_index, players, button_index,current_bettor_index), 8000);
+                this.write_player(current_bettor_index, 1, 0, 1, players, button_index);
+                this.bot_bet_timer = setTimeout(() => this.bot_bet(current_bettor_index, players, button_index, current_bettor_index), 8000);
                 return;
             }
         }
@@ -108,7 +108,7 @@ export class PlayerDataService {
             current_bettor_index = this.genericMethods.get_next_player_position(current_bettor_index, 1, players);
         if (can_break)
             setTimeout("ready_for_next_card()", 20000);
-        else 
+        else
             this.main(players, button_index, current_bettor_index);
     }
 
@@ -176,12 +176,10 @@ export class PlayerDataService {
         //this.write_frame("player" + n, html, "");
     }
 
-
-
-    bot_bet(x, players, button_index,current_bettor_index) {
+    bot_bet(x, players, button_index, current_bettor_index) {
         clearTimeout(this.timer);
         clearTimeout(this.bot_bet_timer);
-       // this.timer.data.handleId;
+        // this.timer.data.handleId;
         var b = 0;
         var n = this.genericMethods.current_bet - players[x].subtotal_bet;
 
@@ -190,7 +188,7 @@ export class PlayerDataService {
         if (!this.genericMethods.board[0])
             b = 10; //this.botService.get_preflop_bet(players,this.current_bettor_index); 
         else
-            b = this.botService.get_preflop_bet(players, current_bettor_index);
+            b = 0;  //this.botService.get_preflop_bet(players, current_bettor_index);
 
         if (b >= players[x].bankroll) //ALL IN
             players[x].status = "";

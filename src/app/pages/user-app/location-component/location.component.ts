@@ -13,22 +13,19 @@ import { GenericMethods } from './@core/generic-methods';
 
 //holdem.js
 export class LocationComponent implements OnInit, OnDestroy {
-  
+
   BACK_HOME = "CDB Home";
   BACK_HOME_LINK = "http://deathbeeper.com/";
-  
+
   START_DATE;
   NUM_ROUNDS;
   STOP_AUTOPLAY = 0;
   RUN_EM = 0;
   STARTING_BANKROLL = 500;
   SMALL_BLIND;
-  
   speed = 1;
-  
   cards = new Array(52);
   players;
-  
   deck_index;
   button_index;
   name;
@@ -41,6 +38,13 @@ export class LocationComponent implements OnInit, OnDestroy {
   pauseTime = 0;
   current_bettor_index;
 
+  my_players = [
+    new Player("Laxmi Singh", 0, "", "", "", 0, 0, { base_background: "", background_color_a: '', background_a: '', background_color_b: '', background_b: '' }),
+    new Player("Jimmy Arora", 0, "", "", "", 0, 0, { base_background: "", background_color_a: '', background_a: '', background_color_b: '', background_b: '' }),
+    new Player("Karan Mishra", 0, "", "", "", 0, 0, { base_background: "", background_color_a: '', background_a: '', background_color_b: '', background_b: '' }),
+    new Player("Divakar", 0, "", "", "", 0, 0, { base_background: "", background_color_a: '', background_a: '', background_color_b: '', background_b: '' })
+  ];
+
   constructor(private genericMethods: GenericMethods,
     private playerDataService: PlayerDataService) { }
 
@@ -52,7 +56,7 @@ export class LocationComponent implements OnInit, OnDestroy {
     //this.write_frame("board2", "<html><body bgcolor=" + this.BG_COLOR + " text=FFFFFF><table height=100%><tr><td valign=center><tt><b>Hello!</b> This software is still being improved. The opponent bots need to be smarter. If it isn't challenging now, hopefully it will be soon. And please visit some of our sponsors' links. <small><i>February 2006</i></small></tt></td></tr></table></body></html>", "");
   }
 
-  ngOnDestroy(){
+  ngOnDestroy() {
     clearTimeout(this.playerDataService.bot_bet_timer);
     clearTimeout(this.playerDataService.timer);
   }
@@ -71,12 +75,6 @@ export class LocationComponent implements OnInit, OnDestroy {
     }
   }
 
-  my_players = [
-    new Player("Stan Deman", 0, "", "", "", 0, 0, { base_background :"", background_color_a :'', background_a:'' ,background_color_b:'',background_b:'' }),
-    new Player("Karth Kerai", 0, "", "", "", 0, 0,{ base_background :"", background_color_a :'', background_a:'' ,background_color_b:'',background_b:''}),
-    new Player("Tonya Bonya", 0, "", "", "", 0, 0,{ base_background :"", background_color_a :'', background_a:'' ,background_color_b:'',background_b:''}),
-    new Player("Stan Deman", 0, "", "", "", 0, 0,{ base_background :"", background_color_a :'', background_a:'' ,background_color_b:'',background_b:''})
-  ];
 
   new_game() {
     this.START_DATE = new Date();
@@ -87,14 +85,14 @@ export class LocationComponent implements OnInit, OnDestroy {
     this.players = new Array(this.my_players.length + 1);
     var player_name = this.getCookie("playername");
     if (!player_name) player_name = "You";
-    this.players[0] = new Player(player_name, 0, "", "", "", 0, 0,{ base_background :"", background_color_a :'', background_a:'' ,background_color_b:'',background_b:''});
+    this.players[0] = new Player(player_name, 0, "", "", "", 0, 0, { base_background: "", background_color_a: '', background_a: '', background_color_b: '', background_b: '' });
     this.my_players.sort(this.compRan);
 
     //here we are adding the new palyer and other players in this.players
     for (var i = 1; i < this.players.length; i++) {
       this.players[i] = this.my_players[i - 1];
     }
-    this.genericMethods.reset_player_statuses(0,this.players);
+    this.genericMethods.reset_player_statuses(0, this.players);
     this.genericMethods.clear_bets(this.players);
 
     //assigning the money to the players
@@ -105,6 +103,7 @@ export class LocationComponent implements OnInit, OnDestroy {
     this.button_index = Math.floor(Math.random() * this.players.length);
     this.new_round();
   }
+
 
   //who are the players are eligible to play
   new_round() {
@@ -120,7 +119,7 @@ export class LocationComponent implements OnInit, OnDestroy {
       return;
     }
     this.preload_pix();
-    this.genericMethods.reset_player_statuses(1,this.players);
+    this.genericMethods.reset_player_statuses(1, this.players);
     this.genericMethods.clear_bets(this.players);
     this.genericMethods.clear_pot(this.players);
     this.genericMethods.current_min_raise = 0;
@@ -128,7 +127,7 @@ export class LocationComponent implements OnInit, OnDestroy {
     //write_ad();
     this.button_index = this.genericMethods.get_next_player_position(this.button_index, 1, this.players);
 
-    for (var i = 0; i < this.players.length; i++) this.playerDataService.write_player(i, 0, 0, 1, this.players,this.button_index);
+    for (var i = 0; i < this.players.length; i++) this.playerDataService.write_player(i, 0, 0, 1, this.players, this.button_index);
     for (var i = 0; i < this.genericMethods.board.length; i++) this.write_frame("board" + i, "<html><body bgcolor=" + this.playerDataService.BG_COLOR + "></body></html>", "");
 
     if (this.NUM_ROUNDS > 1) {
@@ -164,12 +163,12 @@ export class LocationComponent implements OnInit, OnDestroy {
     }
     var small_blind = this.genericMethods.get_next_player_position(this.button_index, 1, this.players);
     this.genericMethods.bet(small_blind, this.SMALL_BLIND, this.players);
-    this.playerDataService.write_player(small_blind, 0, 0, 0, this.players,this.button_index);
+    this.playerDataService.write_player(small_blind, 0, 0, 0, this.players, this.button_index);
     var big_blind = this.genericMethods.get_next_player_position(small_blind, 1, this.players);
     this.genericMethods.bet(big_blind, this.genericMethods.BIG_BLIND, this.players);
-    this.playerDataService.write_player(big_blind, 0, 0, 0, this.players,this.button_index);
+    this.playerDataService.write_player(big_blind, 0, 0, 0, this.players, this.button_index);
     this.players[big_blind].status = "OPTION";
-    this.current_bettor_index = this.genericMethods.get_next_player_position(big_blind, 1,this.players);
+    this.current_bettor_index = this.genericMethods.get_next_player_position(big_blind, 1, this.players);
     setTimeout(() => {
       this.playerDataService.deal_and_write_a(this.button_index, this.players, this.deck_index, this.cards, this.speed, this.current_bettor_index);
     }, 1000);
@@ -354,13 +353,13 @@ export class LocationComponent implements OnInit, OnDestroy {
     // }
   }
 
-  autoplay_new_round() {
-    if (this.STOP_AUTOPLAY > 0) {
-      this.STOP_AUTOPLAY = 0;
-      this.new_game();
-    } else
-      this.new_round();
-  }
+  // autoplay_new_round() {
+  //   if (this.STOP_AUTOPLAY > 0) {
+  //     this.STOP_AUTOPLAY = 0;
+  //     this.new_game();
+  //   } else
+  //     this.new_round();
+  // }
 
   // ready_for_next_card() {
   //   var num_betting = this.get_num_betting();
@@ -439,7 +438,7 @@ export class LocationComponent implements OnInit, OnDestroy {
   //   this.main();
   // }
 
- 
+
 
   get_pot_size_html() {
     return "<font color=00EE00 size=+4><b>TOTAL POT: " + this.genericMethods.get_pot_size(this.players) + "</b></font>";
@@ -457,7 +456,7 @@ export class LocationComponent implements OnInit, OnDestroy {
     //write_ad();
     if (!name) return;
     this.players[0].name = name;
-    this.playerDataService.write_player(0, 0, 0, 0, this.players,this.button_index);
+    this.playerDataService.write_player(0, 0, 0, 0, this.players, this.button_index);
     this.setCookie("playername", name);
   }
 
