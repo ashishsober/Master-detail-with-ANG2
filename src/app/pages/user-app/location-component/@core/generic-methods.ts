@@ -135,4 +135,21 @@ export class GenericMethods {
           players[i].cardb = "";
         }
       }
+
+      write_frame(f: any, html: any, n: any): void {
+
+        try {
+          //console.log("type of component  " + f);
+          frames[f].document.open("text/html", "replace");
+          frames[f].document.write(html);
+          frames[f].document.close();
+          var u = navigator.userAgent;
+          if (u.indexOf("Opera") < 0 && u.indexOf("Safari") < 0 && u.indexOf("MSIE") > -1) frames[f].location.reload();
+        } catch (e) { //FF
+          if (!n) n = 0;
+          //if (n < 9)
+          // this.write_frame(f, html, ++n);
+        }
+      }
+    
 }

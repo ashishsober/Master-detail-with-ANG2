@@ -13,6 +13,7 @@ export class PlayerDataService {
     SUIT_LINK = "http://google.com/";
     bot_bet_timer;
     timer;
+    timerMain;
 
     constructor(private genericMethods: GenericMethods) { }
 
@@ -29,11 +30,11 @@ export class PlayerDataService {
         for (var i = 0; i < players.length; i++) {
             this.genericMethods.doSetTimeoutForDeal_B(i, button_index, players, deck_index++, cards);
         }
-        this.timer = setTimeout(() => this.main(players, button_index, current_bettor_index), 14000);
+        this.timerMain = setTimeout(() => this.main(players, button_index, current_bettor_index), 14000);
     }
 
     main(players, button_index, current_bettor_index) {
-        clearTimeout(this.timer);
+        clearTimeout(this.timerMain);
         var increment_bettor_index = 0;
         //this.current_bettor_index = this.genericMethods.get_next_player_position(this.big_blind, 1, players);
 
@@ -177,7 +178,6 @@ export class PlayerDataService {
     }
 
     bot_bet(x, players, button_index, current_bettor_index) {
-        clearTimeout(this.timer);
         clearTimeout(this.bot_bet_timer);
         // this.timer.data.handleId;
         var b = 0;

@@ -59,6 +59,7 @@ export class LocationComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     clearTimeout(this.playerDataService.bot_bet_timer);
     clearTimeout(this.playerDataService.timer);
+    clearTimeout(this.playerDataService.timerMain);
   }
 
   a(d) {
@@ -115,7 +116,7 @@ export class LocationComponent implements OnInit, OnDestroy {
         num_playing += 1;
     }
     if (num_playing < 2) {
-      this.write_frame("general", "<html><body topmargin=2 bottommargin=0 bgcolor=" + this.playerDataService.BG_HILITE + " onload='document.f.y.focus();'><font size=+2>Play again?</font><form name=f><input name=y type=button value='  Yes  ' onclick='parent.new_game()'><input type=button value='  No  ' onclick='parent.confirm_quit()'></form></body></html>", "");
+      this.genericMethods.write_frame("general", "<html><body topmargin=2 bottommargin=0 bgcolor=" + this.playerDataService.BG_HILITE + " onload='document.f.y.focus();'><font size=+2>Play again?</font><form name=f><input name=y type=button value='  Yes  ' onclick='parent.new_game()'><input type=button value='  No  ' onclick='parent.confirm_quit()'></form></body></html>", "");
       return;
     }
     this.preload_pix();
@@ -128,15 +129,15 @@ export class LocationComponent implements OnInit, OnDestroy {
     this.button_index = this.genericMethods.get_next_player_position(this.button_index, 1, this.players);
 
     for (var i = 0; i < this.players.length; i++) this.playerDataService.write_player(i, 0, 0, 1, this.players, this.button_index);
-    for (var i = 0; i < this.genericMethods.board.length; i++) this.write_frame("board" + i, "<html><body bgcolor=" + this.playerDataService.BG_COLOR + "></body></html>", "");
+    for (var i = 0; i < this.genericMethods.board.length; i++) this.genericMethods.write_frame("board" + i, "<html><body bgcolor=" + this.playerDataService.BG_COLOR + "></body></html>", "");
 
     if (this.NUM_ROUNDS > 1) {
-      this.write_frame("board4", "<html><body bgcolor=" + this.playerDataService.BG_COLOR + "><iframe width=100% height=100% border=0 frameborder=0 src=http://rawdataserver.com/poker/firefox.html></iframe></body></html>", "");
+      this.genericMethods.write_frame("board4", "<html><body bgcolor=" + this.playerDataService.BG_COLOR + "><iframe width=100% height=100% border=0 frameborder=0 src=http://rawdataserver.com/poker/firefox.html></iframe></body></html>", "");
       try { //FF
         frames["board4"].location.reload(); //for ads to display
       } catch (e) { }
-      this.write_frame("board0", "<html><body bgcolor=" + this.playerDataService.BG_COLOR + "><center><table height=100%><tr><td valign=center><font color=FFFFFF><tt>Play poker for real money at Gus Hansen's PokerChamps! <b>Play against Gus!</b><div align=right>>>></div></tt></font></td></tr></table></center></body></html>", "");
-      this.write_frame("board1", "<html><body bgcolor=" + this.playerDataService.BG_COLOR + "><center><table height=100%><tr><td valign=center><a href='https://secure.pokerchamps.com/pokerpublic/arequest?acode=UXBIHDUC' target=_blank><img src=pcbanner.gif border=0></a></td></tr></table></center></body></html>", "");
+      this.genericMethods.write_frame("board0", "<html><body bgcolor=" + this.playerDataService.BG_COLOR + "><center><table height=100%><tr><td valign=center><font color=FFFFFF><tt>Play poker for real money at Gus Hansen's PokerChamps! <b>Play against Gus!</b><div align=right>>>></div></tt></font></td></tr></table></center></body></html>", "");
+      this.genericMethods.write_frame("board1", "<html><body bgcolor=" + this.playerDataService.BG_COLOR + "><center><table height=100%><tr><td valign=center><a href='https://secure.pokerchamps.com/pokerpublic/arequest?acode=UXBIHDUC' target=_blank><img src=pcbanner.gif border=0></a></td></tr></table></center></body></html>", "");
     }
     this.shuffle();
     this.blinds_and_deal();
@@ -225,7 +226,7 @@ export class LocationComponent implements OnInit, OnDestroy {
       pic = this.genericMethods.board[n].substring(0, 1) + ".gif";
       pic_click = this.playerDataService.SUIT_LINK;
     }
-    this.write_frame("board" + n, "<html><body bgcolor=" + this.playerDataService.BG_COLOR + " leftmargin=3><table width=100% bgcolor=FFFFFF><tr><td valign=top>" +
+    this.genericMethods.write_frame("board" + n, "<html><body bgcolor=" + this.playerDataService.BG_COLOR + " leftmargin=3><table width=100% bgcolor=FFFFFF><tr><td valign=top>" +
       this.playerDataService.get_card_html(this.genericMethods.board[n]) + "</td></tr></table><a href=\"" + pic_click + "\" target=_blank><img border=0 width=100% src='" +
       pic + "'></a><br><table width=100% height=100% bgcolor=FFFFFF><tr><td></td></tr></table></body></html>", "");
   }
@@ -460,24 +461,9 @@ export class LocationComponent implements OnInit, OnDestroy {
     this.setCookie("playername", name);
   }
 
-  write_frame(f: any, html: any, n: any): void {
-
-    try {
-      //console.log("type of component  " + f);
-      frames[f].document.open("text/html", "replace");
-      frames[f].document.write(html);
-      frames[f].document.close();
-      var u = navigator.userAgent;
-      if (u.indexOf("Opera") < 0 && u.indexOf("Safari") < 0 && u.indexOf("MSIE") > -1) frames[f].location.reload();
-    } catch (e) { //FF
-      if (!n) n = 0;
-      //if (n < 9)
-      // this.write_frame(f, html, ++n);
-    }
-  }
-
+  
   write_basic_general() {
-    this.write_frame("general", "<html><body topmargin=2 bottommargin=0 bgcolor=" + this.playerDataService.BG_COLOR + "><table><tr><td>" + this.get_pot_size_html() + "</td></tr></table></body></html>", "");
+    this.genericMethods.write_frame("general", "<html><body topmargin=2 bottommargin=0 bgcolor=" + this.playerDataService.BG_COLOR + "><table><tr><td>" + this.get_pot_size_html() + "</td></tr></table></body></html>", "");
   }
 
   write_settings_frame() {
@@ -490,7 +476,7 @@ export class LocationComponent implements OnInit, OnDestroy {
     this.set_speed(speeds[speed_i], speed_i);
     var speed_options = "";
     for (var i = 0; i < speeds.length; i++) speed_options += "<option value='" + speeds[i] + "'" + speed_select[i] + ">" + (i + 1);
-    this.write_frame("settings", "<html><body topmargin=7 bottommargin=0 vlink=0000FF bgcolor=" + this.playerDataService.BG_COLOR + "><pre><center><b><font size=+2>Options</font></b>\n\n<a href='javascript:parent.change_name()'>Your name</a>\n\n<form>Speed <select onchange='parent.set_speed(options[selectedIndex].value,selectedIndex);'>" + speed_options + "</select></form><a target=_blank href=http://rawdataserver.com/poker/help.html>Help</a></center></pre></body></html>", "");
+    this.genericMethods.write_frame("settings", "<html><body topmargin=7 bottommargin=0 vlink=0000FF bgcolor=" + this.playerDataService.BG_COLOR + "><pre><center><b><font size=+2>Options</font></b>\n\n<a href='javascript:parent.change_name()'>Your name</a>\n\n<form>Speed <select onchange='parent.set_speed(options[selectedIndex].value,selectedIndex);'>" + speed_options + "</select></form><a target=_blank href=http://rawdataserver.com/poker/help.html>Help</a></center></pre></body></html>", "");
   }
 
   set_deck(v) {
