@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { PlayerDataService } from './@core/player-data.service';
 import { Subscription } from 'rxjs';
 import { Player } from './@core/player.class';
@@ -12,7 +12,7 @@ import { GenericMethods } from './@core/generic-methods';
 })
 
 //holdem.js
-export class LocationComponent implements OnInit {
+export class LocationComponent implements OnInit, OnDestroy {
   
   BACK_HOME = "CDB Home";
   BACK_HOME_LINK = "http://deathbeeper.com/";
@@ -50,6 +50,11 @@ export class LocationComponent implements OnInit {
     this.make_deck(); //doing no function call
     this.new_game();//initialising the players ,in this.players array all the players we have.
     //this.write_frame("board2", "<html><body bgcolor=" + this.BG_COLOR + " text=FFFFFF><table height=100%><tr><td valign=center><tt><b>Hello!</b> This software is still being improved. The opponent bots need to be smarter. If it isn't challenging now, hopefully it will be soon. And please visit some of our sponsors' links. <small><i>February 2006</i></small></tt></td></tr></table></body></html>", "");
+  }
+
+  ngOnDestroy(){
+    clearTimeout(this.playerDataService.bot_bet_timer);
+    clearTimeout(this.playerDataService.timer);
   }
 
   a(d) {
