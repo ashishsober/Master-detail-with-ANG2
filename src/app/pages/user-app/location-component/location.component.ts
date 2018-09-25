@@ -39,10 +39,10 @@ export class LocationComponent implements OnInit {
   total_bet;
   subtotal_bet;
   pauseTime = 0;
+  current_bettor_index;
 
   constructor(private genericMethods: GenericMethods,
-    private playerDataService: PlayerDataService,
-  ) { }
+    private playerDataService: PlayerDataService) { }
 
   ngOnInit() {
     this.preload_base_pix();//doing no function call
@@ -164,55 +164,55 @@ export class LocationComponent implements OnInit {
     this.genericMethods.bet(big_blind, this.genericMethods.BIG_BLIND, this.players);
     this.playerDataService.write_player(big_blind, 0, 0, 0, this.players,this.button_index);
     this.players[big_blind].status = "OPTION";
-    //this.current_bettor_index = this.playerDataService.get_next_player_position(big_blind, 1,this.players);
+    this.current_bettor_index = this.genericMethods.get_next_player_position(big_blind, 1,this.players);
     setTimeout(() => {
-      this.playerDataService.deal_and_write_a(this.button_index, this.players, this.deck_index, this.cards, this.speed, big_blind);
+      this.playerDataService.deal_and_write_a(this.button_index, this.players, this.deck_index, this.cards, this.speed, this.current_bettor_index);
     }, 1000);
   }
 
-  deal_flop() {
-    var pause_time = 777;
-    for (var i = 0; i < 3; i++)
-      this.genericMethods.board[i] = this.cards[this.deck_index++];
+  // deal_flop() {
+  //   var pause_time = 777;
+  //   for (var i = 0; i < 3; i++)
+  //     this.genericMethods.board[i] = this.cards[this.deck_index++];
 
-    /*
-    board[0]="c13";
-    board[1]="c6";
-    board[2]="d11";
-    //*/
+  //   /*
+  //   board[0]="c13";
+  //   board[1]="c6";
+  //   board[2]="d11";
+  //   //*/
 
-    setTimeout("this.write_board('0')", (pause_time + 100) * this.speed);
-    setTimeout("this.write_board('1')", (pause_time + 250) * this.speed);
-    setTimeout("this.write_board('2')", (pause_time + 400) * this.speed);
-    if (this.get_num_betting() > 1) setTimeout(() => this.playerDataService.main(this.players,this.button_index), (pause_time + 1000) * this.speed);
-    else setTimeout("ready_for_next_card()", 999 * this.speed);
-  }
+  //   setTimeout("this.write_board('0')", (pause_time + 100) * this.speed);
+  //   setTimeout("this.write_board('1')", (pause_time + 250) * this.speed);
+  //   setTimeout("this.write_board('2')", (pause_time + 400) * this.speed);
+  //   if (this.get_num_betting() > 1) setTimeout(() => this.playerDataService.main(this.players,this.button_index), (pause_time + 1000) * this.speed);
+  //   else setTimeout("ready_for_next_card()", 999 * this.speed);
+  // }
 
-  deal_fourth() {
-    var pause_time = 777;
-    this.genericMethods.board[3] = this.cards[this.deck_index++];
+  // deal_fourth() {
+  //   var pause_time = 777;
+  //   this.genericMethods.board[3] = this.cards[this.deck_index++];
 
-    //board[3]="c9";
+  //   //board[3]="c9";
 
-    setTimeout("this.write_board('3')", (pause_time + 100) * this.speed);
-    if (this.get_num_betting() > 1)
-      setTimeout(() => this.playerDataService.main(this.players,this.button_index), 2000 * this.speed);
-    else
-      setTimeout(this.ready_for_next_card(), 999 * this.speed);
-  }
+  //   setTimeout("this.write_board('3')", (pause_time + 100) * this.speed);
+  //   if (this.get_num_betting() > 1)
+  //     setTimeout(() => this.playerDataService.main(this.players,this.button_index), 2000 * this.speed);
+  //   else
+  //     setTimeout(this.ready_for_next_card(), 999 * this.speed);
+  // }
 
-  deal_fifth() {
-    var pause_time = 777;
-    this.genericMethods.board[4] = this.cards[this.deck_index++];
+  // deal_fifth() {
+  //   var pause_time = 777;
+  //   this.genericMethods.board[4] = this.cards[this.deck_index++];
 
-    //board[4]="c10";
+  //   //board[4]="c10";
 
-    setTimeout("write_board('4')", (pause_time + 100) * this.speed);
-    if (this.get_num_betting() > 1)
-      setTimeout(() => this.playerDataService.main(this.players,this.button_index), 2000 * this.speed);
-    else
-      setTimeout("ready_for_next_card()", 999 * this.speed);
-  }
+  //   setTimeout("write_board('4')", (pause_time + 100) * this.speed);
+  //   if (this.get_num_betting() > 1)
+  //     setTimeout(() => this.playerDataService.main(this.players,this.button_index), 2000 * this.speed);
+  //   else
+  //     setTimeout("ready_for_next_card()", 999 * this.speed);
+  // }
 
   write_board(n) {
     var pic = this.get_next_pic();
@@ -357,31 +357,31 @@ export class LocationComponent implements OnInit {
       this.new_round();
   }
 
-  ready_for_next_card() {
-    var num_betting = this.get_num_betting();
-    for (var i = 0; i < this.players.length; i++) { this.players[i].total_bet += this.players[i].subtotal_bet; }
-    this.genericMethods.clear_bets(this.players);
-    if (this.genericMethods.board[4]) {
-      this.handle_end_of_round();
-      return;
-    }
-    this.genericMethods.current_min_raise = this.genericMethods.BIG_BLIND;
-    this.genericMethods.reset_player_statuses(2,this.players);
-    if (this.players[this.button_index].status == "FOLD") this.players[this.genericMethods.get_next_player_position(this.button_index, -1, this.players)].status = "OPTION";
-    else this.players[this.button_index].status = "OPTION";
-    this.playerDataService.current_bettor_index = this.genericMethods.get_next_player_position(this.button_index, 1, this.players);
-    var show_cards = 0;
-    if (num_betting < 2) show_cards = 1;
+  // ready_for_next_card() {
+  //   var num_betting = this.get_num_betting();
+  //   for (var i = 0; i < this.players.length; i++) { this.players[i].total_bet += this.players[i].subtotal_bet; }
+  //   this.genericMethods.clear_bets(this.players);
+  //   if (this.genericMethods.board[4]) {
+  //     this.handle_end_of_round();
+  //     return;
+  //   }
+  //   this.genericMethods.current_min_raise = this.genericMethods.BIG_BLIND;
+  //   this.genericMethods.reset_player_statuses(2,this.players);
+  //   if (this.players[this.button_index].status == "FOLD") this.players[this.genericMethods.get_next_player_position(this.button_index, -1, this.players)].status = "OPTION";
+  //   else this.players[this.button_index].status = "OPTION";
+  //   this.current_bettor_index = this.genericMethods.get_next_player_position(this.button_index, 1, this.players);
+  //   var show_cards = 0;
+  //   if (num_betting < 2) show_cards = 1;
 
-    if (!this.RUN_EM)
-      for (var i = 0; i < this.players.length; i++)
-        if (this.players[i].status != "BUST" && this.players[i].status != "FOLD") this.playerDataService.write_player(i, 0, show_cards, 1, this.players,this.button_index);
+  //   if (!this.RUN_EM)
+  //     for (var i = 0; i < this.players.length; i++)
+  //       if (this.players[i].status != "BUST" && this.players[i].status != "FOLD") this.playerDataService.write_player(i, 0, show_cards, 1, this.players,this.button_index);
 
-    if (num_betting < 2) this.RUN_EM = 1;
-    if (!this.genericMethods.board[0]) this.deal_flop();
-    else if (!this.genericMethods.board[3]) this.deal_fourth();
-    else if (!this.genericMethods.board[4]) this.deal_fifth();
-  }
+  //   if (num_betting < 2) this.RUN_EM = 1;
+  //   if (!this.genericMethods.board[0]) this.deal_flop();
+  //   else if (!this.genericMethods.board[3]) this.deal_fourth();
+  //   else if (!this.genericMethods.board[4]) this.deal_fifth();
+  // }
 
 
 

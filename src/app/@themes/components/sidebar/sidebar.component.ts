@@ -13,8 +13,10 @@ export class SidebarComponent implements OnInit{
   ngOnInit(){
     if(this.route.url === '/userapp/UserAppDataComponent/profile' || this.route.url === '/userapp/UserAppDataComponent/location'){
       this.sidebarList = [
-        {label:'Profiles',link:'./profile',icon:'fa fa-globe'},
+        {label:'Back',link:'../dashboard',icon:'fa fa-arrow-left'},
+        {label:'Profiles',link:'./profile',icon:'fa fa-user'},
         {label:'Table',link:'./location',icon:'fa fa-th-list'}
+        
        ];
     } else {
       this.sidebarList = [

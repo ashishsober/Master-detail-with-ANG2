@@ -8,44 +8,45 @@ import { BotService } from './bot.service';
 @Injectable()
 export class PlayerDataService {
     big_blind;
-    BG_COLOR = "#006600";
-    BG_HILITE = "#EFEF30";
+    BG_COLOR = "#006600"; //green color
+    BG_HILITE = "#EFEF30"; //yellow color
     SUIT_LINK = "http://google.com/";
-    current_bettor_index;
-
+    bot_bet_timer;
+    timer;
     constructor(private genericMethods: GenericMethods,
-        private botService:BotService ) { }
+        private botService: BotService) { }
 
-    deal_and_write_a(button_index, players, deck_index, cards, speed, big_blind_data) {
+    deal_and_write_a(button_index, players, deck_index, cards, speed, current_bettor_index) {
         var pause_time = 0;
-        this.big_blind = big_blind_data;
         for (var i = 0; i < players.length; i++) {
             this.genericMethods.doSetTimeoutForDeal_A(i, button_index, players, deck_index++, cards);
         }
-        setTimeout(() => this.deal_and_write_b(button_index, players, deck_index, cards, speed), 10000);
+        this.timer = setTimeout(() => this.deal_and_write_b(button_index, players, deck_index, cards, speed, current_bettor_index), 10000);
     }
 
-    deal_and_write_b(button_index, players, deck_index, cards, speed) {
+    deal_and_write_b(button_index, players, deck_index, cards, speed,current_bettor_index) {
+        clearTimeout(this.timer);
         for (var i = 0; i < players.length; i++) {
             this.genericMethods.doSetTimeoutForDeal_B(i, button_index, players, deck_index++, cards);
         }
-        setTimeout(() => this.main(players, button_index), 14000);
+        this.timer = setTimeout(() => this.main(players, button_index, current_bettor_index), 14000);
     }
 
-    main(players, button_index) {
+    main(players, button_index, current_bettor_index) {
+        clearTimeout(this.timer);
         var increment_bettor_index = 0;
-        this.current_bettor_index = this.genericMethods.get_next_player_position(this.big_blind, 1, players);
+        //this.current_bettor_index = this.genericMethods.get_next_player_position(this.big_blind, 1, players);
 
-        if (players[this.current_bettor_index].status == "BUST" || players[this.current_bettor_index].status == "FOLD") {
+        if (players[current_bettor_index].status == "BUST" || players[current_bettor_index].status == "FOLD") {
             increment_bettor_index = 1;
-        } else if (!this.genericMethods.has_money(this.current_bettor_index, players)) {
-            players[this.current_bettor_index].status = "CALL";
+        } else if (!this.genericMethods.has_money(current_bettor_index, players)) {
+            players[current_bettor_index].status = "CALL";
             increment_bettor_index = 1;
-        } else if (players[this.current_bettor_index].status == "CALL" && players[this.current_bettor_index].subtotal_bet == this.genericMethods.current_bet) {
+        } else if (players[current_bettor_index].status == "CALL" && players[current_bettor_index].subtotal_bet == this.genericMethods.current_bet) {
             increment_bettor_index = 1;
         } else {
-            players[this.current_bettor_index].status = "";
-            if (this.current_bettor_index == 0) {
+            players[current_bettor_index].status = "";
+            if (current_bettor_index == 0) {
                 var call_button_text = "     Call     ";
                 var fold_button = "<input type=button value=Fold onclick='parent.human_fold()'>";
                 var bet_button_text = "   Raise   ";
@@ -84,9 +85,8 @@ export class PlayerDataService {
                 //this.write_frame("general", html, "");
                 return;
             } else {
-                this.write_player(this.current_bettor_index, 1, 0, 1, players, button_index);
-                //setTimeout("bot_bet(" + this.current_bettor_index + ")", 22000);
-                setTimeout(() => this.bot_bet(this.current_bettor_index,players,button_index), 22000);
+                this.write_player(current_bettor_index, 1, 0, 1, players, button_index,);
+                this.bot_bet_timer = setTimeout(() => this.bot_bet(current_bettor_index, players, button_index,current_bettor_index), 8000);
                 return;
             }
         }
@@ -105,20 +105,21 @@ export class PlayerDataService {
             }
         }
         if (increment_bettor_index)
-            this.current_bettor_index = this.genericMethods.get_next_player_position(this.current_bettor_index, 1, players);
+            current_bettor_index = this.genericMethods.get_next_player_position(current_bettor_index, 1, players);
         if (can_break)
             setTimeout("ready_for_next_card()", 20000);
-        else this.main(players, button_index);
+        else 
+            this.main(players, button_index, current_bettor_index);
     }
 
 
     write_player(n, hilite, show_cards, mode, players, button_index) {
         var carda = "",
             cardb = "";
-        var base_background = this.BG_COLOR;
-        if (hilite == 1) base_background = this.BG_HILITE;
-        else if (hilite == 2) base_background = "FF0000";
-        if (players[n].status == "FOLD") base_background = "999999";
+        var base_background;
+        if (hilite == 1) players[n].background.base_background = this.BG_HILITE; //yellow color
+        else if (hilite == 2) players[n].background.base_background = "#FF0000";
+        if (players[n].status == "FOLD") players[n].background.base_background = "#F44336";//red color for fold
         var background = " background=cardback.gif";
         var background_a = "";
         var background_b = "";
@@ -144,6 +145,7 @@ export class PlayerDataService {
         if (n == button_index) button = "<font color=#FFFFFF>@</font>";
         var bet_text = "";
         var allin = "bet:";
+
         if (!this.genericMethods.has_money(n, players)) allin = "<font color=#FF0000>ALL IN:</font>";
         if (mode != 1 || players[n].subtotal_bet > 0 || players[n].status == "CALL")
             bet_text = "<b><font size=+2>" + allin + " <font color=#00EE00>" + players[n].subtotal_bet + "</font></font></b>";
@@ -155,7 +157,7 @@ export class PlayerDataService {
             bet_text = "<b><font size=+2 color=#FF0000>BUSTED</font></b>";
 
         //insert values to the particular player into the player object
-        players[n].background.base_background = base_background;
+        // players[n].background.base_background = base_background;
         players[n].background.background_color_a = background_color_a;
         players[n].background.background_a = background_a;
         players[n].background.background_color_b = background_color_b;
@@ -176,11 +178,20 @@ export class PlayerDataService {
 
 
 
-    bot_bet(x ,players,button_index) {
+    bot_bet(x, players, button_index,current_bettor_index) {
+        clearTimeout(this.timer);
+        clearTimeout(this.bot_bet_timer);
+       // this.timer.data.handleId;
         var b = 0;
         var n = this.genericMethods.current_bet - players[x].subtotal_bet;
-        if (!this.genericMethods.board[0]) b = this.botService.get_preflop_bet(players,this.current_bettor_index);
-        // else b = this.botService.get_postflop_bet();
+
+        //if u set b =0 ,player will get fold
+        //if you set b=10 ,player will not be fold
+        if (!this.genericMethods.board[0])
+            b = 10; //this.botService.get_preflop_bet(players,this.current_bettor_index); 
+        else
+            b = this.botService.get_preflop_bet(players, current_bettor_index);
+
         if (b >= players[x].bankroll) //ALL IN
             players[x].status = "";
         else if (b < n) { //BET 2 SMALL
@@ -198,9 +209,9 @@ export class PlayerDataService {
             players[x].status = "FOLD";
             this.genericMethods.bet(x, 0, players);
         }
-        this.write_player(this.current_bettor_index, 0, 0, 0, players,button_index);
-        this.current_bettor_index = this.genericMethods.get_next_player_position(this.current_bettor_index, 1, players);
-        this.main(players,button_index);
+        this.write_player(current_bettor_index, 0, 0, 0, players, button_index);
+        current_bettor_index = this.genericMethods.get_next_player_position(current_bettor_index, 1, players);
+        this.main(players, button_index, current_bettor_index);
     }
 
     get_card_html(card) {
@@ -211,10 +222,5 @@ export class PlayerDataService {
         var rank = this.genericMethods.make_readable_rank(r);
         return "<font size=+2 color=" + color + "><b>" + rank + "</b></font> <a href='" + this.SUIT_LINK + "' target=_blank><img src=" + suit + ".gif border=0 title=" + suit + " alt=" + suit + "></a>";
     }
-
-
-
-
-
 } //closing class
 

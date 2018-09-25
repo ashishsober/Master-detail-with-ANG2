@@ -1,4 +1,4 @@
-<body style="margin: 30px;" [style.background-color]="background.background_color_a">
+<body style="margin: 30px;" [style.background-color]="background.base_background">
   <div class="row">
     <div  style="display:inline-block;height: 162px;">
       <b>
@@ -8,7 +8,7 @@
         <font face=times color="FFFFFF">
           CHEAT! {{ carda }} {{ cardb }}
         </font><br/>
-        {{ background.background_color_a }}
+        {{ background.base_background }}
       </div>
       <table>
         <tr>
@@ -17,7 +17,7 @@
           <span *ngIf="cardb"><ngx-card [card]="cardb"></ngx-card></span>
         </tr>
       </table>
-      <font color="FFFFFF">{{ subtotal_bet }}</font>
+      <font color="FFFFFF">{{ subtotal_bet }}-- {{ status }}</font>
     </div>
   </div>
 </body>
