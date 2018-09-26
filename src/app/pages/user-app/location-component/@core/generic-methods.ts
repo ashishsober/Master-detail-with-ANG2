@@ -165,6 +165,7 @@ export class GenericMethods {
     }
 
     ready_for_next_card() {
+        alert("ready for next card or open the flop")
     // var num_betting = this.get_num_betting();
     // for (var i = 0; i < this.players.length; i++) { this.players[i].total_bet += this.players[i].subtotal_bet; }
     // this.genericMethods.clear_bets(this.players);
