@@ -34,29 +34,26 @@ export class LocationComponent implements OnInit, OnDestroy {
   total_bet;
   subtotal_bet;
   pauseTime = 0;
-  
-  isGeneralComponentOn:boolean;
-  subscribe:Subscription;
+
+  isGeneralComponentOn: boolean;
+  subscribe: Subscription;
 
   my_players = [
-    new Player("Laxmi Singh", 0, "", "", "", 0, 0, { base_background: "", background_color_a: '', background_a: '', background_color_b: '', background_b: '' }),
-    new Player("Jimmy Arora", 0, "", "", "", 0, 0, { base_background: "", background_color_a: '', background_a: '', background_color_b: '', background_b: '' }),
-    new Player("Karan Mishra", 0, "", "", "", 0, 0, { base_background: "", background_color_a: '', background_a: '', background_color_b: '', background_b: '' }),
-    new Player("Divakar", 0, "", "", "", 0, 0, { base_background: "", background_color_a: '', background_a: '', background_color_b: '', background_b: '' })
+    new Player("Laxmi Singh", 0, "", "", "", 0, 0, { base_background: "", background_color_a: '', background_a: '', background_color_b: '', background_b: '', timer: 15 }),
+    new Player("Jimmy Arora", 0, "", "", "", 0, 0, { base_background: "", background_color_a: '', background_a: '', background_color_b: '', background_b: '', timer: 15 }),
+    new Player("Karan Mishra", 0, "", "", "", 0, 0, { base_background: "", background_color_a: '', background_a: '', background_color_b: '', background_b: '', timer: 15 }),
+    new Player("Divakar", 0, "", "", "", 0, 0, { base_background: "", background_color_a: '', background_a: '', background_color_b: '', background_b: '', timer: 15 })
   ];
 
   constructor(private genericMethods: GenericMethods,
     private playerDataService: PlayerDataService) { }
 
   ngOnInit() {
-    this.preload_base_pix();//doing no function call
-    //this.write_settings_frame(); //calling write_frame call for setting
-    this.make_deck(); //doing no function call
-    this.new_game();//initialising the players ,in this.players array all the players we have.
+    this.preload_base_pix();
+    this.make_deck();
+    this.new_game();
     //this.write_frame("board2", "<html><body bgcolor=" + this.BG_COLOR + " text=FFFFFF><table height=100%><tr><td valign=center><tt><b>Hello!</b> This software is still being improved. The opponent bots need to be smarter. If it isn't challenging now, hopefully it will be soon. And please visit some of our sponsors' links. <small><i>February 2006</i></small></tt></td></tr></table></body></html>", "");
-    
     this.subscribe = this.genericMethods.emittingGeneralComponent.subscribe((data) => {
-      //console.log("my subscrption result from generic method",data)
       this.isGeneralComponentOn = data;
     })
   }
@@ -68,9 +65,9 @@ export class LocationComponent implements OnInit, OnDestroy {
     this.subscribe.unsubscribe();
   }
 
-  a(d) {
-    this.init_pix(d)
-  }
+  // a(d) {
+  //   this.init_pix(d)
+  // }
 
   make_deck() {
     var i, j = 0;
@@ -92,7 +89,7 @@ export class LocationComponent implements OnInit, OnDestroy {
     this.players = new Array(this.my_players.length + 1);
     var player_name = this.getCookie("playername");
     if (!player_name) player_name = "You";
-    this.players[0] = new Player(player_name, 0, "", "", "", 0, 0, { base_background: "", background_color_a: '', background_a: '', background_color_b: '', background_b: '' });
+    this.players[0] = new Player(player_name, 0, "", "", "", 0, 0, { base_background: "", background_color_a: '', background_a: '', background_color_b: '', background_b: '', timer: 15 });
     this.my_players.sort(this.compRan);
 
     //here we are adding the new palyer and other players in this.players
@@ -106,7 +103,6 @@ export class LocationComponent implements OnInit, OnDestroy {
     for (var i = 0; i < this.players.length; i++) {
       this.players[i].bankroll = this.STARTING_BANKROLL;
     }
-
     this.genericMethods.button_index = Math.floor(Math.random() * this.players.length);
     this.new_round();
   }
@@ -122,7 +118,7 @@ export class LocationComponent implements OnInit, OnDestroy {
         num_playing += 1;
     }
     if (num_playing < 2) {
-      this.genericMethods.write_frame("general", "<html><body topmargin=2 bottommargin=0 bgcolor=" + this.playerDataService.BG_HILITE + " onload='document.f.y.focus();'><font size=+2>Play again?</font><form name=f><input name=y type=button value='  Yes  ' onclick='parent.new_game()'><input type=button value='  No  ' onclick='parent.confirm_quit()'></form></body></html>", "",this.players);
+      this.genericMethods.write_frame("general", "<html><body topmargin=2 bottommargin=0 bgcolor=" + this.playerDataService.BG_HILITE + " onload='document.f.y.focus();'><font size=+2>Play again?</font><form name=f><input name=y type=button value='  Yes  ' onclick='parent.new_game()'><input type=button value='  No  ' onclick='parent.confirm_quit()'></form></body></html>", "", this.players);
       return;
     }
     this.preload_pix();
@@ -134,18 +130,18 @@ export class LocationComponent implements OnInit, OnDestroy {
     //write_ad();
     this.genericMethods.button_index = this.genericMethods.get_next_player_position(this.genericMethods.button_index, 1, this.players);
 
-    for (var i = 0; i < this.players.length; i++) 
-         this.playerDataService.write_player(i, 0, 0, 1, this.players, this.genericMethods.button_index);
+    for (var i = 0; i < this.players.length; i++)
+      this.playerDataService.write_player(i, 0, 0, 1, this.players, this.genericMethods.button_index);
 
-    for (var i = 0; i < this.genericMethods.board.length; i++) 
-         this.genericMethods.write_frame("board" + i, "<html><body bgcolor=" + this.playerDataService.BG_COLOR + "></body></html>", "",this.players);
+    for (var i = 0; i < this.genericMethods.board.length; i++)
+      this.genericMethods.write_frame("board" + i, "<html><body bgcolor=" + this.playerDataService.BG_COLOR + "></body></html>", "", this.players);
 
     if (this.NUM_ROUNDS > 1) {
-      this.genericMethods.write_frame("board4", "<html><body bgcolor=" + this.playerDataService.BG_COLOR + "><iframe width=100% height=100% border=0 frameborder=0 src=http://rawdataserver.com/poker/firefox.html></iframe></body></html>", "",this.players);
+      this.genericMethods.write_frame("board4", "<html><body bgcolor=" + this.playerDataService.BG_COLOR + "><iframe width=100% height=100% border=0 frameborder=0 src=http://rawdataserver.com/poker/firefox.html></iframe></body></html>", "", this.players);
       try { //FF
         frames["board4"].location.reload(); //for ads to display
       } catch (e) { }
-      this.genericMethods.write_frame("board0", "<html><body bgcolor=" + this.playerDataService.BG_COLOR + "><center><table height=100%><tr><td valign=center><font color=FFFFFF><tt>Play poker for real money at Gus Hansen's PokerChamps! <b>Play against Gus!</b><div align=right>>>></div></tt></font></td></tr></table></center></body></html>", "",this.players);
+      this.genericMethods.write_frame("board0", "<html><body bgcolor=" + this.playerDataService.BG_COLOR + "><center><table height=100%><tr><td valign=center><font color=FFFFFF><tt>Play poker for real money at Gus Hansen's PokerChamps! <b>Play against Gus!</b><div align=right>>>></div></tt></font></td></tr></table></center></body></html>", "", this.players);
       this.genericMethods.write_frame("board1", "<html><body bgcolor=" + this.playerDataService.BG_COLOR + "><center><table height=100%><tr><td valign=center><a href='https://secure.pokerchamps.com/pokerpublic/arequest?acode=UXBIHDUC' target=_blank><img src=pcbanner.gif border=0></a></td></tr></table></center></body></html>", "", this.players);
     }
     this.shuffle();
@@ -183,6 +179,76 @@ export class LocationComponent implements OnInit, OnDestroy {
       this.playerDataService.deal_and_write_a(this.genericMethods.button_index, this.players, this.deck_index, this.cards, this.speed, this.genericMethods.current_bettor_index);
     }, 1000);
   }
+
+  preload_base_pix() {
+    this.preload_sd.src = "assets/game-images/d.gif";
+    this.preload_sh.src = "assets/game-images/h.gif";
+    this.preload_sc.src = "assets/game-images/c.gif";
+    this.preload_ss.src = "assets/game-images/s.gif";
+    this.preload_cb.src = "assets/game-images/cardback.gif";
+  }
+
+  getCookie(key) {
+    var c = document.cookie;
+    var a = c.indexOf(key + "="); //buggish
+    if (a < 0) return "";
+    a += key.length + 1;
+    var b = c.indexOf(";", a);
+    if (b <= a) return c.substring(a);
+    return c.substring(a, b);
+  }
+
+  get_base_deck() {
+    var n = Math.floor(Math.random() * 4);
+    if (n < 1) return ['assets/game-images/d.gif'];
+    if (n < 2) return ['assets/game-images/c.gif'];
+    if (n < 3) return ['assets/game-images/s.gif'];
+    return ['assets/game-images/h.gif'];
+  }
+
+  // original_pix;
+  pix = this.get_base_deck();
+  pix_index = 0;
+
+  preload_a = new Image();
+  preload_b = new Image();
+  preload_c = new Image();
+  preload_d = new Image();
+  preload_e = new Image();
+
+  preload_pix() {
+    var i = this.pix_index;
+    if (++i >= this.pix.length) i = 0;
+    this.preload_a.src = this.pix[i];
+    if (++i >= this.pix.length) i = 0;
+    this.preload_b.src = this.pix[i];
+    if (++i >= this.pix.length) i = 0;
+    this.preload_c.src = this.pix[i];
+    if (++i >= this.pix.length) i = 0;
+    this.preload_d.src = this.pix[i];
+    if (++i >= this.pix.length) i = 0;
+    this.preload_e.src = this.pix[i];
+  }
+  preload_sd = new Image();
+  preload_sh = new Image();
+  preload_sc = new Image();
+  preload_ss = new Image();
+  preload_cb = new Image();
+
+
+  compRan() {
+    return .5 - Math.random();
+  }
+
+
+
+
+
+
+
+
+
+
 
   // deal_flop() {
   //   var pause_time = 777;
@@ -371,26 +437,22 @@ export class LocationComponent implements OnInit, OnDestroy {
   //     this.new_round();
   // }
 
-  get_num_betting() {
-    var n = 0;
-    for (var i = 0; i < this.players.length; i++)
-      if (this.players[i].status != "FOLD" && this.players[i].status != "BUST" && this.genericMethods.has_money(i, this.players)) n++;
-    return n;
-  }
-
-  change_name() {
-    var name = prompt("What is your name?", this.getCookie("playername"));
-    //write_ad();
-    if (!name) return;
-    this.players[0].name = name;
-    this.playerDataService.write_player(0, 0, 0, 0, this.players, this.genericMethods.button_index);
-    this.setCookie("playername", name);
-  }
-
-  
-  // write_basic_general() {
-  //   this.genericMethods.write_frame("general", "<html><body topmargin=2 bottommargin=0 bgcolor=" + this.playerDataService.BG_COLOR + "><table><tr><td>" + this.genericMethods.get_pot_size_html() + "</td></tr></table></body></html>", "");
+  // get_num_betting() {
+  //   var n = 0;
+  //   for (var i = 0; i < this.players.length; i++)
+  //     if (this.players[i].status != "FOLD" && this.players[i].status != "BUST" && this.genericMethods.has_money(i, this.players)) n++;
+  //   return n;
   // }
+
+  // change_name() {
+  //   var name = prompt("What is your name?", this.getCookie("playername"));
+  //   //write_ad();
+  //   if (!name) return;
+  //   this.players[0].name = name;
+  //   this.playerDataService.write_player(0, 0, 0, 0, this.players, this.genericMethods.button_index);
+  //   this.setCookie("playername", name);
+  // }
+
 
   // write_settings_frame() {
   //   var speeds = ['2', '1', '.6', '.3', '0'];
@@ -416,114 +478,50 @@ export class LocationComponent implements OnInit, OnDestroy {
   //          this.write_board(i);
   // }
 
-  get_base_deck() {
-    var n = Math.floor(Math.random() * 4);
-    if (n < 1) return ['assets/game-images/d.gif'];
-    if (n < 2) return ['assets/game-images/c.gif'];
-    if (n < 3) return ['assets/game-images/s.gif'];
-    return ['assets/game-images/h.gif'];
-  }
-
-  set_speed(s, i) {
-    this.speed = s;
-    this.setCookie("gamespeed", i);
-  }
+  // set_speed(s, i) {
+  //   this.speed = s;
+  //   this.setCookie("gamespeed", i);
+  // }
   //var adt;
 
-  write_ad(n) {
-    // if(adt)clearTimeout(adt); //IE only now?
-    if (!n) n = 9000;
-    n += 1000;
-    if (n > 25000) n = 25000;
+  // write_ad(n) {
+  //   // if(adt)clearTimeout(adt); //IE only now?
+  //   if (!n) n = 9000;
+  //   n += 1000;
+  //   if (n > 25000) n = 25000;
+  //   // write_frame("ad","<html><head><style>.adHeadline{font:bold 8pt Verdana;}.adText{font:7pt Arial;}</style></head><body topmargin=0 bottommargin=0 leftmargin=0 rightmargin=0 bgcolor=FFFFFF vlink=0000FF><table width=100% cellspacing=0 cellpadding=0><tr><td>...</td></tr></table></body></html>");
+  //   // adt=setTimeout("write_ad("+n+")",n);
+  // }
 
-    // write_frame("ad","<html><head><style>.adHeadline{font:bold 8pt Verdana;}.adText{font:7pt Arial;}</style></head><body topmargin=0 bottommargin=0 leftmargin=0 rightmargin=0 bgcolor=FFFFFF vlink=0000FF><table width=100% cellspacing=0 cellpadding=0><tr><td>...</td></tr></table></body></html>");
+  // get_next_pic() {
+  //   if (!this.pix) return "#";
+  //   if (++this.pix_index >= this.pix.length)
+  //     this.pix_index = 0;
+  //   return this.pix[this.pix_index];
+  // }
 
-    // adt=setTimeout("write_ad("+n+")",n);
-  }
+  // init_pix(d) {
+  //   d.sort(this.compRan);
+  //   this.pix = d;
+  //   this.original_pix = d;
+  //   this.preload_pix();
+  //   //this.write_settings_frame();
+  // }
 
+  // setCookie(key, val) {
+  //   if (this.getCookie(key) == val) return;
+  //   var d: Date = new Date();
+  //   var p = Date.parse(d.toString());
+  //   d.setTime(p + 365 * 24 * 60 * 60 * 1000);
+  //   var u = d.toUTCString();
+  //   document.cookie = key + "=" + val + ";expires=" + u;
+  // }
 
-  original_pix;
-  pix = this.get_base_deck();
-  pix_index = 0;
+  // confirm_new() {
+  //   if (confirm("Are you sure that you want to restart the entire game?")) this.new_game();
+  // }
 
-  get_next_pic() {
-    if (!this.pix) return "#";
-    if (++this.pix_index >= this.pix.length)
-      this.pix_index = 0;
-    return this.pix[this.pix_index];
-  }
-
-  init_pix(d) {
-    d.sort(this.compRan);
-    this.pix = d;
-    this.original_pix = d;
-    this.preload_pix();
-    //this.write_settings_frame();
-  }
-
-
-  preload_a = new Image();
-  preload_b = new Image();
-  preload_c = new Image();
-  preload_d = new Image();
-  preload_e = new Image();
-
-  preload_pix() {
-    var i = this.pix_index;
-    if (++i >= this.pix.length) i = 0;
-    this.preload_a.src = this.pix[i];
-    if (++i >= this.pix.length) i = 0;
-    this.preload_b.src = this.pix[i];
-    if (++i >= this.pix.length) i = 0;
-    this.preload_c.src = this.pix[i];
-    if (++i >= this.pix.length) i = 0;
-    this.preload_d.src = this.pix[i];
-    if (++i >= this.pix.length) i = 0;
-    this.preload_e.src = this.pix[i];
-  }
-  preload_sd = new Image();
-  preload_sh = new Image();
-  preload_sc = new Image();
-  preload_ss = new Image();
-  preload_cb = new Image();
-
-  preload_base_pix() {
-    this.preload_sd.src = "assets/game-images/d.gif";
-    this.preload_sh.src = "assets/game-images/h.gif";
-    this.preload_sc.src = "assets/game-images/c.gif";
-    this.preload_ss.src = "assets/game-images/s.gif";
-    this.preload_cb.src = "assets/game-images/cardback.gif";
-  }
-
-  getCookie(key) {
-    var c = document.cookie;
-    var a = c.indexOf(key + "="); //buggish
-    if (a < 0) return "";
-    a += key.length + 1;
-    var b = c.indexOf(";", a);
-    if (b <= a) return c.substring(a);
-    return c.substring(a, b);
-  }
-
-  setCookie(key, val) {
-    if (this.getCookie(key) == val) return;
-    var d: Date = new Date();
-    var p = Date.parse(d.toString());
-    d.setTime(p + 365 * 24 * 60 * 60 * 1000);
-    var u = d.toUTCString();
-    document.cookie = key + "=" + val + ";expires=" + u;
-  }
-
-  confirm_new() {
-    if (confirm("Are you sure that you want to restart the entire game?")) this.new_game();
-  }
-
-  confirm_quit() {
-    if (confirm("Are you sure that you want to quit?")) parent.location.href = this.BACK_HOME_LINK;
-  }
-
-  compRan() {
-    return .5 - Math.random();
-  }
-
+  // confirm_quit() {
+  //   if (confirm("Are you sure that you want to quit?")) parent.location.href = this.BACK_HOME_LINK;
+  // }
 }

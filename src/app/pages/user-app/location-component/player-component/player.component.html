@@ -10,13 +10,24 @@
         </font><br/>
         {{ background.base_background }}
       </div>
-      <table>
-        <tr>
-          <span *ngIf="carda"><ngx-card [card]="carda"></ngx-card></span>
-          <td></td>
-          <span *ngIf="cardb"><ngx-card [card]="cardb"></ngx-card></span>
-        </tr>
-      </table>
+      <div class="row">
+      <div class="col-md-8">
+        <table>
+          <tr>
+            <span *ngIf="carda"><ngx-card [card]="carda"></ngx-card></span>
+            <td></td>
+            <span *ngIf="cardb"><ngx-card [card]="cardb"></ngx-card></span>
+          </tr>
+        </table>
+      </div>
+      <div class="col-md-2">
+          <!-- <div style="margin-top: 9px;
+          font-size: 34px;
+          margin-left: 8px;">{{ background.timer}}</div> -->
+      </div>
+    </div>
+      
+      
       <font color="FFFFFF">{{ subtotal_bet }}-- {{ status }}</font>
     </div>
   </div>

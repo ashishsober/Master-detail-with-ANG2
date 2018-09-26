@@ -86,8 +86,13 @@ export class GenericMethods {
         }
         players[player_index].subtotal_bet += bet_amount;
         players[player_index].bankroll -= bet_amount;
-        //this.write_basic_general();
+        this.write_basic_general(players);
         return 1;
+    }
+
+    write_basic_general(players) {
+        this.get_pot_size_html(players)
+        this.write_frame("general", "", "", players);
     }
 
 

@@ -78,9 +78,9 @@ export class PlayerDataService {
                     "<form onsubmit='parent.handle_human_bet(b.value);return false;'><font size=+2>&nbsp;</font><input type=text size=4 name=b><input type=submit value=" + bet_or_raise + "></form>";
 
                 var html = "<html><body vlink=0000FF topmargin=2 bottommargin=0 bgcolor=" + this.BG_HILITE + " onload='document.f.c.focus();'><table width=100%><tr><td colspan=2>" + this.genericMethods.get_pot_size_html(players) +
-                  "</td></tr><tr><td><font size=+2><b>Current total bet: " + this.genericMethods.current_bet + "</b><br> You need <font color=FF0000 size=+3>" + to_call + "</font> more to call.</font>" +
-                  "<form name=f><input name=c type=button value='" + call_button_text + "' onclick='parent.human_call()'><input type=button value='" + bet_button_text + "' onclick='parent.human_raise()'>" + fold_button +
-                  "</form></td><td valign=bottom><table" + quick_color + "><tr><td align=center>" + quick_bets + "</td></tr></table></td></tr></table></body></html>";
+                    "</td></tr><tr><td><font size=+2><b>Current total bet: " + this.genericMethods.current_bet + "</b><br> You need <font color=FF0000 size=+3>" + to_call + "</font> more to call.</font>" +
+                    "<form name=f><input name=c type=button value='" + call_button_text + "' onclick='parent.human_call()'><input type=button value='" + bet_button_text + "' onclick='parent.human_raise()'>" + fold_button +
+                    "</form></td><td valign=bottom><table" + quick_color + "><tr><td align=center>" + quick_bets + "</td></tr></table></td></tr></table></body></html>";
 
                 this.write_player(0, 1, 0, 1, players, button_index);
                 this.genericMethods.write_frame("general", html, "", players);
@@ -108,7 +108,7 @@ export class PlayerDataService {
         }
         if (increment_bettor_index)
             current_bettor_index = this.genericMethods.get_next_player_position(current_bettor_index, 1, players);
-        if (can_break){
+        if (can_break) {
             this.genericMethods.get_pot_size_html(players); //updating the pot-view component
             setTimeout(this.genericMethods.ready_for_next_card(), 12000);
         }
