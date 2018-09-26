@@ -108,7 +108,7 @@ export class PlayerDataService {
         if (increment_bettor_index)
             current_bettor_index = this.genericMethods.get_next_player_position(current_bettor_index, 1, players);
         if (can_break)
-            setTimeout("ready_for_next_card()", 20000);
+            setTimeout(this.genericMethods.ready_for_next_card(), 12000);
         else
             this.main(players, button_index, current_bettor_index);
     }

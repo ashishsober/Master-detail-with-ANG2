@@ -9,6 +9,8 @@ export class GenericMethods {
     board;
     BIG_BLIND;
     HUMAN_WINS_AGAIN;
+    current_bettor_index;
+    button_index;
     emittingGeneralComponent = new Rx.BehaviorSubject(false);
 
     has_money(i, players) {
@@ -161,6 +163,32 @@ export class GenericMethods {
     get_pot_size_html(players) {
         return "<font color=00EE00 size=+4><b>TOTAL POT: " + this.get_pot_size(players) + "</b></font>";
     }
+
+    ready_for_next_card() {
+    // var num_betting = this.get_num_betting();
+    // for (var i = 0; i < this.players.length; i++) { this.players[i].total_bet += this.players[i].subtotal_bet; }
+    // this.genericMethods.clear_bets(this.players);
+    // if (this.genericMethods.board[4]) {
+    //   this.handle_end_of_round();
+    //   return;
+    // }
+    // this.genericMethods.current_min_raise = this.genericMethods.BIG_BLIND;
+    // this.genericMethods.reset_player_statuses(2,this.players);
+    // if (this.players[this.button_index].status == "FOLD") this.players[this.genericMethods.get_next_player_position(this.button_index, -1, this.players)].status = "OPTION";
+    // else this.players[this.button_index].status = "OPTION";
+    // this.current_bettor_index = this.genericMethods.get_next_player_position(this.button_index, 1, this.players);
+    // var show_cards = 0;
+    // if (num_betting < 2) show_cards = 1;
+
+    // if (!this.RUN_EM)
+    //   for (var i = 0; i < this.players.length; i++)
+    //     if (this.players[i].status != "BUST" && this.players[i].status != "FOLD") this.playerDataService.write_player(i, 0, show_cards, 1, this.players,this.button_index);
+
+    // if (num_betting < 2) this.RUN_EM = 1;
+    // if (!this.genericMethods.board[0]) this.deal_flop();
+    // else if (!this.genericMethods.board[3]) this.deal_fourth();
+    // else if (!this.genericMethods.board[4]) this.deal_fifth();
+  }
 
 
 }

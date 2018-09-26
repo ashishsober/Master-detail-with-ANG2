@@ -5,21 +5,20 @@
 
 <div class="row">
   <div class="offset-md-9"></div>
-  <font color="00EE00" size="+1"><b>Current total bet: 10</b><br> You need <font color="FF0000" size="+3">10</font>
-    more to
-    call.</font>
+  <font color="00EE00" size="+1"><b>Player name ({{ players[0].name }}) ----Current total bet: 10</b><br> 
+    You need <font color="FF0000" size="+3">10</font>more to call.</font>
 </div>
 
 <div class="row">
   <div class="offset-md-9"></div>
   <div class="col-md-1">
-    <button type="button" class="btn btn-danger" name="c" onclick="parent.human_call()" style="width: 76px;">Call</button>
+    <button type="button" class="btn btn-danger" name="c" (click)="human_call(players)" style="width: 76px;">Call</button>
   </div>
   <div class="col-md-1">
-    <button type="button" class="btn btn-info" onclick="parent.human_raise()" style="width: 76px;">Raise</button>
+    <button type="button" class="btn btn-info" (click)="human_raise()" style="width: 76px;">Raise</button>
   </div>
   <div class="col-md-1">
-    <button type="button" class="btn btn-warning" onclick="parent.human_fold()" style="width: 76px;">Fold</button>
+    <button type="button" class="btn btn-warning" (click)="human_fold()" style="width: 76px;">Fold</button>
   </div>
 </div>
 

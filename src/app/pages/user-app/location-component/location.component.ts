@@ -26,7 +26,6 @@ export class LocationComponent implements OnInit, OnDestroy {
   cards = new Array(52);
   players;
   deck_index;
-  button_index;
   name;
   bankroll;
   carda;
@@ -35,7 +34,7 @@ export class LocationComponent implements OnInit, OnDestroy {
   total_bet;
   subtotal_bet;
   pauseTime = 0;
-  current_bettor_index;
+  
   isGeneralComponentOn:boolean;
   subscribe:Subscription;
 
@@ -108,7 +107,7 @@ export class LocationComponent implements OnInit, OnDestroy {
       this.players[i].bankroll = this.STARTING_BANKROLL;
     }
 
-    this.button_index = Math.floor(Math.random() * this.players.length);
+    this.genericMethods.button_index = Math.floor(Math.random() * this.players.length);
     this.new_round();
   }
 
@@ -133,10 +132,10 @@ export class LocationComponent implements OnInit, OnDestroy {
     this.genericMethods.current_min_raise = 0;
     this.genericMethods.collect_cards(this.players);
     //write_ad();
-    this.button_index = this.genericMethods.get_next_player_position(this.button_index, 1, this.players);
+    this.genericMethods.button_index = this.genericMethods.get_next_player_position(this.genericMethods.button_index, 1, this.players);
 
     for (var i = 0; i < this.players.length; i++) 
-         this.playerDataService.write_player(i, 0, 0, 1, this.players, this.button_index);
+         this.playerDataService.write_player(i, 0, 0, 1, this.players, this.genericMethods.button_index);
 
     for (var i = 0; i < this.genericMethods.board.length; i++) 
          this.genericMethods.write_frame("board" + i, "<html><body bgcolor=" + this.playerDataService.BG_COLOR + "></body></html>", "",this.players);
@@ -172,16 +171,16 @@ export class LocationComponent implements OnInit, OnDestroy {
       this.SMALL_BLIND = 25;
       this.genericMethods.BIG_BLIND = 50;
     }
-    var small_blind = this.genericMethods.get_next_player_position(this.button_index, 1, this.players);
+    var small_blind = this.genericMethods.get_next_player_position(this.genericMethods.button_index, 1, this.players);
     this.genericMethods.bet(small_blind, this.SMALL_BLIND, this.players);
-    this.playerDataService.write_player(small_blind, 0, 0, 0, this.players, this.button_index);
+    this.playerDataService.write_player(small_blind, 0, 0, 0, this.players, this.genericMethods.button_index);
     var big_blind = this.genericMethods.get_next_player_position(small_blind, 1, this.players);
     this.genericMethods.bet(big_blind, this.genericMethods.BIG_BLIND, this.players);
-    this.playerDataService.write_player(big_blind, 0, 0, 0, this.players, this.button_index);
+    this.playerDataService.write_player(big_blind, 0, 0, 0, this.players, this.genericMethods.button_index);
     this.players[big_blind].status = "OPTION";
-    this.current_bettor_index = this.genericMethods.get_next_player_position(big_blind, 1, this.players);
+    this.genericMethods.current_bettor_index = this.genericMethods.get_next_player_position(big_blind, 1, this.players);
     setTimeout(() => {
-      this.playerDataService.deal_and_write_a(this.button_index, this.players, this.deck_index, this.cards, this.speed, this.current_bettor_index);
+      this.playerDataService.deal_and_write_a(this.genericMethods.button_index, this.players, this.deck_index, this.cards, this.speed, this.genericMethods.current_bettor_index);
     }, 1000);
   }
 
@@ -372,42 +371,6 @@ export class LocationComponent implements OnInit, OnDestroy {
   //     this.new_round();
   // }
 
-  // ready_for_next_card() {
-  //   var num_betting = this.get_num_betting();
-  //   for (var i = 0; i < this.players.length; i++) { this.players[i].total_bet += this.players[i].subtotal_bet; }
-  //   this.genericMethods.clear_bets(this.players);
-  //   if (this.genericMethods.board[4]) {
-  //     this.handle_end_of_round();
-  //     return;
-  //   }
-  //   this.genericMethods.current_min_raise = this.genericMethods.BIG_BLIND;
-  //   this.genericMethods.reset_player_statuses(2,this.players);
-  //   if (this.players[this.button_index].status == "FOLD") this.players[this.genericMethods.get_next_player_position(this.button_index, -1, this.players)].status = "OPTION";
-  //   else this.players[this.button_index].status = "OPTION";
-  //   this.current_bettor_index = this.genericMethods.get_next_player_position(this.button_index, 1, this.players);
-  //   var show_cards = 0;
-  //   if (num_betting < 2) show_cards = 1;
-
-  //   if (!this.RUN_EM)
-  //     for (var i = 0; i < this.players.length; i++)
-  //       if (this.players[i].status != "BUST" && this.players[i].status != "FOLD") this.playerDataService.write_player(i, 0, show_cards, 1, this.players,this.button_index);
-
-  //   if (num_betting < 2) this.RUN_EM = 1;
-  //   if (!this.genericMethods.board[0]) this.deal_flop();
-  //   else if (!this.genericMethods.board[3]) this.deal_fourth();
-  //   else if (!this.genericMethods.board[4]) this.deal_fifth();
-  // }
-
-
-
-  // human_call() {
-  //   this.players[0].status = "CALL";
-  //   this.current_bettor_index = this.get_next_player_position(0, 1);
-  //   this.bet(0, this.current_bet - this.players[0].subtotal_bet);
-  //   this.write_player(0, 0, 0, 0);
-  //   //write_ad();
-  //   this.main();
-  // }
 
   // human_raise() {
   //   var to_call = this.current_bet - this.players[0].subtotal_bet;
@@ -464,7 +427,7 @@ export class LocationComponent implements OnInit, OnDestroy {
     //write_ad();
     if (!name) return;
     this.players[0].name = name;
-    this.playerDataService.write_player(0, 0, 0, 0, this.players, this.button_index);
+    this.playerDataService.write_player(0, 0, 0, 0, this.players, this.genericMethods.button_index);
     this.setCookie("playername", name);
   }
 

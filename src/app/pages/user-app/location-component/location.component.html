@@ -13,7 +13,9 @@
     </ngx-player>
   </div>
 
-  <ngx-general *ngIf="isGeneralComponentOn"></ngx-general>
+  <ngx-general 
+    *ngIf="isGeneralComponentOn"
+    [players]="players"></ngx-general>
 </div>
 
 
