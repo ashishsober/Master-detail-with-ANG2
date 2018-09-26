@@ -12,6 +12,7 @@ export class GenericMethods {
     current_bettor_index;
     button_index;
     emittingGeneralComponent = new Rx.BehaviorSubject(false);
+    emittingPotSize = new Rx.BehaviorSubject(15);
 
     has_money(i, players) {
         if (players[i].bankroll >= .01) return true;
@@ -94,6 +95,7 @@ export class GenericMethods {
         var p = 0;
         for (var i = 0; i < players.length; i++)
             p += players[i].total_bet + players[i].subtotal_bet;
+        this.emittingPotSize.next(p);
         return p;
     }
 

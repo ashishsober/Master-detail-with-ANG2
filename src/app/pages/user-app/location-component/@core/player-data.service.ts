@@ -86,6 +86,7 @@ export class PlayerDataService {
                 this.genericMethods.write_frame("general", html, "", players);
                 return;
             } else {
+                this.genericMethods.get_pot_size_html(players); //updating the pot-view component
                 this.write_player(current_bettor_index, 1, 0, 1, players, button_index);
                 this.bot_bet_timer = setTimeout(() => this.bot_bet(current_bettor_index, players, button_index, current_bettor_index), 8000);
                 return;
@@ -107,8 +108,10 @@ export class PlayerDataService {
         }
         if (increment_bettor_index)
             current_bettor_index = this.genericMethods.get_next_player_position(current_bettor_index, 1, players);
-        if (can_break)
+        if (can_break){
+            this.genericMethods.get_pot_size_html(players); //updating the pot-view component
             setTimeout(this.genericMethods.ready_for_next_card(), 12000);
+        }
         else
             this.main(players, button_index, current_bettor_index);
     }

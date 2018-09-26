@@ -1,40 +1,4 @@
-<div vlink=0000FF topmargin=2 bottommargin=0 bgcolor=EFEF30 onload='document.f.c.focus();'>
-    <table width=100%>
-        <tr>
-            <td colspan=2>
-                <font color=00EE00 size=+3><b>TOTAL POT: 70</b></font>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <font size=+2><b>Current total bet: 20</b>
-                    <br> You need
-                    <font color=FF0000 size=+3>20</font> more to call.</font>
-                <form name=f>
-                    <input name=c type=button value='Call' onclick='parent.human_call()'>
-                    <input type=button value='Raise' onclick='parent.human_raise()'>
-                    <input type=button value=Fold onclick='parent.human_fold()'>
-                </form>
-            </td>
-            <td valign=bottom>
-                <table bgcolor=006600>
-                    <tr>
-                        <td align=center><b>Quick Raises</b>
-                            <br><a href='javascript:parent.handle_human_bet(20)'>20</a>&nbsp;&nbsp;&nbsp;
-                            <a href='javascript:parent.handle_human_bet(40)'>40</a>&nbsp;&nbsp;&nbsp;
-                            <a href='javascript:parent.handle_human_bet(60)'>60</a>&nbsp;&nbsp;&nbsp;<a href='javascript:parent.handle_human_bet(80)'>80</a>&nbsp;&nbsp;&nbsp;
-                            <a href='javascript:parent.handle_human_bet(100)'>100</a>&nbsp;&nbsp;&nbsp;
-                            <a href='javascript:parent.handle_human_bet(120)'>120</a>&nbsp;&nbsp;&nbsp;
-                            <a href='javascript:parent.handle_human_bet(490)'>All In!</a>
-                            <form onsubmit='parent.handle_human_bet(b.value);return false;'>
-                                <font size=+2>&nbsp;</font>
-                                <input type=text size=4 name=b>
-                                <input type=submit value=Raise>
-                            </form>
-                        </td>
-                    </tr>
-                </table>
-            </td>
-        </tr>
-    </table>
+<div class="row">
+    <div class="offset-md-10"></div>
+    <font color="00EE00" size="+1"><b>TOTAL POT: {{ potValue }}</b></font>
 </div>
