@@ -46,6 +46,10 @@ h4 {
   background-color: #607D8B;
   border-radius: 2px;
   margin: 5px;
+  &.user-module {
+    background-color: #8b606a;
+    width: 49%
+  }
 }
 .module:hover {
   background-color: #EEE;
@@ -53,16 +57,7 @@ h4 {
   color: #607d8b;
 }
 
-.user-module {
-  padding: 20px;
-  text-align: center;
-  color: #eee;
-  max-height: 120px;
-  min-width: 120px;
-  background-color: #8b606a;
-  border-radius: 2px;
-  width: 49%
-}
+
 
 .user-module:hover {
   background-color: #EEE;
@@ -77,7 +72,7 @@ h4 {
 }
 
 .grid-pad>[class*='col-']:last-of-type {
-  padding-right: 20px;
+  padding-right: 0px;
 }
 
 @media (max-width: 600px) {
