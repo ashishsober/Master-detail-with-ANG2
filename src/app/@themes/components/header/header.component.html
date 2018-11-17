@@ -1,24 +1,25 @@
 <mat-toolbar class="header-color">
   <div class="col">
     <div class="row">
-      <div class="col-md-2">
+      <div class="col-1 col-sm-1 col-md-2">
         <button mat-icon-button>
           <i class="fa fa-bars fa-2x"></i>
-          
         </button>
       </div>
-      <div class="offset-md-1 col-md-7" style="margin-top: 5px;">
-        <div class="search-input-button">
-          <input type="text" placeholder="Search" class="search-box">
-          <button mat-raised-button color="accent" class="search-box-button">
-            <i class="fa fa-search"></i>
-          </button>
+      
+        <div class="offset-md-1 col-md-7 d-none d-md-block" style="margin-top: 5px;">
+          <div class="search-input-button">
+            <input type="text" placeholder="Search" class="search-box">
+            <button mat-raised-button color="accent" class="search-box-button">
+              <i class="fa fa-search"></i>
+            </button>
+          </div>
         </div>
-      </div>
-      <div *ngIf="viewLogout === true" class="col-md-2">
+     
+      <div *ngIf="viewLogout === true" class="offset-9 col-2 col-sm-2 offset-md-0 col-md-2">
         <img class="img-circle" width="62" height="55" [src]="myPhotoUrl" (click)="infoModal()">
       </div>
-      <div *ngIf="viewLogin === false" class="col-md-2">
+      <div *ngIf="viewLogin === false" class="offset-9 col-2 col-sm-2 offset-md-0 col-md-2">
         <button mat-button class="login-button" routerLink="/auth/login">{{login}}</button>
       </div>
     </div>
