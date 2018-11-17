@@ -1,2 +1,32 @@
-<h3>Profiles</h3>
-<!-- <img src="/assets/images/under-construction.jpg"/> -->
+<div class="row">
+    <div class="col-md-12">
+        <mat-form-field> 
+           <input matInput type="search" [(ngModel)]="searchText" id="search" placeholder="Search">
+        </mat-form-field>
+    </div>
+    <div class="col-md-12">
+      <table class="table table-hover table-sm">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Cash</th>
+            
+            <th scope="col">Pan No.</th>
+            <th scope="col">Email ID</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody *ngFor="let user of search();let i=index">
+          <tr>
+            <th scope="row">{{i+1}}</th>
+            <td>{{ user.first_name }}</td>
+            
+            <td>{{ user.pan_no }}</td>
+            <td>{{ user.email}}</td>
+            <td><button class="btn btn-danger">Amount pending</button></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  

@@ -76,6 +76,13 @@ export class DataService {
                   .catch(this.handleError);
       }
 
+      getUsers():Observable<any>{
+            let url="http://localhost:1337/register/user";
+            return this.http.get(url)
+            .map(this.extractData)
+            .catch(this.handleError);
+      }
+
       private extractData(res: Response) {
             let body = res.json();
             return body || {}
