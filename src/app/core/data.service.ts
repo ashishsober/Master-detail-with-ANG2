@@ -70,11 +70,12 @@ export class DataService {
             let hostname:string='';
             if (window.location.host === 'localhost:4200'){
                   hostname = "http://localhost:1337";
-            } else if(window.location.host === 'https://angular-project-5cb99.firebaseapp.com'){
+            } else if (window.location.host === 'angular-project-5cb99.firebaseapp.com'){
                   hostname = "http://ec2-3-16-206-69.us-east-2.compute.amazonaws.com:1337";
             } else {
-                  hostname = '';
+                  hostname = 'http://ec2-3-16-206-69.us-east-2.compute.amazonaws.com:1337';
             }
+            console.log(hostname);
             return hostname;
       }
 
