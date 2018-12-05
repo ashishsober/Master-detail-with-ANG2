@@ -66,32 +66,37 @@ export class DataService {
        * firring api's
        */
 
-      getUrl(){
-            let url:string='';
+      getHostname(){
+            let hostname:string='';
             if (window.location.host === 'localhost:4200'){
-               url = "http://localhost:1337/register/users/count";
+                  hostname = "http://localhost:1337";
+            } else if(window.location.host === 'https://angular-project-5cb99.firebaseapp.com'){
+                  hostname = "http://ec2-3-16-206-69.us-east-2.compute.amazonaws.com:1337";
             } else {
-               url = '/register/users/count';
+                  hostname = '';
             }
-            return url;
+            return hostname;
       }
 
       postSubmitApplicant(data): Observable<any> {
-            let url=this.getUrl();
+            let getHostname=this.getHostname();
+            let url = getHostname.concat('/register/user')
             return this.http.post(url, data)
                   .map(this.extractData)
                   .catch(this.handleError);
       }
 
       getUsersCount(): Observable<any> {
-            let url=this.getUrl();
+            let getHostname=this.getHostname();
+            let url = getHostname.concat('/register/users/count')
             return this.http.get(url)
                   .map(this.extractData)
                   .catch(this.handleError);
       }
 
       getUsers():Observable<any>{
-            let url=this.getUrl();
+            let getHostname=this.getHostname();
+            let url = getHostname.concat('/register/user')
             return this.http.get(url)
             .map(this.extractData)
             .catch(this.handleError);
