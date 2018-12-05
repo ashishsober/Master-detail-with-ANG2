@@ -61,23 +61,37 @@ export class DataService {
             }
       }
 
+      
+      /**
+       * firring api's
+       */
+
+      getUrl(){
+            let url:string='';
+            if (window.location.host === 'localhost:4200'){
+               url = "http://localhost:1337/register/users/count";
+            } else {
+               url = '/register/users/count';
+            }
+            return url;
+      }
+
       postSubmitApplicant(data): Observable<any> {
-            console.log(data);
-            let url = "http://localhost:1337/register/user";
+            let url=this.getUrl();
             return this.http.post(url, data)
                   .map(this.extractData)
                   .catch(this.handleError);
       }
 
       getUsersCount(): Observable<any> {
-            let url = "http://localhost:1337/register/users/count";
+            let url=this.getUrl();
             return this.http.get(url)
                   .map(this.extractData)
                   .catch(this.handleError);
       }
 
       getUsers():Observable<any>{
-            let url="http://localhost:1337/register/user";
+            let url=this.getUrl();
             return this.http.get(url)
             .map(this.extractData)
             .catch(this.handleError);

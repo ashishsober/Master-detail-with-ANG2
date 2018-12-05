@@ -110,7 +110,7 @@ export class PlayerDataService {
             current_bettor_index = this.genericMethods.get_next_player_position(current_bettor_index, 1, players);
         if (can_break) {
             this.genericMethods.get_pot_size_html(players); //updating the pot-view component
-            setTimeout(this.genericMethods.ready_for_next_card(), 12000);
+            //setTimeout(this.genericMethods.ready_for_next_card(), 12000);
         }
         else
             this.main(players, button_index, current_bettor_index);
