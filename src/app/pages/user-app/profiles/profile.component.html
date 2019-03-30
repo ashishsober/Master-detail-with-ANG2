@@ -5,13 +5,13 @@
         </mat-form-field>
     </div>
     <div class="col-md-12">
-      <table class="table table-hover table-sm">
+      <table class="table table-hover table-sm" style="background-color: white;">
         <thead>
           <tr>
             <th scope="col">#</th>
-            <th scope="col">Cash</th>
+            <th scope="col">Name</th>
             
-            <th scope="col">Pan No.</th>
+            <th scope="col">Id</th>
             <th scope="col">Email ID</th>
             <th>Status</th>
           </tr>
@@ -19,9 +19,9 @@
         <tbody *ngFor="let user of search();let i=index">
           <tr>
             <th scope="row">{{i+1}}</th>
-            <td>{{ user.first_name }}</td>
+            <td>{{ user.name }}</td>
             
-            <td>{{ user.pan_no }}</td>
+            <td>{{ user._id }}</td>
             <td>{{ user.email}}</td>
             <td><button class="btn btn-danger">Amount pending</button></td>
           </tr>

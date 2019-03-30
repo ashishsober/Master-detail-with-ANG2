@@ -28,12 +28,23 @@ export class ProfileComponent implements OnInit{
     return ash;
   }
 
+  linearSearch(array, toFind){
+    for(let i = 0; i < array.length; i++){
+      if(array[i].name === toFind) return i;
+    }
+    return -1;
+  }
+
   search() {
     if (!this.searchText) {
       return this.users;
     }
     if (this.searchText) {
-      return this.filterIt(this.users, this.searchText);
+      var position_no = this.linearSearch(this.users, this.searchText);
+      var arr = [];
+      var newObj = this.users[position_no];
+      arr.push(newObj)
+      return arr;
     }
   }
 
