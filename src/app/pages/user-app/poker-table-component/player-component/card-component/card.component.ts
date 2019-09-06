@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { LocationComponent } from '../../location.component';
+import { TableComponent } from '../../table.component';
 @Component({
   moduleId: 'module.id',
   selector: 'ngx-card',
@@ -7,5 +7,5 @@ import { LocationComponent } from '../../location.component';
 })
 export class CardComponent {
   @Input() card;
-  constructor(private locationComponent: LocationComponent) { }
+  constructor(private locationComponent: TableComponent) { }
 }

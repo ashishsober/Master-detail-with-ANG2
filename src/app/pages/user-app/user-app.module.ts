@@ -6,7 +6,7 @@ import { UserAppRoutingModule } from './user-app-routing.module';
 import { UserAppDataComponent } from './user-app-data/user-app-data.component';
 import { SharedModule } from '../../shared.module';
 import { ProfileComponent } from './profiles/profile.component'
-import { LocationComponent } from './location-component/location.component';
+import { TableComponent } from './location-component/table.component';
 import { GeneralComponent } from './location-component/general-component/general.component';
 import { PotViewComponent } from './location-component/pot-view-component/pot-view.component';
 import { PlayerComponent } from './location-component/player-component/player.component';
@@ -28,7 +28,7 @@ import { GenericMethods } from './location-component/@core/generic-methods';
     UserAppComponent,
     UserAppDataComponent,
     ProfileComponent,
-    LocationComponent,
+    TableComponent,
 
     GeneralComponent,
     PotViewComponent,

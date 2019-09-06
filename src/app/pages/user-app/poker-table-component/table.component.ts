@@ -3,16 +3,17 @@ import { PlayerDataService } from './@core/player-data.service';
 import { Subscription } from 'rxjs';
 import { Player } from './@core/player.class';
 import { GenericMethods } from './@core/generic-methods';
+import { playerList } from './@core/default-playerList';
 
 @Component({
   moduleId: 'module.id',
   selector: 'user-location-root',
-  templateUrl: './location.component.html',
-  styleUrls: ['./location.component.scss']
+  templateUrl: './table.component.html',
+  styleUrls: ['./table.component.scss']
 })
 
 //holdem.js
-export class LocationComponent implements OnInit, OnDestroy {
+export class TableComponent implements OnInit, OnDestroy {
 
   BACK_HOME = "CDB Home";
   BACK_HOME_LINK = "http://deathbeeper.com/";
@@ -37,18 +38,14 @@ export class LocationComponent implements OnInit, OnDestroy {
 
   isGeneralComponentOn: boolean;
   subscribe: Subscription;
-
-  my_players = [
-    new Player("Laxmi Singh", 0, "", "", "", 0, 0, { base_background: "", background_color_a: '', background_a: '', background_color_b: '', background_b: '', timer: 15 }),
-    new Player("Jimmy Arora", 0, "", "", "", 0, 0, { base_background: "", background_color_a: '', background_a: '', background_color_b: '', background_b: '', timer: 15 }),
-    new Player("Karan Mishra", 0, "", "", "", 0, 0, { base_background: "", background_color_a: '', background_a: '', background_color_b: '', background_b: '', timer: 15 }),
-    new Player("Divakar", 0, "", "", "", 0, 0, { base_background: "", background_color_a: '', background_a: '', background_color_b: '', background_b: '', timer: 15 })
-  ];
+  my_players;
 
   constructor(private genericMethods: GenericMethods,
     private playerDataService: PlayerDataService) { }
 
   ngOnInit() {
+    debugger;
+    this.my_players = playerList
     this.preload_base_pix();
     this.make_deck();
     this.new_game();
@@ -89,7 +86,25 @@ export class LocationComponent implements OnInit, OnDestroy {
     this.players = new Array(this.my_players.length + 1);
     var player_name = this.getCookie("playername");
     if (!player_name) player_name = "You";
-    this.players[0] = new Player(player_name, 0, "", "", "", 0, 0, { base_background: "", background_color_a: '', background_a: '', background_color_b: '', background_b: '', timer: 15 });
+
+    const newPlayer = {
+      name: player_name,
+      bankroll:0,
+      carda: "",
+      cardb :  "",
+      status:   "", 
+      total_bet:    0, 
+      subtotal_bet:    0, 
+      background:{ 
+        base_background: "", 
+        background_color_a: '', 
+        background_a: '', 
+        background_color_b: '', 
+        background_b: '', 
+        timer: 15 
+      }
+  }
+    this.players[0] = newPlayer;
     this.my_players.sort(this.compRan);
 
     //here we are adding the new palyer and other players in this.players
