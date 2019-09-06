@@ -1,6 +1,4 @@
 import { Component, OnInit, Input, OnChanges, SimpleChanges } from '@angular/core';
-import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database-deprecated';
-import { FirebaseLoginService } from '../../../core/firebase.login.service';
 
 @Component({
   moduleId: 'module.id',
@@ -12,15 +10,14 @@ export class TodoComponent implements OnInit, OnChanges {
   textMessage: string;
   items: any[];
   show = true;
-  constructor(private af: AngularFireDatabase,
-    private firebaseloginservice: FirebaseLoginService) { }
+  constructor() { }
 
   ngOnInit() {
-    this.firebaseloginservice.getMessageData()
-      .subscribe(result => {
-        this.items = result;
-        this.show = false;
-      })
+    // this.firebaseloginservice.getMessageData()
+    //   .subscribe(result => {
+    //     this.items = result;
+    //     this.show = false;
+    //   })
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -29,12 +26,12 @@ export class TodoComponent implements OnInit, OnChanges {
   }
 
   myMessage(textMessage: string) {
-    this.firebaseloginservice.submitMessage(textMessage);
-    this.textMessage = '';
+    //this.firebaseloginservice.submitMessage(textMessage);
+    //this.textMessage = '';
   }
 
-  delete(key: string) {
-    console.log("key to delete---" + key);
-    this.af.object('/messages/' + key).remove();
-  }
+  // delete(key: string) {
+  //   console.log("key to delete---" + key);
+  //   this.af.object('/messages/' + key).remove();
+  // }
 }

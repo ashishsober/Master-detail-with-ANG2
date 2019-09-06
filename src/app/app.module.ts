@@ -12,36 +12,22 @@ import { ApplicantFieldComponent } from './pages/components/applicant-form-compo
 import { LoginComponent } from './pages/components/login-component/login.component';
 import { TodoComponent } from './pages/components/todo-firebase-component/todo.component';
 import { DataService } from './core/data.service';
-import { FirebaseLoginService } from './core/firebase.login.service';
 import { AppRoutingModule } from './app-routing.module';
 import { LoginRouteGuard } from './core/login-route-guard';
 import { AlertDialogComponent } from './modals/dialog/alert-dialog.component';
 import { UserInfoModalComponent } from './modals/user-info-modal/user-info-modal.component';
-import { AngularFireModule } from 'angularfire2';
 import { AngularFireAuthModule } from 'angularfire2/auth';
-import { AngularFireDatabaseModule } from 'angularfire2/database-deprecated';
 import { SelectBox } from './@themes/components/select-box/select-box.component';
 import { ShellComponent } from './pages/components/shell-component/shell.component';
-import { HeaderComponent } from './@themes/components/header/header.component';
-import { SidebarComponent } from './@themes/components/sidebar/sidebar.component';
 import { SharedModule } from './shared.module';
 
-export const firebaseConfig = {
-  apiKey: "AIzaSyBu4vtqAO8iH8Bs-Jeak50DfeqT5NgkH8E",
-  authDomain: "angular-project-5cb99.firebaseapp.com",
-  databaseURL: "https://angular-project-5cb99.firebaseio.com",
-  storageBucket: "angular-project-5cb99.appspot.com",
-  messagingSenderId: "103586939904"
-};
 
 @NgModule({
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     FormsModule,/* no need to inject in shared module */
-    AngularFireModule.initializeApp(firebaseConfig),
     AngularFireAuthModule,
-    AngularFireDatabaseModule,
     SharedModule,
     AppRoutingModule,
   ],
@@ -59,7 +45,7 @@ export const firebaseConfig = {
     SelectBox,
     ShellComponent
   ],
-  providers: [DataService, FirebaseLoginService, LoginRouteGuard],
+  providers: [DataService, LoginRouteGuard],
   bootstrap: [AppComponent],
   entryComponents: [AlertDialogComponent, UserInfoModalComponent]
 })
