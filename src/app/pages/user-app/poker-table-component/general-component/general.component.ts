@@ -8,6 +8,7 @@ import { GenericMethods } from '../@core/generic-methods';
 })
 export class GeneralComponent {
   @Input() players;
+  @Input() button_index;
   constructor(private playerDataService:PlayerDataService,
     private genericMethods: GenericMethods){}
   
@@ -15,9 +16,9 @@ export class GeneralComponent {
     players[0].status = "CALL";
     this.genericMethods.current_bettor_index = this.genericMethods.get_next_player_position(0, 1, players);
     this.genericMethods.bet(0, this.genericMethods.current_bet - this.players[0].subtotal_bet,players);
-    this.playerDataService.write_player(0, 0, 0, 0, players, this.genericMethods.button_index);
+    this.playerDataService.write_player(0, 0, 0, 0, players, this.button_index);
     //write_ad();
-    this.playerDataService.main(players, this.genericMethods.button_index, this.genericMethods.current_bettor_index);
+    this.playerDataService.main(players, this.button_index, this.genericMethods.current_bettor_index);
   }
 
   human_raise(players) {
@@ -45,19 +46,19 @@ export class GeneralComponent {
     if (is_ok_bet) {
       this.players[0].status = "CALL";
       this.genericMethods.current_bettor_index = this.genericMethods.get_next_player_position(0, 1, players);
-      this.playerDataService.write_player(0, 0, 0, 0, players, this.genericMethods.button_index);
+      this.playerDataService.write_player(0, 0, 0, 0, players, this.button_index);
       // write_ad();
-      this.playerDataService.main(players, this.genericMethods.button_index, this.genericMethods.current_bettor_index);
+      this.playerDataService.main(players, this.button_index, this.genericMethods.current_bettor_index);
     }
   }
 
   human_fold(players) {
     players[0].status = "FOLD";
     this.genericMethods.current_bettor_index = this.genericMethods.get_next_player_position(0, 1,players);
-    this.playerDataService.write_player(0, 0, 0, 0, players, this.genericMethods.button_index);
+    this.playerDataService.write_player(0, 0, 0, 0, players, this.button_index);
     //this.write_basic_general();
     //write_ad();
-    this.playerDataService.main(players, this.genericMethods.button_index, this.genericMethods.current_bettor_index);
+    this.playerDataService.main(players, this.button_index, this.genericMethods.current_bettor_index);
 
   }
 }

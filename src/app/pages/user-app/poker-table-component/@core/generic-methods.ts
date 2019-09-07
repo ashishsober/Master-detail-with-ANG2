@@ -10,7 +10,6 @@ export class GenericMethods {
     BIG_BLIND;
     HUMAN_WINS_AGAIN;
     current_bettor_index;
-    button_index;
     emittingGeneralComponent = new Rx.BehaviorSubject(false);
     emittingPotSize = new Rx.BehaviorSubject(15);
 

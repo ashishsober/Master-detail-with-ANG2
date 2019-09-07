@@ -39,12 +39,11 @@ export class TableComponent implements OnInit, OnDestroy {
   isGeneralComponentOn: boolean;
   subscribe: Subscription;
   my_players;
-
+  button_index:number;
   constructor(private genericMethods: GenericMethods,
     private playerDataService: PlayerDataService) { }
 
   ngOnInit() {
-    debugger;
     this.my_players = playerList
     this.preload_base_pix();
     this.make_deck();
@@ -55,12 +54,7 @@ export class TableComponent implements OnInit, OnDestroy {
     })
   }
 
-  ngOnDestroy() {
-    clearTimeout(this.playerDataService.bot_bet_timer);
-    clearTimeout(this.playerDataService.timer);
-    clearTimeout(this.playerDataService.timerMain);
-    this.subscribe.unsubscribe();
-  }
+  
 
   // a(d) {
   //   this.init_pix(d)
@@ -118,7 +112,7 @@ export class TableComponent implements OnInit, OnDestroy {
     for (var i = 0; i < this.players.length; i++) {
       this.players[i].bankroll = this.STARTING_BANKROLL;
     }
-    this.genericMethods.button_index = Math.floor(Math.random() * this.players.length);
+    this.button_index = Math.floor(Math.random() * this.players.length);
     this.new_round();
   }
 
@@ -143,10 +137,10 @@ export class TableComponent implements OnInit, OnDestroy {
     this.genericMethods.current_min_raise = 0;
     this.genericMethods.collect_cards(this.players);
     //write_ad();
-    this.genericMethods.button_index = this.genericMethods.get_next_player_position(this.genericMethods.button_index, 1, this.players);
-
+    this.button_index = this.genericMethods.get_next_player_position(this.button_index, 1, this.players);
+    console.log("my button--",this.button_index);
     for (var i = 0; i < this.players.length; i++)
-      this.playerDataService.write_player(i, 0, 0, 1, this.players, this.genericMethods.button_index);
+      this.playerDataService.write_player(i, 0, 0, 1, this.players, this.button_index);
 
     for (var i = 0; i < this.genericMethods.board.length; i++)
       this.genericMethods.write_frame("board" + i, "<html><body bgcolor=" + this.playerDataService.BG_COLOR + "></body></html>", "", this.players);
@@ -182,16 +176,16 @@ export class TableComponent implements OnInit, OnDestroy {
       this.SMALL_BLIND = 25;
       this.genericMethods.BIG_BLIND = 50;
     }
-    var small_blind = this.genericMethods.get_next_player_position(this.genericMethods.button_index, 1, this.players);
+    var small_blind = this.genericMethods.get_next_player_position(this.button_index, 1, this.players);
     this.genericMethods.bet(small_blind, this.SMALL_BLIND, this.players);
-    this.playerDataService.write_player(small_blind, 0, 0, 0, this.players, this.genericMethods.button_index);
+    this.playerDataService.write_player(small_blind, 0, 0, 0, this.players, this.button_index);
     var big_blind = this.genericMethods.get_next_player_position(small_blind, 1, this.players);
     this.genericMethods.bet(big_blind, this.genericMethods.BIG_BLIND, this.players);
-    this.playerDataService.write_player(big_blind, 0, 0, 0, this.players, this.genericMethods.button_index);
+    this.playerDataService.write_player(big_blind, 0, 0, 0, this.players, this.button_index);
     this.players[big_blind].status = "OPTION";
     this.genericMethods.current_bettor_index = this.genericMethods.get_next_player_position(big_blind, 1, this.players);
     setTimeout(() => {
-      this.playerDataService.deal_and_write_a(this.genericMethods.button_index, this.players, this.deck_index, this.cards, this.speed, this.genericMethods.current_bettor_index);
+      this.playerDataService.deal_and_write_a(this.button_index, this.players, this.deck_index, this.cards, this.speed, this.genericMethods.current_bettor_index);
     }, 1000);
   }
 
@@ -255,6 +249,12 @@ export class TableComponent implements OnInit, OnDestroy {
     return .5 - Math.random();
   }
 
+  ngOnDestroy() {
+    clearTimeout(this.playerDataService.bot_bet_timer);
+    clearTimeout(this.playerDataService.timer);
+    clearTimeout(this.playerDataService.timerMain);
+    this.subscribe.unsubscribe();
+  }
 
 
 

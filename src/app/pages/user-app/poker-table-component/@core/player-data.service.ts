@@ -17,7 +17,7 @@ export class PlayerDataService {
 
     constructor(private genericMethods: GenericMethods) { }
 
-    deal_and_write_a(button_index, players, deck_index, cards, speed, current_bettor_index) {
+    deal_and_write_a(button_index, players, deck_index, cards, speed, current_bettor_index) { 
         var pause_time = 0;
         for (var i = 0; i < players.length; i++) {
             this.genericMethods.doSetTimeoutForDeal_A(i, button_index, players, deck_index++, cards);
