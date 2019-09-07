@@ -89,6 +89,7 @@ export class TableComponent implements OnInit, OnDestroy {
       status:   "", 
       total_bet:    0, 
       subtotal_bet:    0, 
+      button_index:null, 
       background:{ 
         base_background: "", 
         background_color_a: '', 
@@ -139,6 +140,7 @@ export class TableComponent implements OnInit, OnDestroy {
     //write_ad();
     this.button_index = this.genericMethods.get_next_player_position(this.button_index, 1, this.players);
     console.log("my button--",this.button_index);
+    this.players[this.button_index].button_index = this.button_index;
     for (var i = 0; i < this.players.length; i++)
       this.playerDataService.write_player(i, 0, 0, 1, this.players, this.button_index);
 

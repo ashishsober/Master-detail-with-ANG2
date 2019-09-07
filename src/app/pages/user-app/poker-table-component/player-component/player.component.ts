@@ -14,5 +14,6 @@ export class PlayerComponent {
   @Input() subtotal_bet;
   @Input() background ;
   @Input() status;
+  @Input() button_index;
   constructor(){ }
 }

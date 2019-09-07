@@ -8,7 +8,8 @@ export const playerList = [
     "cardb" :  "",
     "status":   "", 
     "total_bet":    0, 
-    "subtotal_bet":    0, 
+    "subtotal_bet":    0,
+    "button_index":null, 
     "background":{ 
       "base_background": "", 
       "background_color_a": '', 
