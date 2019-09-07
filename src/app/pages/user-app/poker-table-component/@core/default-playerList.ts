@@ -27,6 +27,7 @@ export const playerList = [
   "status":   "", 
   "total_bet":    0, 
   "subtotal_bet":    0, 
+  "button_index":null, 
   "background":{ 
     "base_background": "", 
     "background_color_a": '', 
@@ -44,6 +45,7 @@ export const playerList = [
   "status":   "", 
   "total_bet":    0, 
   "subtotal_bet":    0, 
+  "button_index":null, 
   "background":{ 
     "base_background": "", 
     "background_color_a": '', 
@@ -61,6 +63,7 @@ export const playerList = [
   "status":   "", 
   "total_bet":    0, 
   "subtotal_bet":    0, 
+  "button_index":null, 
   "background":{ 
     "base_background": "", 
     "background_color_a": '', 
