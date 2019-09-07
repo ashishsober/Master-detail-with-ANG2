@@ -3,7 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { UserAppComponent } from './user-app.component';
 import { UserAppDataComponent } from './user-app-data/user-app-data.component';
 import { ProfileComponent } from './profiles/profile.component';
-import { TableComponent } from './location-component/table.component';
+import { TableComponent } from './poker-table-component/table.component';
 
 const userAppRoutes: Routes = [
   {

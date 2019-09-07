@@ -6,15 +6,15 @@ import { UserAppRoutingModule } from './user-app-routing.module';
 import { UserAppDataComponent } from './user-app-data/user-app-data.component';
 import { SharedModule } from '../../shared.module';
 import { ProfileComponent } from './profiles/profile.component'
-import { TableComponent } from './location-component/table.component';
-import { GeneralComponent } from './location-component/general-component/general.component';
-import { PotViewComponent } from './location-component/pot-view-component/pot-view.component';
-import { PlayerComponent } from './location-component/player-component/player.component';
-import { HandService } from './location-component/@core/hand.service';
-import { BotService } from './location-component/@core/bot.service';
-import { CardComponent } from './location-component/player-component/card-component/card.component';
-import { PlayerDataService } from './location-component/@core/player-data.service';
-import { GenericMethods } from './location-component/@core/generic-methods';
+import { TableComponent } from './poker-table-component/table.component';
+import { GeneralComponent } from './poker-table-component/general-component/general.component';
+import { PotViewComponent } from './poker-table-component/pot-view-component/pot-view.component';
+import { PlayerComponent } from './poker-table-component/player-component/player.component';
+import { HandService } from './poker-table-component/@core/hand.service';
+import { BotService } from './poker-table-component/@core/bot.service';
+import { CardComponent } from './poker-table-component/player-component/card-component/card.component';
+import { PlayerDataService } from './poker-table-component/@core/player-data.service';
+import { GenericMethods } from './poker-table-component/@core/generic-methods';
 
 @NgModule({
   imports: [
