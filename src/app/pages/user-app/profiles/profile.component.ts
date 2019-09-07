@@ -1,18 +1,19 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../../../core/data.service';
+import { User } from './profile.model';
 @Component({
   moduleId: 'module.id',
   selector: 'user-profile-root',
   templateUrl: './profile.component.html'
 })
 export class ProfileComponent implements OnInit{
-  private users;
+  private users:Array<User>;
   searchText: string;
   constructor( private dataService: DataService ){}
   ngOnInit(){
     this.dataService.getUsers()
-    .subscribe(data => {
-       this.users = data;
+    .subscribe((data:User[]) => {
+       this.users = data
     })  
   }
 

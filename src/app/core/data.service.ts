@@ -9,6 +9,7 @@ import 'rxjs/add/operator/switchMap';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import * as Rx from "rxjs/Rx";
+import { User } from 'app/pages/user-app/profiles/profile.model';
 
 
 @Injectable()
@@ -95,11 +96,11 @@ export class DataService {
                   .catch(this.handleError);
       }
 
-      getUsers():Observable<any>{
+      getUsers():Observable<User[]>{
             let getHostname=this.getHostname();
-            let url = getHostname.concat('/register/user')
+            let url ='http://ec2-3-17-146-125.us-east-2.compute.amazonaws.com:1337/register/user';
             return this.http.get(url)
-            .map(this.extractData)
+            .map((res:Response) => res.json().map((user:User) => new User().deserialize(user)))
             .catch(this.handleError);
       }
 
