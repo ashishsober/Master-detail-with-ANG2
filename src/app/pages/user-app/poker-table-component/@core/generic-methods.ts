@@ -10,7 +10,7 @@ export class GenericMethods {
     BIG_BLIND;
     HUMAN_WINS_AGAIN;
     current_bettor_index;
-    emittingGeneralComponent = new Rx.BehaviorSubject(false);
+    
     emittingPotSize = new Rx.BehaviorSubject(15);
 
     has_money(i, players) {
@@ -150,7 +150,6 @@ export class GenericMethods {
     write_frame(f: any, html: any, n: any, player): void {
         if(f === "general"){
             console.log("inside write_frame function--", player,"  my component name to trigger--",f);
-            this.emittingGeneralComponent.next(true);
         }
         // try {
         //   //console.log("type of component  " + f);

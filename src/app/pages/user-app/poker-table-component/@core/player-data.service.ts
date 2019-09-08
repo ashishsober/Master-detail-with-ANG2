@@ -14,7 +14,7 @@ export class PlayerDataService {
     bot_bet_timer;
     timer;
     timerMain;
-
+    emittingGeneralComponent = new Rx.BehaviorSubject(false);
     constructor(private genericMethods: GenericMethods) { }
 
     deal_and_write_a(button_index, players, deck_index, cards, speed, current_bettor_index) { 
@@ -47,7 +47,9 @@ export class PlayerDataService {
             increment_bettor_index = 1;
         } else {
             players[current_bettor_index].status = "";
+            
             if (current_bettor_index == 0) {
+                this.emittingGeneralComponent.next(true);
                 var call_button_text = "     Call     ";
                 var fold_button = "<input type=button value=Fold onclick='parent.human_fold()'>";
                 var bet_button_text = "   Raise   ";

@@ -14,6 +14,7 @@ export class GeneralComponent {
   
   human_call(players) {
     players[0].status = "CALL";
+    this.playerDataService.emittingGeneralComponent.next(false);
     this.genericMethods.current_bettor_index = this.genericMethods.get_next_player_position(0, 1, players);
     this.genericMethods.bet(0, this.genericMethods.current_bet - this.players[0].subtotal_bet,players);
     this.playerDataService.write_player(0, 0, 0, 0, players, this.button_index);
@@ -23,6 +24,7 @@ export class GeneralComponent {
 
   human_raise(players) {
     var to_call = this.genericMethods.current_bet - players[0].subtotal_bet;
+    this.playerDataService.emittingGeneralComponent.next(false);
     var prompt_text = "Minimum raise is " + this.genericMethods.current_min_raise + ". How much do you raise? DON'T include the " + to_call + " needed to call.";
     if (to_call == 0) prompt_text = "The minimum bet is " + this.genericMethods.current_min_raise + ". How much you wanna bet?";
     var bet_amount = prompt(prompt_text, "");
@@ -54,6 +56,7 @@ export class GeneralComponent {
 
   human_fold(players) {
     players[0].status = "FOLD";
+    this.playerDataService.emittingGeneralComponent.next(false);
     this.genericMethods.current_bettor_index = this.genericMethods.get_next_player_position(0, 1,players);
     this.playerDataService.write_player(0, 0, 0, 0, players, this.button_index);
     //this.write_basic_general();

@@ -36,7 +36,7 @@ export class TableComponent implements OnInit, OnDestroy {
   subtotal_bet;
   pauseTime = 0;
 
-  isGeneralComponentOn: boolean;
+  isGeneralComponentOn: boolean = false;
   subscribe: Subscription;
   my_players;
   button_index:number;
@@ -44,13 +44,13 @@ export class TableComponent implements OnInit, OnDestroy {
     private playerDataService: PlayerDataService) { }
 
   ngOnInit() {
-    this.my_players = playerList
+    this.my_players = playerList;
     this.preload_base_pix();
     this.make_deck();
     this.new_game();
     //this.write_frame("board2", "<html><body bgcolor=" + this.BG_COLOR + " text=FFFFFF><table height=100%><tr><td valign=center><tt><b>Hello!</b> This software is still being improved. The opponent bots need to be smarter. If it isn't challenging now, hopefully it will be soon. And please visit some of our sponsors' links. <small><i>February 2006</i></small></tt></td></tr></table></body></html>", "");
-    this.subscribe = this.genericMethods.emittingGeneralComponent.subscribe((data) => {
-      this.isGeneralComponentOn = data;
+    this.subscribe = this.playerDataService.emittingGeneralComponent.subscribe((value:boolean) => {
+      this.isGeneralComponentOn = value;
     })
   }
 
