@@ -16,7 +16,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { LoginRouteGuard } from './core/login-route-guard';
 import { AlertDialogComponent } from './modals/dialog/alert-dialog.component';
 import { UserInfoModalComponent } from './modals/user-info-modal/user-info-modal.component';
-import { AngularFireAuthModule } from 'angularfire2/auth';
+//import { AngularFireAuthModule } from 'angularfire2/auth';
 import { SelectBox } from './@themes/components/select-box/select-box.component';
 import { ShellComponent } from './pages/components/shell-component/shell.component';
 import { SharedModule } from './shared.module';
@@ -27,7 +27,6 @@ import { SharedModule } from './shared.module';
     BrowserModule,
     BrowserAnimationsModule,
     FormsModule,/* no need to inject in shared module */
-    AngularFireAuthModule,
     SharedModule,
     AppRoutingModule,
   ],
